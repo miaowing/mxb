@@ -1,0 +1,10 @@
+.DS_Store
+.idea/
+dist/
+node_modules/
+config.ts
+packages/next/.next/
+yarn-error.log
+*.js
+*.d.ts
+!packages/render/polyfills.js

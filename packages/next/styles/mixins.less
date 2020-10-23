@@ -1,0 +1,9 @@
+@tablet: 768em;
+@desktop: 992em;
+@phone: 376em;
+
+.media(@platform, @key, @value) {
+  @media (max-width: (@platform / 16)) {
+      @{key}: @value !important;
+  }
+}

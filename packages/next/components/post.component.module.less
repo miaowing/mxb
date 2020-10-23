@@ -1,0 +1,29 @@
+@import (reference) "../styles/mixins";
+
+.post {
+  padding: 2rem 4rem;
+  line-height: 1.8;
+
+  h1, h2 {
+    display: block;
+    line-height: 1.2;
+    margin-top: 1rem;
+    margin-bottom: 0.5rem;
+  }
+
+  ol, ul {
+    margin-bottom: 2rem;
+  }
+
+  h1 {
+    font-weight: 400;
+    font-size: 3.2rem;
+
+    .media(@tablet, font-size, 2.6rem);
+  }
+
+  h2 {
+    font-weight: 500;
+    font-size: 2rem;
+  }
+}
