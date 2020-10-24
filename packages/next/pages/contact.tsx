@@ -4,11 +4,10 @@ import { Layout } from "../components/layout.component";
 import { Header } from "../components/header.component";
 import { Query } from "../components/query.component";
 import { GET_SITE_METADATA } from "../graphql/metadata.gql";
-import { GET_ABOUT } from "../graphql/post.gql";
-import { Post } from "../components/post.component";
+import { Contact } from "../components/contact.component";
 import { Footer } from "../components/footer.component";
 
-export default class AboutPage extends React.Component<any, any> {
+export default class ContactPage extends React.Component<any, any> {
     render() {
         return <>
             <Layout>
@@ -17,9 +16,7 @@ export default class AboutPage extends React.Component<any, any> {
                         <title>About - {site.title}</title>
                     </Head>
                     <Header title={site.title}/>
-                    <Query type="object" query={GET_ABOUT} render={post => <Layout>
-                        <Post post={post}/>
-                    </Layout>}/>
+                    <Contact/>
                     <Footer title={site.title}/>
                 </>}/>
             </Layout>

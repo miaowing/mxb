@@ -1,8 +1,13 @@
+@import (reference) "../styles/mixins";
+
 .header {
   display: flex;
   justify-content: space-between;
   align-items: center;
   padding: 4rem;
+
+  .media(@phone, padding-left, 2rem);
+  .media(@phone, padding-right, 2rem);
 
   a {
     color: #757575;

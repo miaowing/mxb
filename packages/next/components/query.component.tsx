@@ -8,10 +8,10 @@ export interface QueryProps {
     loading?: React.ReactNode | string;
     nodata?: React.ReactNode | string;
     error?: (e: any) => React.ReactNode | string;
-    render: (data: any) => any;
+    render: (data: any, meta?: any) => any;
 }
 
-export class Query<T extends any> extends React.Component<QueryProps, any> {
+export class Query extends React.Component<QueryProps, any> {
     render() {
         const { query, variables, render, type = 'array', nodata } = this.props;
         return <>
@@ -32,8 +32,10 @@ export class Query<T extends any> extends React.Component<QueryProps, any> {
                         return nodata ? nodata : <p>No data</p>;
                     }
 
-                    const subData = Object.values(data)[0];
-                    return render((type === 'array' ? subData : (subData[0] ?? {})) as T);
+                    const values = Object.values(data);
+                    const value = values[0];
+                    const metadata = values[1];
+                    return render((type === 'array' ? value : (value[0] ?? {})), metadata);
                 })}
             </ApolloQuery>
         </>;

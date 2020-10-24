@@ -1,5 +1,4 @@
 import * as React from 'react';
-import { WithRouter } from "../decorators";
 import Head from "next/head";
 import { Layout } from "../components/layout.component";
 import { Header } from "../components/header.component";
@@ -10,33 +9,43 @@ import { Galleries, GalleryItem } from "../components/gallery.component";
 import { Gallery } from "../interfaces/gallery.interface";
 import { GET_BANNER } from "../graphql/banner.gql";
 import { Banner } from "../components/banner.component";
+import { GET_LATEST_POSTS } from "../graphql/post.gql";
+import { Footer } from "../components/footer.component";
+import { PostCard, PostCards } from "../components/post-card.component";
+import { initGalleryAnimation } from "../helpers/animation.helper";
 
-export interface IHomepageProps {
-    lang: string;
-}
 
-@WithRouter()
-export default class Homepage extends React.Component<IHomepageProps, any> {
+export default class Homepage extends React.Component<any, any> {
+    componentDidMount() {
+        initGalleryAnimation();
+    }
+
     render() {
         return <>
             <Layout>
-                <Query type="object" query={GET_SITE_METADATA} render={data => <>
+                <Query type="object" query={GET_SITE_METADATA} render={site => <>
                     <Head>
-                        <title>{data.title}</title>
+                        <title>{site.title}</title>
                     </Head>
-                    <Header title={data.title}/>
+                    <Header title={site.title}/>
+                    <Query
+                        type="object" query={GET_BANNER} variables={{ key: 'homepage' }}
+                        render={data => <Banner>{data.content}</Banner>}/>
+                    <Query query={GET_GALLERIES} render={(galleries: Gallery[]) => <Galleries>
+                        {galleries.map((item, index) => <GalleryItem
+                            index={index}
+                            key={item.title}
+                            title={item.title}
+                            url={item.url}
+                            description={item.description}
+                            image={item?.thumb?.publicUrl}
+                        />)}
+                    </Galleries>}/>
+                    <Query query={GET_LATEST_POSTS} render={posts => <PostCards title="Blog Posts↓">
+                        {posts.map(post => <PostCard key={post.id} post={post}/>)}
+                    </PostCards>}/>
+                    <Footer title={site.title}/>
                 </>}/>
-                <Query type="object" query={GET_BANNER} render={data => <Banner>{data.content}</Banner>}/>
-                <Query query={GET_GALLERIES} render={(galleries: Gallery[]) => <Galleries>
-                    {galleries.map(item => <GalleryItem
-                        key={item.title}
-                        title={item.title}
-                        url={item.url}
-                        description={item.description}
-                        image={item?.thumb?.publicUrl}
-                    />)}
-                </Galleries>}/>
-                <div style={{ height: '50vh' }}/>
             </Layout>
         </>;
     }

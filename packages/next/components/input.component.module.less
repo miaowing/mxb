@@ -1,0 +1,49 @@
+@import (reference) "../styles/variables";
+
+.form_group {
+  margin-bottom: 16px;
+
+  input, textarea {
+    outline: none;
+    appearance: none;
+    box-sizing: border-box;
+    font-family: inherit;
+    font-size: 1.6rem;
+    line-height: 1.2rem;
+    margin: 24px 0 0 0;
+    min-width: 1px;
+    padding: 4px 0;
+    transition: box-shadow 100ms linear;
+    vertical-align: middle;
+    white-space: nowrap;
+    background: white none;
+    border: 0;
+    border-bottom: 1px solid #d9d9d9;
+    color: inherit;
+    width: 100%;
+
+    &::-webkit-input-placeholder {
+      color: rgba(18, 28, 39, 0.55);
+      font-weight: bold;
+    }
+
+    &:hover {
+      border-color: @primary-color;
+      outline: 0;
+    }
+
+    &:focus {
+      border-color: @primary-color;
+      outline: 0;
+    }
+
+    &.invalid {
+      border-color: @highlight-color;
+      outline: 0;
+    }
+  }
+
+  textarea {
+    transition: height 0.5s;
+  }
+}

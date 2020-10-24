@@ -6,6 +6,8 @@ import { accessHelper } from "../helpers";
 export function initBannerModel(keystone: Keystone): void {
     keystone.createList('Banner', {
         fields: {
+            key: { type: Text },
+            title: { type: Text },
             content: { type: Text, isMultiline: true } as any,
         },
         access: {

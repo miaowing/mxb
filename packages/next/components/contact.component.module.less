@@ -1,0 +1,28 @@
+@import (reference) "../styles/mixins";
+@import (reference) "../styles/variables";
+
+.contact {
+  padding: 0 4rem;
+
+  .limit {
+    max-width: 670px;
+  }
+
+  form {
+    position: relative;
+    z-index: 2;
+    background-color: white;
+    margin: -100px auto 0;
+    padding: 4rem;
+    max-width: 600px;
+    box-shadow: 0 0 50px 0 rgba(0, 0, 0, .2);
+
+    h5 {
+      font-size: 2.4rem;
+      font-weight: 500;
+    }
+  }
+
+  .media(@phone, padding-left, 2rem);
+  .media(@phone, padding-right, 2rem);
+}

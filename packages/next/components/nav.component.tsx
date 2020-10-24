@@ -6,6 +6,9 @@ export const Nav = () => (
     <nav className={styles.nav}>
         <ul>
             <li>
+                <Link href="/posts"><a>Blog</a></Link>
+            </li>
+            <li>
                 <Link href="/contact"><a>Contact</a></Link>
             </li>
             <li>

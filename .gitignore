@@ -4,7 +4,10 @@ dist/
 node_modules/
 config.ts
 packages/next/.next/
+packages/keystone/.keystone/
 yarn-error.log
 *.js
 *.d.ts
-!packages/render/polyfills.js
+!packages/next/polyfills.js
+!packages/next/next.config.js
+!packages/next/next-env.d.ts

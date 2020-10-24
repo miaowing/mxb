@@ -1,4 +1,9 @@
+@import (reference) "../styles/mixins";
+
 .banner {
   padding: 2rem 4rem;
   max-width: 700px;
+
+  .media(@phone, padding-left, 2rem);
+  .media(@phone, padding-right, 2rem);
 }

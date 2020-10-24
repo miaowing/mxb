@@ -1,5 +1,9 @@
+@import (reference) "../styles/variables";
+
 .button {
+  position: relative;
   appearance: none;
+  outline: none;
   background-color: rgb(255, 255, 255);
   border-radius: 5px;
   color: rgb(117, 117, 117);
@@ -8,8 +12,13 @@
   font-family: inherit;
   font-size: 1.3rem;
   font-weight: 500;
-  margin: 4rem 0px 2rem;
+  margin: 4rem 0 2rem;
   padding: 1rem 2rem;
   text-transform: uppercase;
   transition: background-color 0.2s ease 0s;
+
+  &:hover {
+    border-color: @primary-color;
+    color: @primary-color;
+  }
 }

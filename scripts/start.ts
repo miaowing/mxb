@@ -1,7 +1,7 @@
 import * as path from 'path';
 import { executeDefaultServer } from './utils';
 import { DEFAULT_DIST_DIR } from './constants';
-import * as entryFile from '../index';
+import * as entryFile from '../packages/keystone/.keystone';
 
 async function bootstrap() {
     // @ts-ignore

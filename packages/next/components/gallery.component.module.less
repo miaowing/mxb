@@ -1,13 +1,19 @@
 @import (reference) "../styles/mixins";
 
-.gallery {
+.galleries {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   grid-gap: 4rem;
   padding: 0 4rem;
   margin: 2rem 0;
 
+  .media(@phone, padding-left, 2rem);
+  .media(@phone, padding-right, 2rem);
   .media(@tablet, display, block);
+}
+
+.gallery {
+  position: relative;
 }
 
 .wrapper {

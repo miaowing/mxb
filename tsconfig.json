@@ -13,9 +13,10 @@
     "experimentalDecorators": true,
     "target": "es2017",
     "sourceMap": false,
-    "allowJs": false,
+    "allowJs": true,
     "strict": true,
     "strictNullChecks": false,
+    "outDir": "packages/keystone/.keystone",
     "lib": [
       "es7"
     ]
@@ -23,6 +24,9 @@
   "exclude": [
     "node_modules",
     "./**/*.spec.ts",
-    "src/apps"
+    "packages/next",
+    "packages/keystone/.keystone",
+    "dist",
+    "scripts"
   ]
 }

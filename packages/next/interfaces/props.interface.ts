@@ -1,3 +1,5 @@
+import * as React from 'react';
+
 export interface ConfigProps {
     config?: {
         serverRuntimeConfig: any;
@@ -5,4 +7,12 @@ export interface ConfigProps {
             serverUrl: string;
         };
     }
+}
+
+export interface BaseProps {
+    id?: string;
+    key?: string;
+    style?: React.CSSProperties;
+    className?: string;
+    ref?: any;
 }
