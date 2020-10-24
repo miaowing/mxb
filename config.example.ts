@@ -13,8 +13,8 @@ export const mailer = {
     },
 };
 export const oss = {
-    accessKey: env.ALI_ACCESS_KEY ?? '',
-    secretKey: env.ALI_SECRET_KEY ?? '',
+    accessKey: env.ALI_ACCESS_KEY ?? ' ',
+    secretKey: env.ALI_SECRET_KEY ?? ' ',
     region: 'oss-cn-beijing',
     bucket: 'zf-ink',
     folder: 'uploads',
