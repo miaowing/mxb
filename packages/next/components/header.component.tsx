@@ -19,10 +19,18 @@ const AnimatedContainer = posed.div({
     },
 });
 
-export const Header = ({ title }) => (
+interface HeaderProps {
+    title: string;
+    avatar?: string;
+}
+
+export const Header = ({ title, avatar }) => (
     <AnimatedContainer>
         <header className={styles.header}>
-            <a href="/"><Title as="h1">{title}</Title></a>
+            <a href="/" className={styles.logo}>
+                {avatar ? <img src={avatar} alt={title}/> : ''}
+                <Title as="h1" className={styles.title}>{title}</Title>
+            </a>
             <Nav/>
         </header>
     </AnimatedContainer>

@@ -16,7 +16,7 @@ export default class AboutPage extends React.Component<any, any> {
                     <Head>
                         <title>About - {site.title}</title>
                     </Head>
-                    <Header title={site.title}/>
+                    <Header title={site.title} avatar={site?.avatar?.publicUrl}/>
                     <Query type="object" query={GET_ABOUT} render={post => <Layout>
                         <Post post={post}/>
                     </Layout>}/>

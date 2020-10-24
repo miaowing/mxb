@@ -6,6 +6,7 @@ import { initBannerModel } from "./banner.model";
 import { initPostModel } from "./post.model";
 import { initReceiverModel } from "./receiver.model";
 import { initMessageModel } from "./message.model";
+import { initTagModel } from "./tag.model";
 
 export function initModels(keystone: Keystone) {
     initUserModel(keystone);
@@ -15,4 +16,5 @@ export function initModels(keystone: Keystone) {
     initPostModel(keystone);
     initReceiverModel(keystone);
     initMessageModel(keystone);
+    initTagModel(keystone);
 }

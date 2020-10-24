@@ -34,7 +34,7 @@ export default class Homepage extends React.Component<IHomepageProps, any> {
                     <Head>
                         <title>Blog - {site.title}</title>
                     </Head>
-                    <Header title={site.title}/>
+                    <Header title={site.title} avatar={site?.avatar?.publicUrl}/>
                     <Query
                         query={GET_POSTS} variables={{ skip: 0, first }}
                         render={(posts, meta) => {

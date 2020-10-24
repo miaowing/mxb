@@ -5,7 +5,10 @@ query {
   allSiteMetas {
     title,
     icp,
-    icp_url
+    icp_url,
+    avatar {
+      publicUrl
+    }
   }
 }
 `;

@@ -1,5 +1,5 @@
 import { Keystone } from "@keystonejs/keystone";
-import { Checkbox, File, Text, Url } from "@keystonejs/fields";
+import { Checkbox, File, Relationship, Text, Url } from "@keystonejs/fields";
 import { Wysiwyg } from "@keystonejs/fields-wysiwyg-tinymce";
 import { Markdown } from '@keystonejs/fields-markdown';
 import { ossAdapter } from "../clients";
@@ -12,7 +12,7 @@ export function initPostModel(keystone: Keystone): void {
         fields: {
             key: { type: Text },
             title: { type: Text },
-            category: { type: Text },
+            tags: { type: Relationship, ref: 'Tag', many: true },
             description: { type: Text, isMultiline: true } as any,
             author: { type: Text, label: '作者' },
             thumb: {

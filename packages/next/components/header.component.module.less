@@ -18,4 +18,21 @@
       color: inherit;
     }
   }
+
+  .logo {
+    justify-content: space-between;
+    display: flex;
+    align-items: center;
+
+    .title {
+      .media(@tablet, display, none);
+    }
+
+    img {
+      height: 60px;
+      width: 60px;
+      border-radius: 60px;
+      margin-right: 2rem;
+    }
+  }
 }

@@ -29,7 +29,7 @@ export default ({}) => {
                 <Head>
                     <title>About - {site.title}</title>
                 </Head>
-                <Header title={site.title}/>
+                <Header title={site.title} avatar={site?.avatar?.publicUrl}/>
                 <Contact loading={sending} onSubmit={values => submit(values)}/>
                 <Footer title={site.title} icp={{ icp: site.icp, url: site.icp_url }}/>
             </>}/>

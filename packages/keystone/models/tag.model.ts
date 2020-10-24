@@ -1,20 +1,14 @@
 import { Keystone } from "@keystonejs/keystone";
-import { File, Text, Url } from "@keystonejs/fields";
+import { Text } from "@keystonejs/fields";
 import { Role } from "../constants/role.enum";
 import { accessHelper } from "../helpers";
-import { ossAdapter } from "../clients";
 
-export function initSiteMetadataModel(keystone: Keystone): void {
-    keystone.createList('SiteMeta', {
+export function initTagModel(keystone: Keystone): void {
+    keystone.createList('Tag', {
         fields: {
-            title: { type: Text },
-            icp: { type: Text },
-            icp_url: { type: Url },
-            avatar: {
-                type: File,
-                adapter: ossAdapter,
-                label: 'avatar',
-            },
+            key: { type: Text },
+            name: { type: Text },
+            description: { type: Text, isMultiline: true } as any,
         },
         access: {
             read: accessHelper.access(Role.ADMIN, Role.ANONYMOUS),

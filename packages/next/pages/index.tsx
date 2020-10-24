@@ -25,7 +25,7 @@ export default class Homepage extends React.Component<any, any> {
                         <Head>
                             <title>{site.title}</title>
                         </Head>
-                        <Header title={site.title}/>
+                        <Header title={site.title} avatar={site?.avatar?.publicUrl}/>
                         <Query
                             type="object" query={GET_BANNER} variables={{ key: 'homepage' }}
                             onCompleted={() => initHomepageBannerAnimation()}

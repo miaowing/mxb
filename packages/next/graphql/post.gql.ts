@@ -6,13 +6,17 @@ export const POST_DATA = gql`
     key,
     title,
     description,
-    category,
     author,
     thumb {
       publicUrl
     }
     cover {
       publicUrl
+    }
+    tags {
+      key,
+      name,
+      description
     }
     content,
     html_content,

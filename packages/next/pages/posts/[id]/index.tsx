@@ -18,7 +18,7 @@ export default class PostPage extends React.Component<any, any> {
         return <>
             <Layout>
                 <Query type="object" query={GET_SITE_METADATA} render={site => <>
-                    <Header title={site.title}/>
+                    <Header title={site.title} avatar={site?.avatar?.publicUrl}/>
                     <Query type="object" query={GET_POST} variables={{ key: id }} render={post => <>
                         <Head>
                             <title>{post.title} - {site.title}</title>
