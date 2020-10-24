@@ -9,6 +9,7 @@ ENV NODE_ENV production
 WORKDIR /usr/src/app
 
 ADD dist ./dist
+ADD scripts ./scripts
 ADD package.json ./
 ADD node_modules ./node_modules
 ADD packages/keystone/.keystone ./packages/keystone/.keystone
