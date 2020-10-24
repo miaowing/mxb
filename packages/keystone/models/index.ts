@@ -4,6 +4,8 @@ import { initSiteMetadataModel } from "./site-metadata.model";
 import { initGalleryModel } from "./gallery.model";
 import { initBannerModel } from "./banner.model";
 import { initPostModel } from "./post.model";
+import { initReceiverModel } from "./receiver.model";
+import { initMessageModel } from "./message.model";
 
 export function initModels(keystone: Keystone) {
     initUserModel(keystone);
@@ -11,4 +13,6 @@ export function initModels(keystone: Keystone) {
     initGalleryModel(keystone);
     initBannerModel(keystone);
     initPostModel(keystone);
+    initReceiverModel(keystone);
+    initMessageModel(keystone);
 }

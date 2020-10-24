@@ -12,40 +12,42 @@ import { Banner } from "../components/banner.component";
 import { GET_LATEST_POSTS } from "../graphql/post.gql";
 import { Footer } from "../components/footer.component";
 import { PostCard, PostCards } from "../components/post-card.component";
-import { initGalleryAnimation } from "../helpers/animation.helper";
+import { initGalleryAnimation, initHomepageBannerAnimation } from "../helpers/animation.helper";
 
 
 export default class Homepage extends React.Component<any, any> {
-    componentDidMount() {
-        initGalleryAnimation();
-    }
-
     render() {
         return <>
             <Layout>
-                <Query type="object" query={GET_SITE_METADATA} render={site => <>
-                    <Head>
-                        <title>{site.title}</title>
-                    </Head>
-                    <Header title={site.title}/>
-                    <Query
-                        type="object" query={GET_BANNER} variables={{ key: 'homepage' }}
-                        render={data => <Banner>{data.content}</Banner>}/>
-                    <Query query={GET_GALLERIES} render={(galleries: Gallery[]) => <Galleries>
-                        {galleries.map((item, index) => <GalleryItem
-                            index={index}
-                            key={item.title}
-                            title={item.title}
-                            url={item.url}
-                            description={item.description}
-                            image={item?.thumb?.publicUrl}
-                        />)}
-                    </Galleries>}/>
-                    <Query query={GET_LATEST_POSTS} render={posts => <PostCards title="Blog Posts↓">
-                        {posts.map(post => <PostCard key={post.id} post={post}/>)}
-                    </PostCards>}/>
-                    <Footer title={site.title}/>
-                </>}/>
+                <Query
+                    type="object" query={GET_SITE_METADATA}
+                    onCompleted={() => initHomepageBannerAnimation()}
+                    render={site => <>
+                        <Head>
+                            <title>{site.title}</title>
+                        </Head>
+                        <Header title={site.title}/>
+                        <Query
+                            type="object" query={GET_BANNER} variables={{ key: 'homepage' }}
+                            render={data => <Banner>{data.content}</Banner>}/>
+                        <Query
+                            query={GET_GALLERIES}
+                            onCompleted={() => initGalleryAnimation()}
+                            render={(galleries: Gallery[]) => <Galleries>
+                                {galleries.map((item, index) => <GalleryItem
+                                    index={index}
+                                    key={item.title}
+                                    title={item.title}
+                                    url={item.url}
+                                    description={item.description}
+                                    image={item?.thumb?.publicUrl}
+                                />)}
+                            </Galleries>}/>
+                        <Query query={GET_LATEST_POSTS} render={posts => <PostCards title="Blog Posts↓">
+                            {posts.map(post => <PostCard key={post.id} post={post}/>)}
+                        </PostCards>}/>
+                        <Footer title={site.title}/>
+                    </>}/>
             </Layout>
         </>;
     }

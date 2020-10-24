@@ -1,5 +1,4 @@
 import * as React from 'react';
-import Link from 'next/link';
 import styles from './post-card.component.module.less';
 import dayjs from 'dayjs';
 
@@ -14,18 +13,14 @@ export const PostCards = ({ children, title }) => (
 
 export const PostCard = ({ post }) => (
     <article className={styles.card}>
-        <Link href={`/posts/${post.key}`}>
-            <a>
-                {!!post.thumb && (
-                    <img src={post?.thumb?.publicUrl} alt={post.title}/>
-                )}
-            </a>
-        </Link>
+        <a href={`/posts/${post.key}`}>
+            {!!post.thumb && (
+                <img src={post?.thumb?.publicUrl} alt={post.title}/>
+            )}
+        </a>
         <header>
             <h2 className={styles.title}>
-                <Link href={`/posts/${post.key}`}>
-                    <a className={styles.link}>{post.title}</a>
-                </Link>
+                <a href={`/posts/${post.key}`} className={styles.link}>{post.title}</a>
             </h2>
             <div className={styles.meta}>{dayjs(post.createdAt).format('YYYY-MM-DD hh:mm')}</div>
         </header>

@@ -7,8 +7,16 @@ interface Button {
     id?: string;
     style?: React.CSSProperties;
     className?: string;
+    loading?: boolean;
 }
 
-export const Button = ({ children, onClick, id, style, className }: Button) => (
-    <button id={id} style={style} className={`${styles.button} ${className}`} onClick={onClick}>{children}</button>
+export const Button = ({ children, onClick, id, style, className, loading }: Button) => (
+    <button
+        type="button"
+        id={id}
+        style={style}
+        className={`${styles.button} ${className} ${loading ? styles.loading : ''}`}
+        onClick={() => loading || onClick()}>
+        {children}
+    </button>
 )

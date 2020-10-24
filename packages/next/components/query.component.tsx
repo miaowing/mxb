@@ -8,14 +8,15 @@ export interface QueryProps {
     loading?: React.ReactNode | string;
     nodata?: React.ReactNode | string;
     error?: (e: any) => React.ReactNode | string;
+    onCompleted?: () => void;
     render: (data: any, meta?: any) => any;
 }
 
 export class Query extends React.Component<QueryProps, any> {
     render() {
-        const { query, variables, render, type = 'array', nodata } = this.props;
+        const { query, variables, render, type = 'array', nodata, onCompleted } = this.props;
         return <>
-            <ApolloQuery query={query} variables={variables}>
+            <ApolloQuery query={query} variables={variables} onCompleted={onCompleted}>
                 {(({ data, loading, error = null }) => {
                     if (loading) {
                         return this.props.loading || '';

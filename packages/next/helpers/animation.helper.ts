@@ -19,7 +19,7 @@ export const initHomepageBannerAnimation = () => {
     const items = [
         document.getElementById('homepage-banner-title'),
         document.getElementById('homepage-banner-button'),
-    ];
+    ].filter(Boolean);
     items.forEach((item, index) => {
         const tween = getTween(getBannerInitStyle());
         tween.to({ left: 0, opacity: 1 }, 600)
@@ -38,7 +38,7 @@ export const initGalleryAnimation = () => {
         document.getElementById('gallery-item-0'),
         document.getElementById('gallery-item-1'),
         document.getElementById('gallery-item-2')
-    ];
+    ].filter(Boolean);
     items.forEach((item, index) => {
         const tween = getTween(getGalleryInitStyle());
         tween.to({ bottom: 0, opacity: 1 }, 600)

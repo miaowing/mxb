@@ -1,5 +1,4 @@
 import * as React from "react";
-import Link from 'next/link';
 import { Title } from "./title.component";
 import posed from 'react-pose';
 import styles from './header.component.module.less';
@@ -23,10 +22,7 @@ const AnimatedContainer = posed.div({
 export const Header = ({ title }) => (
     <AnimatedContainer>
         <header className={styles.header}>
-            <Link href="/">
-                <a><Title as="h1">{title}</Title></a>
-            </Link>
-
+            <a href="/"><Title as="h1">{title}</Title></a>
             <Nav/>
         </header>
     </AnimatedContainer>

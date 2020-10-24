@@ -29,7 +29,7 @@ export default class MyApp extends App<MyAppProps> {
     render() {
         const { Component, pageProps, apolloClient, user } = this.props;
         return (
-            <ToastProvider>
+            <ToastProvider autoDismissTimeout={2000} autoDismiss={true}>
                 <ApolloProvider client={apolloClient}>
                     <Head>
                         <link rel="shortcut icon" href="/assets/favicon.ico" type="image/x-icon"/>
