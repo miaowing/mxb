@@ -34,9 +34,11 @@ export function initPostModel(keystone: Keystone): void {
         },
         plugins: [
             atTracking({
+                updatedAtField: 'updatedAt',
                 createdAtField: 'createdAt',
-                format: 'YYYY-MM-DD hh:mm'
-            } as any),
+                format: 'YYYY-MM-DD hh:mm',
+                access: true,
+            }),
         ],
         access: {
             read: accessHelper.access(Role.ADMIN, Role.ANONYMOUS),

@@ -16,6 +16,7 @@ const stone = new Keystone({
     name: PROJECT_NAME,
     adapter: new MongooseAdapter({ mongoUri }),
     secureCookies: false,
+    cookieSecret: 'zf.ink'
 });
 
 initModels(stone);

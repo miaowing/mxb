@@ -24,12 +24,32 @@
     text-align: center;
     margin: 0 auto 0.5rem auto;
     line-height: 1.3;
-    font-size: 2rem;
+    font-size: 3rem;
   }
 
   .meta {
     margin: 0 auto 32px auto;
     text-align: center;
+  }
+
+  .tags {
+    max-width: 800px;
+    margin: 2rem auto 0 auto;
+    color: white;
+
+    & > div {
+      display: flex;
+      justify-content: left;
+      margin: 0 -0.5rem;
+    }
+
+    .tag {
+      margin: 0 0.5rem;
+      display: block;
+      padding: 0 1rem;
+      background-color: @second-color;
+      border-radius: 4px;
+    }
   }
 
 }

@@ -48,7 +48,7 @@ export const GET_LATEST_POSTS = gql`
 
 export const GET_POSTS = gql`
   query getPosts($skip: Int!, $first: Int!) {
-    allPosts(where: {publish: true}, orderBy: "createdAt_DESC", skip: $skip, first: $first) {
+    allPosts(where: {publish: true}, sortBy: [top_DESC, createdAt_DESC], skip: $skip, first: $first) {
       ...PostData
     }
     _allPostsMeta(where: {publish: true}) {
