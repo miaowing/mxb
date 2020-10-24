@@ -21,7 +21,6 @@ export default class Homepage extends React.Component<any, any> {
             <Layout>
                 <Query
                     type="object" query={GET_SITE_METADATA}
-                    onCompleted={() => initHomepageBannerAnimation()}
                     render={site => <>
                         <Head>
                             <title>{site.title}</title>
@@ -29,6 +28,7 @@ export default class Homepage extends React.Component<any, any> {
                         <Header title={site.title}/>
                         <Query
                             type="object" query={GET_BANNER} variables={{ key: 'homepage' }}
+                            onCompleted={() => initHomepageBannerAnimation()}
                             render={data => <Banner>{data.content}</Banner>}/>
                         <Query
                             query={GET_GALLERIES}

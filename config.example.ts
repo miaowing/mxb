@@ -1,7 +1,7 @@
 const env = process.env ?? {} as any;
 
 export const mongoUri = env.MONGO_URI ?? 'mongodb://localhost:27017/meowing-cc';
-export const externalUrl = env.EXTERNAL_URL ?? 'http://localhost:3000';
+export const externalUrl = env.EXTERNAL_URL ?? 'https://zf.ink';
 export const mailer = {
     host: env.MAILER_HOST ?? 'smtp.mxhichina.com',
     port: env.MAILER_PORT ?? 465,
