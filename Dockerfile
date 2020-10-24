@@ -18,8 +18,6 @@ ADD packages/keystone/.keystone/config.example.js ./config.js
 ADD packages/next/.next ./packages/next/.next
 ADD packages/next/next.config.js ./packages/next/next.config.js
 
-RUN "ls"
-
 CMD ["npm","start"]
 
 EXPOSE 3000
