@@ -15,7 +15,7 @@ export class EmailClient {
             subject: title,
             to: typeof to === "string" ? to : to.join(','),
             from: {
-                name: 'YanRong Tech',
+                name: mailer.auth.name,
                 email: mailer.auth.user
             }
         });

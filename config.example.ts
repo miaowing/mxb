@@ -7,6 +7,7 @@ export const mailer = {
     port: env.MAILER_PORT ?? 465,
     secure: env.MAILER_SECURE ?? true,
     auth: {
+        name: 'zf.ink',
         user: env.MAILER_USER ?? '',
         pass: env.MAILER_PASS ?? ''
     },
