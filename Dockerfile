@@ -1,4 +1,4 @@
-FROM node:12.16
+FROM node:12.16.3-alpine3.9
 MAINTAINER miaowing <me@zf.ink>
 
 ENV VERSION 2.0.0
