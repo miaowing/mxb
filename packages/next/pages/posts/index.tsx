@@ -49,7 +49,7 @@ export default class Homepage extends React.Component<IHomepageProps, any> {
                                 </div>
                             </>
                         }}/>
-                    <Footer title={site.title}/>
+                    <Footer title={site.title} icp={{ icp: site.icp, url: site.icp_url }}/>
                 </>}/>
             </Layout>
         </>;

@@ -27,7 +27,7 @@ export default class PostPage extends React.Component<any, any> {
                             <Post post={post}/>
                         </Layout>
                     </>}/>
-                    <Footer title={site.title}/>
+                    <Footer title={site.title} icp={{ icp: site.icp, url: site.icp_url }}/>
                 </>}/>
             </Layout>
         </>;

@@ -31,7 +31,7 @@ export default ({}) => {
                 </Head>
                 <Header title={site.title}/>
                 <Contact loading={sending} onSubmit={values => submit(values)}/>
-                <Footer title={site.title}/>
+                <Footer title={site.title} icp={{ icp: site.icp, url: site.icp_url }}/>
             </>}/>
         </Layout>
     </>;

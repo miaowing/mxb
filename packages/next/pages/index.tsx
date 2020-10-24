@@ -46,7 +46,7 @@ export default class Homepage extends React.Component<any, any> {
                         <Query query={GET_LATEST_POSTS} render={posts => <PostCards title="Blog Posts↓">
                             {posts.map(post => <PostCard key={post.id} post={post}/>)}
                         </PostCards>}/>
-                        <Footer title={site.title}/>
+                        <Footer title={site.title} icp={{ icp: site.icp, url: site.icp_url }}/>
                     </>}/>
             </Layout>
         </>;

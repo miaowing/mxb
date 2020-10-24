@@ -1,6 +1,6 @@
 const env = process.env ?? {} as any;
 
-export const mongoUri = env.MONGO_URI ?? 'mongodb://localhost:27017/yanrongyun-com';
+export const mongoUri = env.MONGO_URI ?? 'mongodb://localhost:27017/meowing-cc';
 export const externalUrl = env.EXTERNAL_URL ?? 'http://localhost:3000';
 export const mailer = {
     host: env.MAILER_HOST ?? 'smtp.mxhichina.com',
@@ -11,19 +11,10 @@ export const mailer = {
         pass: env.MAILER_PASS ?? ''
     },
 };
-export const sms = {
+export const oss = {
     accessKey: env.ALI_ACCESS_KEY ?? '',
     secretKey: env.ALI_SECRET_KEY ?? '',
-};
-export const redis = {
-    host: env.REDIS_HOST ?? 'localhost',
-    port: env.REDIS_PORT ?? 6379,
-};
-export const captcha = {
-    registerAppKey: env.ALI_REGISTER_CAPTCHA_KEY ?? '',
-}
-export const oss = {
     region: 'oss-cn-beijing',
-    bucket: 'yanrong-tech',
+    bucket: 'zf-ink',
     folder: 'uploads',
 }

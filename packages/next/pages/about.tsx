@@ -20,7 +20,7 @@ export default class AboutPage extends React.Component<any, any> {
                     <Query type="object" query={GET_ABOUT} render={post => <Layout>
                         <Post post={post}/>
                     </Layout>}/>
-                    <Footer title={site.title}/>
+                    <Footer title={site.title} icp={{ icp: site.icp, url: site.icp_url }}/>
                 </>}/>
             </Layout>
         </>;
