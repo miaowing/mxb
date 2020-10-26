@@ -17,6 +17,7 @@ ADD packages/keystone/.keystone/config.example.js ./packages/keystone/.keystone/
 ADD packages/keystone/.keystone/config.example.js ./config.js
 ADD packages/next/.next ./packages/next/.next
 ADD packages/next/next.config.js ./packages/next/next.config.js
+ADD packages/public ./packages/keystone/.keystone/public
 
 CMD ["npm","start"]
 

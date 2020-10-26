@@ -3,25 +3,24 @@ import Head from "next/head";
 import { Layout } from "../components/layout.component";
 import { Header } from "../components/header.component";
 import { Query } from "../components/query.component";
-import { GET_SITE_METADATA } from "../graphql/metadata.gql";
 import { GET_ABOUT } from "../graphql/post.gql";
 import { Post } from "../components/post.component";
 import { Footer } from "../components/footer.component";
+import { BaseProps } from "../interfaces/props.interface";
 
-export default class AboutPage extends React.Component<any, any> {
+export default class AboutPage extends React.Component<BaseProps, any> {
     render() {
+        const { meta } = this.props;
         return <>
             <Layout>
-                <Query type="object" query={GET_SITE_METADATA} render={site => <>
-                    <Head>
-                        <title>About - {site.title}</title>
-                    </Head>
-                    <Header title={site.title} avatar={site?.avatar?.publicUrl}/>
-                    <Query type="object" query={GET_ABOUT} render={post => <Layout>
-                        <Post post={post}/>
-                    </Layout>}/>
-                    <Footer title={site.title} icp={{ icp: site.icp, url: site.icp_url }}/>
-                </>}/>
+                <Head>
+                    <title>About - {meta.title}</title>
+                </Head>
+                <Header title={meta.title} avatar={meta?.avatar?.publicUrl}/>
+                <Query type="object" query={GET_ABOUT} render={post => <Layout>
+                    <Post post={post}/>
+                </Layout>}/>
+                <Footer title={meta.title} icp={{ icp: meta.icp, url: meta.icp_url }}/>
             </Layout>
         </>;
     }

@@ -2,15 +2,14 @@ import * as React from 'react';
 import Head from "next/head";
 import { Layout } from "../components/layout.component";
 import { Header } from "../components/header.component";
-import { Query } from "../components/query.component";
-import { GET_SITE_METADATA } from "../graphql/metadata.gql";
 import { Contact } from "../components/contact.component";
 import { Footer } from "../components/footer.component";
 import axios from 'axios';
 import { useToasts } from 'react-toast-notifications';
 import { useState } from "react";
+import { BaseProps } from "../interfaces/props.interface";
 
-export default ({}) => {
+export default ({ meta }: BaseProps) => {
     const [sending, updateSending] = useState(false);
     const { addToast } = useToasts();
     const submit = async (values) => {
@@ -25,14 +24,12 @@ export default ({}) => {
     }
     return <>
         <Layout>
-            <Query type="object" query={GET_SITE_METADATA} render={site => <>
-                <Head>
-                    <title>About - {site.title}</title>
-                </Head>
-                <Header title={site.title} avatar={site?.avatar?.publicUrl}/>
-                <Contact loading={sending} onSubmit={values => submit(values)}/>
-                <Footer title={site.title} icp={{ icp: site.icp, url: site.icp_url }}/>
-            </>}/>
+            <Head>
+                <title>About - {meta.title}</title>
+            </Head>
+            <Header title={meta.title} avatar={meta?.avatar?.publicUrl}/>
+            <Contact loading={sending} onSubmit={values => submit(values)}/>
+            <Footer title={meta.title} icp={{ icp: meta.icp, url: meta.icp_url }}/>
         </Layout>
     </>;
 }

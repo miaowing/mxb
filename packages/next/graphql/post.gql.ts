@@ -6,7 +6,6 @@ export const POST_DATA = gql`
     key,
     title,
     description,
-    author,
     thumb {
       publicUrl
     }
@@ -24,7 +23,7 @@ export const POST_DATA = gql`
     top,
     source,
     createdAt,
-    url,
+    source_url,
   }
 `;
 

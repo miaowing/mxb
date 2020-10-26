@@ -4,31 +4,31 @@ import { Layout } from "../../../components/layout.component";
 import { Query } from "../../../components/query.component";
 import { GET_POST } from "../../../graphql/post.gql";
 import { Header } from "../../../components/header.component";
-import { GET_SITE_METADATA } from "../../../graphql/metadata.gql";
 import { Post } from "../../../components/post.component";
 import { Footer } from "../../../components/footer.component";
+import { BaseProps } from "../../../interfaces/props.interface";
 
-export default class PostPage extends React.Component<any, any> {
+export default class PostPage extends React.Component<BaseProps, any> {
     static async getInitialProps(context) {
         return { id: context.query.id };
     }
 
     render() {
-        const { id } = this.props;
+        const { id, meta } = this.props;
         return <>
             <Layout>
-                <Query type="object" query={GET_SITE_METADATA} render={site => <>
-                    <Header title={site.title} avatar={site?.avatar?.publicUrl}/>
-                    <Query type="object" query={GET_POST} variables={{ key: id }} render={post => <>
-                        <Head>
-                            <title>{post.title} - {site.title}</title>
-                        </Head>
-                        <Layout>
-                            <Post post={post}/>
-                        </Layout>
-                    </>}/>
-                    <Footer title={site.title} icp={{ icp: site.icp, url: site.icp_url }}/>
+                <Header title={meta.title} avatar={meta?.avatar?.publicUrl}/>
+                <Query type="object" query={GET_POST} variables={{ key: id }} render={post => <>
+                    <Head>
+                        <title>{post.title} - {meta.title}</title>
+                        <meta name="keywords" content={post.keywords ?? meta.keywords}/>
+                        <meta name="description" content={post.description ?? meta.description}/>
+                    </Head>
+                    <Layout>
+                        <Post post={post}/>
+                    </Layout>
                 </>}/>
+                <Footer title={meta.title} icp={{ icp: meta.icp, url: meta.icp_url }}/>
             </Layout>
         </>;
     }

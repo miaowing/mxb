@@ -13,8 +13,8 @@ export function initPostModel(keystone: Keystone): void {
             key: { type: Text },
             title: { type: Text },
             tags: { type: Relationship, ref: 'Tag', many: true },
+            keywords: { type: Text },
             description: { type: Text, isMultiline: true } as any,
-            author: { type: Text, label: '作者' },
             thumb: {
                 type: File,
                 adapter: ossAdapter,
@@ -30,7 +30,7 @@ export function initPostModel(keystone: Keystone): void {
             publish: { type: Checkbox, label: '发布' },
             top: { type: Checkbox, label: '置顶' },
             source: { type: Text, label: '来源' },
-            url: { type: Url },
+            source_url: { type: Url },
         },
         plugins: [
             atTracking({

@@ -1,4 +1,5 @@
 import * as React from 'react';
+import { Metadata } from "./meta.interface";
 
 export interface ConfigProps {
     config?: {
@@ -14,5 +15,5 @@ export interface BaseProps {
     key?: string;
     style?: React.CSSProperties;
     className?: string;
-    ref?: any;
+    meta?: Metadata;
 }

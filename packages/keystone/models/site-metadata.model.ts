@@ -8,6 +8,8 @@ export function initSiteMetadataModel(keystone: Keystone): void {
     keystone.createList('SiteMeta', {
         fields: {
             title: { type: Text },
+            keywords: { type: Text },
+            description: { type: Text },
             icp: { type: Text },
             icp_url: { type: Url },
             avatar: {

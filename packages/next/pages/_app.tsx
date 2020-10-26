@@ -7,6 +7,8 @@ import '../styles/index.less';
 import { WithApollo, WithConfig } from "../decorators";
 import ApolloClient from "apollo-client";
 import { ConfigProps } from "../interfaces/props.interface";
+import { Query } from "../components/query.component";
+import { GET_SITE_METADATA } from "../graphql/metadata.gql";
 
 export interface MyAppProps extends ConfigProps {
     apolloClient?: ApolloClient<any>;
@@ -31,10 +33,17 @@ export default class MyApp extends App<MyAppProps> {
         return (
             <ToastProvider autoDismissTimeout={2000} autoDismiss={true}>
                 <ApolloProvider client={apolloClient}>
-                    <Head>
-                        <link rel="shortcut icon" href="/assets/favicon.ico" type="image/x-icon"/>
-                    </Head>
-                    <Component {...pageProps} user={user}/>
+                    <Query type="object" query={GET_SITE_METADATA} render={meta => <>
+                        <Head>
+                            <link rel="shortcut icon" href={"/public/favicon.ico"} type="image/x-icon"/>
+                            <meta
+                                name="viewport"
+                                content="width=device-width, initial-scale=1.0,maximum-scale=1.0, user-scalable=no"/>
+                            <meta name="keywords" content={meta.keywords}/>
+                            <meta name="description" content={meta.description}/>
+                        </Head>
+                        <Component {...pageProps} user={user} meta={meta}/>
+                    </>}/>
                 </ApolloProvider>
             </ToastProvider>
         );
