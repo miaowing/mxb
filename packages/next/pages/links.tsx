@@ -42,9 +42,7 @@ export default ({ meta }: BaseProps) => {
                 </Cards>)
             }}/>
             <div className="links-comment-wrap">
-                <div style={{ margin: '0 auto' }}>
-                    <CommentContainer page="/links" meta={meta}/>
-                </div>
+                <CommentContainer page="/links" meta={meta}/>
             </div>
             <Footer title={meta.title} icp={{ icp: meta.icp, url: meta.icp_url }}/>
         </Layout>

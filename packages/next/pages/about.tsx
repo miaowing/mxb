@@ -7,6 +7,7 @@ import { GET_ABOUT } from "../graphql/post.gql";
 import { Post } from "../components/post.component";
 import { Footer } from "../components/footer.component";
 import { BaseProps } from "../interfaces/props.interface";
+import { CommentContainer } from "../containers/comment.container";
 
 export default class AboutPage extends React.Component<BaseProps, any> {
     render() {
@@ -20,6 +21,11 @@ export default class AboutPage extends React.Component<BaseProps, any> {
                 <Query type="object" query={GET_ABOUT} render={post => <Layout>
                     <Post post={post}/>
                 </Layout>}/>
+                <div className="post-comment-wrap">
+                    <div>
+                        <CommentContainer page="/about" meta={meta}/>
+                    </div>
+                </div>
                 <Footer title={meta.title} icp={{ icp: meta.icp, url: meta.icp_url }}/>
             </Layout>
         </>;

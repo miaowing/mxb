@@ -97,8 +97,12 @@ p {
 
 :global {
   .post-comment-wrap {
-    max-width: 800px;
     margin: 4rem 4rem 0 4rem;
+
+    > div {
+      max-width: 800px;
+      margin: 0 auto;
+    }
 
     .media(@tablet, margin, 4rem 2rem 0 2rem);
   }
