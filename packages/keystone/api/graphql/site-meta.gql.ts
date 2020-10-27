@@ -9,7 +9,6 @@ query {
     avatar {
       publicUrl
     },
-    external_url,
     admin_name,
     admin_email
   }

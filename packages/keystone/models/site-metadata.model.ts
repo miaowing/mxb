@@ -17,7 +17,6 @@ export function initSiteMetadataModel(keystone: Keystone): void {
                 adapter: ossAdapter,
                 label: 'avatar',
             },
-            external_url: { type: Url },
             admin_name: { type: Text },
             admin_email: { type: Text },
         },

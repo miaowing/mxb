@@ -5,6 +5,7 @@ import { GET_COMMENT } from "../graphql/comment.gql";
 import { BadRequestException } from "../exceptions";
 import { metadataService } from "./metadata.service";
 import { notificationService } from "./notification.service";
+import { externalUrl } from '../../config';
 
 export class CommentService {
     async isAdmin(keystone: Keystone, name: string, email: string): Promise<boolean> {
@@ -55,12 +56,12 @@ export class CommentService {
             if (replyEmail) {
                 notificationService.notify(keystone, replyEmail, {
                     content: comment.content,
-                    url: `${meta.external_url}${comment.page}#${comment.replyTo}`
+                    url: `${externalUrl}${comment.page}#${comment.replyTo}`
                 });
             } else {
                 notificationService.notifyMe(keystone, {
                     content: comment.content,
-                    url: `${meta.external_url}${comment.page}#${id}`
+                    url: `${externalUrl}${comment.page}#${id}`
                 })
             }
         }

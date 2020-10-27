@@ -20,11 +20,11 @@ export class NotificationService {
         if (!meta || !meta.admin_email) {
             throw new BadRequestException('Send message error, Please contact the administrator');
         }
-        return email.send<ContactMessage>('contact-me.template.jsx', meta.admin_email, CONTACT_ME_EMAIL_TITLE, data);
+        return email.send<ContactMessage>('contact-me.template.js', meta.admin_email, CONTACT_ME_EMAIL_TITLE, data);
     }
 
     public async notify(keystone: Keystone, emailAddress: string, data: NotificationMessage) {
-        return email.send<NotificationMessage>('notification.template.jsx', emailAddress, NOTIFICATION_EMAIL_TITLE, data);
+        return email.send<NotificationMessage>('notification.template.js', emailAddress, NOTIFICATION_EMAIL_TITLE, data);
     }
 
     public async notifyMe(keystone: Keystone, data: NotificationMessage) {
@@ -32,7 +32,7 @@ export class NotificationService {
         if (!meta || !meta.admin_email) {
             throw new BadRequestException('Send message error, Please contact the administrator');
         }
-        return email.send<NotificationMessage>('notification.template.jsx', meta.admin_email, NOTIFICATION_EMAIL_TITLE, data);
+        return email.send<NotificationMessage>('notification.template.js', meta.admin_email, NOTIFICATION_EMAIL_TITLE, data);
     }
 }
 

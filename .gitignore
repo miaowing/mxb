@@ -12,3 +12,5 @@ yarn-error.log
 !packages/next/next.config.js
 !packages/next/next-env.d.ts
 !types/keystone.d.ts
+!packages/keystone/templates/contact-me.template.js
+!packages/keystone/templates/notification.template.js
