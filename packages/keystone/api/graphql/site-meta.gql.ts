@@ -1,6 +1,6 @@
-import gql from "graphql-tag";
+import { gql } from 'apollo-server-express';
 
-export const GET_SITE_METADATA = gql`
+export const GET_METADATA = gql`
 query {
   allSiteMetas {
     title,
@@ -8,7 +8,8 @@ query {
     icp_url,
     avatar {
       publicUrl
-    }
+    },
+    external_url,
     admin_name,
     admin_email
   }

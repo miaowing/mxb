@@ -4,7 +4,7 @@ https://github.com/zeit/next.js/blob/canary/examples/with-apollo */
 import * as React from 'react';
 import { initApollo } from './init-apollo';
 import Head from 'next/head';
-import { getDataFromTree } from 'react-apollo';
+import { getDataFromTree } from '@apollo/client/react/ssr';
 
 export const withApollo = App => {
     return class Apollo extends React.Component {

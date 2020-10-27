@@ -4,7 +4,7 @@ import * as BodyParser from 'body-parser';
 import { languageMiddleware } from "./middlewares/language.middleware";
 import { errorHandler } from "./middlewares/error-handler.middleware";
 import { ContactMessage } from "../interfaces/contact-message.interface";
-import { contactMeService } from "./services";
+import { notificationService } from "./services";
 import { BadRequestException } from "./exceptions";
 
 export class EmailApp {
@@ -17,7 +17,7 @@ export class EmailApp {
             if (!data.name || !data.email || !data.message) {
                 throw new BadRequestException('params required');
             }
-            await contactMeService.sendMessage(keystone, data);
+            await notificationService.sendMessage(keystone, data);
             res.json({ success: true });
         });
         middleware.use(errorHandler());

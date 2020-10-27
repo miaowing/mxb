@@ -11,3 +11,4 @@ yarn-error.log
 !packages/next/polyfills.js
 !packages/next/next.config.js
 !packages/next/next-env.d.ts
+!types/keystone.d.ts

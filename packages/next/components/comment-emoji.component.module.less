@@ -1,0 +1,68 @@
+:global {
+  .react-tiny-popover-container {
+    background: #fff;
+    z-index: 102;
+    border-radius: 5px;
+    border: 1px solid #eee;
+    box-shadow: 0 2px 8px rgba(213, 222, 231, 0.3);
+  }
+}
+
+.emoji {
+  max-height: 240px;
+  overflow: hidden;
+  display: flex;
+
+  .section {
+    max-height: 240px;
+    overflow: hidden;
+
+    &:nth-child(1) {
+      border-right: 1px solid #eee;
+    }
+
+    .header {
+      border-bottom: 1px solid #eee;
+      padding: 5px 0px;
+      text-align: center;
+
+      b {
+        font-size: 15px;
+        color: #687a86;
+        letter-spacing: 0.5px;
+        font-weight: 500;
+      }
+    }
+
+    .box {
+      max-height: 205px;
+      overflow: hidden;
+      overflow-y: auto;
+
+      .container {
+        display: grid;
+        width: 200px;
+        grid-template-columns: repeat(3, 1fr);
+        grid-template-rows: repeat(3, 1fr);
+        grid-column-gap: 0px;
+        grid-row-gap: 0px;
+        padding: 5px 10px;
+
+        span {
+          background: rgba(180, 199, 212, 0.22);
+          border-radius: 5px;
+          margin: 2px;
+          padding: 3px 0px;
+          white-space: nowrap;
+          overflow: hidden;
+          text-align: center;
+          cursor: pointer;
+
+          &:hover {
+            background: rgba(180, 199, 212, 0.44);
+          }
+        }
+      }
+    }
+  }
+}

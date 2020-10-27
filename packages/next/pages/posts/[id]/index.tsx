@@ -7,6 +7,7 @@ import { Header } from "../../../components/header.component";
 import { Post } from "../../../components/post.component";
 import { Footer } from "../../../components/footer.component";
 import { BaseProps } from "../../../interfaces/props.interface";
+import { CommentContainer } from "../../../containers/comment.container";
 
 export default class PostPage extends React.Component<BaseProps, any> {
     static async getInitialProps(context) {
@@ -27,6 +28,9 @@ export default class PostPage extends React.Component<BaseProps, any> {
                     <Layout>
                         <Post post={post}/>
                     </Layout>
+                    <div style={{ maxWidth: 800, margin: '4rem auto 0 auto' }}>
+                        <CommentContainer page={`/posts/${post.key}`} meta={meta}/>
+                    </div>
                 </>}/>
                 <Footer title={meta.title} icp={{ icp: meta.icp, url: meta.icp_url }}/>
             </Layout>

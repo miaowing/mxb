@@ -1,59 +1,52 @@
 import * as React from 'react';
-import { WithRouter } from "../../decorators";
 import Head from "next/head";
 import { Layout } from "../../components/layout.component";
 import { Header } from "../../components/header.component";
-import { Query } from "../../components/query.component";
 import { GET_POSTS } from "../../graphql/post.gql";
 import { Button } from "../../components/button.component";
 import { Footer } from "../../components/footer.component";
 import { Cards, Card } from "../../components/card.component";
-import { BaseProps } from "../../interfaces/props.interface";
-import { Post } from "../../interfaces/post.interface";
 import dayjs from "dayjs";
+import { useState } from "react";
+import { useQuery } from "@apollo/client";
 
-@WithRouter()
-export default class Homepage extends React.Component<BaseProps, any> {
-    state = {
-        page: 1,
-        size: 6,
+export default ({ meta }) => {
+    const [page, updatePage] = useState(1);
+    const [size] = useState(6);
+    const first = page * size;
+
+    const { error, data, refetch } = useQuery(GET_POSTS, { variables: { skip: 0, first } });
+    if (error) {
+        return <div>{error}</div>;
     }
 
-    loadMore() {
-        this.setState({ page: this.state.page + 1 });
-    }
+    const posts = data?.allPosts ?? [];
+    const count = data?._allPostsMeta?.count ?? 0;
 
-    render() {
-        const { meta } = this.props;
-        const { page, size } = this.state;
-        const first = page * size;
-        return <>
-            <Layout>
-                <Head>
-                    <title>Blog - {meta.title}</title>
-                </Head>
-                <Header title={meta.title} avatar={meta?.avatar?.publicUrl}/>
-                <Query
-                    query={GET_POSTS} variables={{ skip: 0, first }}
-                    render={(posts: Post[], meta) => {
-                        return <>
-                            <Cards title="">
-                                {posts.map(post => <Card
-                                    key={post.id}
-                                    description={dayjs(post.createdAt).format('YYYY-MM-DD hh:mm')}
-                                    thumb={post?.thumb?.publicUrl}
-                                    url={`/posts/${post.key}`}
-                                    title={post.title}/>)}
-                            </Cards>
-                            <div style={{ textAlign: 'center' }}>
-                                {meta.count > page * size && <Button onClick={() => this.loadMore()}>
-                                    Load More ↓
-                                </Button>}
-                            </div>
-                        </>
-                    }}/>
-                <Footer title={meta.title} icp={{ icp: meta.icp, url: meta.icp_url }}/>
-            </Layout>
-        </>;
+    const loadMore = async () => {
+        await refetch({ skip: 0, first: (page + 1) * size });
+        updatePage(page + 1);
     }
+    return <>
+        <Layout>
+            <Head>
+                <title>Blog - {meta.title}</title>
+            </Head>
+            <Header title={meta.title} avatar={meta?.avatar?.publicUrl}/>
+            <Cards title="">
+                {posts.map(post => <Card
+                    key={post.id}
+                    description={dayjs(post.createdAt).format('YYYY-MM-DD hh:mm')}
+                    thumb={post?.thumb?.publicUrl}
+                    url={`/posts/${post.key}`}
+                    title={post.title}/>)}
+            </Cards>
+            <div style={{ textAlign: 'center' }}>
+                {count > page * size && <Button onClick={() => loadMore()}>
+                    Load More ↓
+                </Button>}
+            </div>
+            <Footer title={meta.title} icp={{ icp: meta.icp, url: meta.icp_url }}/>
+        </Layout>
+    </>;
 }

@@ -9,8 +9,22 @@ import { GET_LINKS } from "../graphql/links.gql";
 import { Link } from "../interfaces/link.interface";
 import { Card, Cards } from "../components/card.component";
 import { Tag } from "../interfaces/tag.interface";
+import { CommentContainer } from "../containers/comment.container";
 
 export default ({ meta }: BaseProps) => {
+    const handleLinks = (links: Link[]) => {
+        const map = new Map<string, Tag & { links: Link[] }>();
+        links.forEach(link => {
+            link.tags.forEach(tag => {
+                if (!map.has(tag.key)) {
+                    map.set(tag.key, { ...tag, links: [] });
+                }
+                map.get(tag.key).links.push(link);
+            })
+        });
+        return [...map.values()];
+    }
+
     return <>
         <Layout>
             <Head>
@@ -18,16 +32,7 @@ export default ({ meta }: BaseProps) => {
             </Head>
             <Header title={meta.title} avatar={meta?.avatar?.publicUrl}/>
             <Query query={GET_LINKS} render={links => {
-                const map = new Map<string, Tag & { links: Link[] }>();
-                links.forEach(link => {
-                    link.tags.forEach(tag => {
-                        if (!map.has(tag.key)) {
-                            map.set(tag.key, { ...tag, links: [] });
-                        }
-                        map.get(tag.key).links.push(link);
-                    })
-                })
-                return [...map.values()].map(category => <Cards key={category.key} title={category.name}>
+                return handleLinks(links).map(category => <Cards key={category.key} title={category.name}>
                     {category.links.map(link => <Card
                         key={link.name}
                         title={link.name}
@@ -36,6 +41,9 @@ export default ({ meta }: BaseProps) => {
                     />)}
                 </Cards>)
             }}/>
+            <div style={{ margin: '0 4rem' }}>
+                <CommentContainer page="/links" meta={meta}/>
+            </div>
             <Footer title={meta.title} icp={{ icp: meta.icp, url: meta.icp_url }}/>
         </Layout>
     </>;

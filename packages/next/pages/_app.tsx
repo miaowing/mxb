@@ -1,11 +1,10 @@
 import * as React from 'react';
 import App, { Container } from 'next/app';
 import Head from 'next/head';
-import { ApolloProvider } from 'react-apollo';
+import { ApolloProvider, ApolloClient } from '@apollo/client';
 import { ToastProvider } from 'react-toast-notifications';
 import '../styles/index.less';
 import { WithApollo, WithConfig } from "../decorators";
-import ApolloClient from "apollo-client";
 import { ConfigProps } from "../interfaces/props.interface";
 import { Query } from "../components/query.component";
 import { GET_SITE_METADATA } from "../graphql/metadata.gql";

@@ -1,3 +1,3 @@
-import { ContactMeService } from './contact-me.service';
-
-export const contactMeService = new ContactMeService();
+export * from './comment.service';
+export * from './notification.service';
+export * from './metadata.service';

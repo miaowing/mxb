@@ -16,9 +16,9 @@ export default ({ meta }: BaseProps) => {
         updateSending(true);
         try {
             await axios.post('/email-app/messages', values);
-            addToast('Send Successful', { appearance: 'success' });
+            addToast('Send Successful', { appearance: 'success', autoDismiss: true });
         } catch (e) {
-            addToast(e.message, { appearance: 'error' });
+            addToast(e.message, { appearance: 'error', autoDismiss: true });
         }
         updateSending(false);
     }

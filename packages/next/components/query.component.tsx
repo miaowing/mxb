@@ -1,5 +1,5 @@
 import * as React from "react";
-import { Query as ApolloQuery } from "react-apollo";
+import { Query as ApolloQuery } from "@apollo/client/react/components";
 
 export interface QueryProps {
     query: any;

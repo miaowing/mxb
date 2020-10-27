@@ -16,4 +16,5 @@ export interface BaseProps {
     style?: React.CSSProperties;
     className?: string;
     meta?: Metadata;
+    children?: React.ReactNode;
 }

@@ -3,16 +3,6 @@ import ReactMarkdown from "react-markdown";
 import styles from './post.component.module.less';
 import { prettyDate } from "../helpers/date.helper";
 
-// export const Post = ({ post }) => {
-//     let content = <article dangerouslySetInnerHTML={{ __html: post.html_content }}/>;
-//     if (post.content) {
-//         content = <article><ReactMarkdown source={post.content}/></article>;
-//     }
-//     return <section className={styles.post}>
-//         {content}
-//     </section>
-// }
-
 export const Post = ({ post }) => {
     let content = <div className={styles.content} dangerouslySetInnerHTML={{ __html: post.html_content }}/>;
     if (post.content) {
