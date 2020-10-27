@@ -1,4 +1,9 @@
-const config = require('../keystone/config');
+let config;
+try {
+    config = require('../keystone/config');
+} catch (e) {
+    config = require('../keystone/.keystone/config');
+}
 const withLess = require('@zeit/next-less');
 const withCSS = require('@zeit/next-css');
 const path = require('path');
