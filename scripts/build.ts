@@ -2,7 +2,7 @@ import chalk from 'chalk';
 import * as path from 'path';
 import * as fs from 'fs-extra';
 import { DEFAULT_DIST_DIR } from './constants';
-import * as entryFile from '../index';
+import * as entryFile from '../packages/keystone';
 
 async function bootstrap() {
     // @ts-ignore

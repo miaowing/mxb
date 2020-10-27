@@ -28,8 +28,10 @@ export default class PostPage extends React.Component<BaseProps, any> {
                     <Layout>
                         <Post post={post}/>
                     </Layout>
-                    <div style={{ maxWidth: 800, margin: '4rem auto 0 auto' }}>
-                        <CommentContainer page={`/posts/${post.key}`} meta={meta}/>
+                    <div className="post-comment-wrap">
+                        <div style={{ margin: '0 auto' }}>
+                            <CommentContainer page={`/posts/${post.key}`} meta={meta}/>
+                        </div>
                     </div>
                 </>}/>
                 <Footer title={meta.title} icp={{ icp: meta.icp, url: meta.icp_url }}/>

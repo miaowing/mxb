@@ -1,3 +1,5 @@
+@import (reference) "../styles/mixins";
+
 .nav {
   ul {
     display: flex;
@@ -10,6 +12,10 @@
 
       & + li {
         margin-left: 2rem;
+      }
+
+      &.github {
+        .media(@phone, display, none);
       }
     }
   }

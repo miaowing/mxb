@@ -94,3 +94,18 @@ video {
 p {
   margin-bottom: 2rem;
 }
+
+:global {
+  .post-comment-wrap {
+    max-width: 800px;
+    margin: 4rem 4rem 0 4rem;
+
+    .media(@tablet, margin, 4rem 2rem 0 2rem);
+  }
+
+  .links-comment-wrap {
+    margin: 4rem 4rem 0 4rem;
+
+    .media(@tablet, margin, 4rem 2rem 0 2rem);
+  }
+}

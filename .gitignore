@@ -2,7 +2,7 @@
 .idea/
 dist/
 node_modules/
-config.ts
+packages/keystone/config.ts
 packages/next/.next/
 packages/keystone/.keystone/
 yarn-error.log

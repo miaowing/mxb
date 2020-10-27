@@ -5,8 +5,8 @@ import { GraphQLApp } from '@keystonejs/app-graphql';
 import { MongooseAdapter } from '@keystonejs/adapter-mongoose';
 import { resolve } from 'path';
 
-import { initModels } from "./packages/keystone/models";
-import { AdminApp, CommentApp, EmailApp, StaticApp } from './packages/keystone/api';
+import { initModels } from "./models";
+import { AdminApp, CommentApp, EmailApp, StaticApp } from './api';
 import { NextApp } from "@keystonejs/app-next";
 import { mongoUri } from "./config";
 
@@ -40,7 +40,7 @@ export const apps = [
     new CommentApp(),
     new StaticApp({
         path: '/public',
-        src: resolve(__dirname, 'packages/public'),
+        src: resolve(__dirname, '/public'),
     }),
     new NextApp({ dir: 'packages/next' }),
 ];

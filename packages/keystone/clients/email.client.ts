@@ -1,4 +1,4 @@
-import { mailer } from '../../../config';
+import { mailer } from '../config';
 import { emailSender } from '@keystonejs/email';
 import { EmailAttachment } from "../interfaces/email-attachment.interface";
 

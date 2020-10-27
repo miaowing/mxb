@@ -1,4 +1,4 @@
-const config = require('../../config');
+const config = require('../keystone/config');
 const withLess = require('@zeit/next-less');
 const withCSS = require('@zeit/next-css');
 const path = require('path');
@@ -9,7 +9,7 @@ module.exports = withCSS(withLess({
         importLoaders: 1,
         localIdentName: "[local]___[hash:base64:5]",
     },
-    webpack: (config, options) => {
+    webpack: (config) => {
         config.module.rules.push({
             test: /\.(svg|png|jpg)/,
             loaders: [

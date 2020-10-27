@@ -1,6 +1,6 @@
 import { EmailClient } from "./email.client";
 import { OSSAdapterClient } from "./oss-adapter.client";
-import { oss } from '../../../config';
+import { oss } from '../config';
 
 export const email = new EmailClient();
 export const ossAdapter = new OSSAdapterClient(

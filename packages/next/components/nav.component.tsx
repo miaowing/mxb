@@ -8,7 +8,7 @@ export const Nav = () => (
             <li><a href="/contact">Contact</a></li>
             <li><a href="/about">About</a></li>
             <li><a href="/links">Links</a></li>
-            <li><a href="https://github.com/miaowing" target="_blank">GitHub</a></li>
+            <li className={styles.github}><a href="https://github.com/miaowing" target="_blank">GitHub</a></li>
         </ul>
     </nav>
 );

@@ -23,9 +23,8 @@ before_install:
   - npm i -g yarn
   - if [ "$TRAVIS_BRANCH" = "master" ]; then export IMAGE_VERSION="latest"; else export IMAGE_VERSION="$TRAVIS_BRANCH"; fi
   - yarn
-  - cp config.example.ts config.ts
+  - cp packages/keystone/config.example.ts packages/keystone/config.ts
   - npm run build
-  - yarn install --production
   - rm -rf node_modules/.cache
 script:
   - docker build -t zfeng/blog:"$IMAGE_VERSION" .

@@ -25,7 +25,7 @@ export const Post = ({ post }) => {
                 )}
                 {content}
                 <div className={styles.tags}>
-                    <div>{post.tags.map(tag => <span className={styles.tag}>{tag.name}</span>)}</div>
+                    <div>{post.tags.map(tag => <span key={tag.key} className={styles.tag}>{tag.name}</span>)}</div>
                 </div>
             </article>
         </div>
