@@ -6,8 +6,8 @@ import { BadRequestException } from "../exceptions";
 import { NotificationMessage } from "../../interfaces/notification-message.interface";
 import { metadataService } from "./metadata.service";
 
-const NOTIFICATION_EMAIL_TITLE = '[Notification] You have an unread reply on zf.ink';
-const CONTACT_ME_EMAIL_TITLE = '[Notification] Someone contact you on zf.ink';
+const NOTIFICATION_EMAIL_TITLE = '[Notification] You have an unread reply on mxb.cc';
+const CONTACT_ME_EMAIL_TITLE = '[Notification] Someone contact you on mxb.cc';
 
 export class NotificationService {
     public async sendMessage(keystone: Keystone, data: ContactMessage) {

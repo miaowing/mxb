@@ -6,7 +6,7 @@ module.exports = class extends React.Component {
         <body>
         <div>
             <h1>Notification</h1>
-            <p>You have unread reply on zf.ink</p>
+            <p>You have unread reply on mxb.cc</p>
             <br/>
             <div>{this.props.content}</div>
             <br/>

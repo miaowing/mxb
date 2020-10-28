@@ -10,13 +10,13 @@ import { AdminApp, CommentApp, EmailApp, StaticApp } from './api';
 import { NextApp } from "@keystonejs/app-next";
 import { mongoUri } from "./config";
 
-const PROJECT_NAME = "meowing.cc";
+const PROJECT_NAME = "mxb.cc";
 
 const stone = new Keystone({
     name: PROJECT_NAME,
     adapter: new MongooseAdapter({ mongoUri }),
     secureCookies: false,
-    cookieSecret: 'zf.ink'
+    cookieSecret: 'mxb.cc'
 });
 
 initModels(stone);
