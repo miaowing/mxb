@@ -25,7 +25,7 @@ export default ({ meta }: BaseProps) => {
     return <>
         <Layout>
             <Head>
-                <title>About - {meta.title}</title>
+                <title>About - {meta.title} - {meta.description}</title>
             </Head>
             <Header title={meta.title} avatar={meta?.avatar?.publicUrl}/>
             <Contact loading={sending} onSubmit={values => submit(values)}/>

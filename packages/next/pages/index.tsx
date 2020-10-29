@@ -23,7 +23,7 @@ export default class Homepage extends React.Component<BaseProps, any> {
         return <>
             <Layout>
                 <Head>
-                    <title>{meta.title}</title>
+                    <title>{meta.title} - {meta.description}</title>
                 </Head>
                 <Header title={meta.title} avatar={meta?.avatar?.publicUrl}/>
                 <Query

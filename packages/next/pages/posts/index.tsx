@@ -30,7 +30,7 @@ export default ({ meta }) => {
     return <>
         <Layout>
             <Head>
-                <title>Blog - {meta.title}</title>
+                <title>Blog - {meta.title} - {meta.description}</title>
             </Head>
             <Header title={meta.title} avatar={meta?.avatar?.publicUrl}/>
             <Cards title="">

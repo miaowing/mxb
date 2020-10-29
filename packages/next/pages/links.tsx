@@ -28,7 +28,7 @@ export default ({ meta }: BaseProps) => {
     return <>
         <Layout>
             <Head>
-                <title>Links - {meta.title}</title>
+                <title>Links - {meta.title} - {meta.description}</title>
             </Head>
             <Header title={meta.title} avatar={meta?.avatar?.publicUrl}/>
             <Query query={GET_LINKS} render={links => {
