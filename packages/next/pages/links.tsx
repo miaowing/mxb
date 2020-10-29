@@ -37,7 +37,7 @@ export default ({ meta }: BaseProps) => {
                         key={link.name}
                         title={link.name}
                         url={link.url}
-                        description={links.description}
+                        description={link.description}
                     />)}
                 </Cards>)
             }}/>

@@ -25,6 +25,7 @@ before_install:
   - yarn
   - cp packages/keystone/config.example.ts packages/keystone/config.ts
   - npm run build
+  - npm run build:public
   - rm -rf node_modules/.cache
 script:
   - docker build -t zfeng/blog:"$IMAGE_VERSION" .

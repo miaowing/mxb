@@ -13,7 +13,7 @@
   "scripts": {
     "start": "cross-env NODE_ENV=production node packages/keystone/.keystone",
     "start:dev": "cross-env NODE_ENV=development DISABLE_LOGGING=true nodemon",
-    "build": "concurrently -n keystone,next,public \"npm run build:keystone\" \"npm run build:next\" \"npm run build:public\"",
+    "build": "concurrently -n keystone,next \"npm run build:keystone\" \"npm run build:next\"",
     "build:next": "cross-env NODE_ENV=production ts-node scripts/build.ts",
     "build:keystone": "cross-env NODE_ENV=production tsc --build tsconfig.json",
     "build:public": "cp -r packages/keystone/public packages/keystone/.keystone/",
