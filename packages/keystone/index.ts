@@ -41,7 +41,11 @@ async function bootstrap() {
     logger.log('Initialising Keystone instance');
 
     const dev = process.env.NODE_ENV !== 'production';
-    const { middlewares } = await keystone.prepare({ apps: apps as any, dev, distDir: __dirname });
+    const { middlewares } = await keystone.prepare({
+        apps: apps as any,
+        dev,
+        distDir: resolve(__dirname, 'admin'),
+    });
 
     logger.log('Initialised Keystone instance');
 
