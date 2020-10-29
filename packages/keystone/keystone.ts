@@ -13,7 +13,12 @@ const stone = new Keystone({
     name: PROJECT_NAME,
     adapter: new MongooseAdapter({ mongoUri }),
     secureCookies: false,
-    cookieSecret: 'mxb.cc'
+    cookieSecret: 'mxb.cc',
+    cookie: {
+        secure: false,
+        maxAge: 1000 * 60 * 60 * 24 * 30,
+        sameSite: false,
+    },
 });
 
 initModels(stone);

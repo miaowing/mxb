@@ -44,7 +44,7 @@ async function bootstrap() {
     const { middlewares } = await keystone.prepare({
         apps: apps as any,
         dev,
-        distDir: resolve(__dirname, 'admin'),
+        distDir: !dev ? `${__dirname}/admin` : 'dist',
     });
 
     logger.log('Initialised Keystone instance');
