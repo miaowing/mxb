@@ -3,10 +3,11 @@ import { Comment } from "../../interfaces/comment.interface";
 import { createItem } from '@keystonejs/server-side-graphql-client';
 import { GET_COMMENT } from "../graphql/comment.gql";
 import { externalUrl } from '../../config';
-import { BadRequestException, Injectable } from "@nestjs/common";
+import { BadRequestException, Injectable, Logger } from "@nestjs/common";
 import { InjectKeystone } from "../../decorators/inject-keystone.decorator";
 import { MetadataService } from "./metadata.service";
 import { NotifyService } from "./notify.service";
+import { InjectLogger } from "@nestcloud/logger";
 
 @Injectable()
 export class CommentService {
@@ -14,6 +15,7 @@ export class CommentService {
         @InjectKeystone() private readonly keystone: Keystone,
         private readonly metadataService: MetadataService,
         private readonly notifyService: NotifyService,
+        @InjectLogger() private readonly logger: Logger,
     ) {
     }
 
@@ -60,19 +62,20 @@ export class CommentService {
 
         const { id } = await createItem({ keystone: this.keystone, listKey: 'Comment', item: data });
 
-        if (isSubscribe) {
-            const meta = await this.metadataService.getMetadata();
-            if (replyEmail) {
-                this.notifyService.notify(replyEmail, {
-                    content: comment.content,
-                    url: `${externalUrl}${comment.page}#${comment.replyTo}`
-                });
-            } else {
-                this.notifyService.notifyMe({
-                    content: comment.content,
-                    url: `${externalUrl}${comment.page}#${id}`
-                })
-            }
+        if (isSubscribe && replyEmail) {
+            this.notifyService.notify(replyEmail, {
+                content: comment.content,
+                url: `${externalUrl}${comment.page}#${comment.replyTo}`
+            }).catch(e => {
+                this.logger.error(`Notify to ${replyEmail} ${externalUrl}${comment.page}#${comment.replyTo}error.`, e);
+            });
+        } else if (!isSubscribe && !replyEmail) {
+            this.notifyService.notifyMe({
+                content: comment.content,
+                url: `${externalUrl}${comment.page}#${id}`
+            }).catch(e => {
+                this.logger.error(`Notify to me ${externalUrl}${comment.page}#${comment.replyTo}error.`, e);
+            });
         }
 
         return id;
