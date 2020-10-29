@@ -41,7 +41,7 @@ export const CommentContainer = ({ page, meta }: CommentContainerProps) => {
     const { addToast } = useToasts();
     const submit = async ({ name, email, url, content, subscribe }) => {
         try {
-            const res = await axios.post('/comment-app/comments', {
+            const res = await axios.post('/nest-api/comments', {
                 name,
                 email,
                 url,

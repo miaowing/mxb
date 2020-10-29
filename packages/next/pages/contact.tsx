@@ -15,7 +15,7 @@ export default ({ meta }: BaseProps) => {
     const submit = async (values) => {
         updateSending(true);
         try {
-            await axios.post('/email-app/messages', values);
+            await axios.post('/nest-api/contacts', values);
             addToast('Send Successful', { appearance: 'success', autoDismiss: true });
         } catch (e) {
             addToast(e?.response?.data?.message ?? e.message, { appearance: 'error', autoDismiss: true });

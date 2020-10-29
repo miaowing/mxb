@@ -2,18 +2,27 @@ import { Keystone } from "@keystonejs/keystone";
 import { Comment } from "../../interfaces/comment.interface";
 import { createItem } from '@keystonejs/server-side-graphql-client';
 import { GET_COMMENT } from "../graphql/comment.gql";
-import { BadRequestException } from "../exceptions";
-import { metadataService } from "./metadata.service";
-import { notificationService } from "./notification.service";
 import { externalUrl } from '../../config';
+import { BadRequestException, Injectable } from "@nestjs/common";
+import { InjectKeystone } from "../../decorators/inject-keystone.decorator";
+import { MetadataService } from "./metadata.service";
+import { NotifyService } from "./notify.service";
 
+@Injectable()
 export class CommentService {
-    async isAdmin(keystone: Keystone, name: string, email: string): Promise<boolean> {
-        const metadata = await metadataService.getMetadata(keystone);
+    constructor(
+        @InjectKeystone() private readonly keystone: Keystone,
+        private readonly metadataService: MetadataService,
+        private readonly notifyService: NotifyService,
+    ) {
+    }
+
+    async isAdmin(name: string, email: string): Promise<boolean> {
+        const metadata = await this.metadataService.getMetadata();
         return name === metadata.admin_name || email === metadata.admin_email;
     }
 
-    async commit(keystone: Keystone, comment: Comment) {
+    async commit(comment: Comment) {
         const data = {
             page: comment.page,
             name: comment.name,
@@ -32,7 +41,7 @@ export class CommentService {
         let replyEmail;
         let isSubscribe;
         if (comment.replyTo) {
-            const res = await keystone.executeGraphQL({
+            const res = await this.keystone.executeGraphQL({
                 query: GET_COMMENT,
                 variables: { id: comment.replyTo, page: comment.page },
             });
@@ -42,24 +51,24 @@ export class CommentService {
             isSubscribe = reply.subscribe;
         }
         if (comment.belongTo) {
-            const res = await keystone.executeGraphQL({
+            const res = await this.keystone.executeGraphQL({
                 query: GET_COMMENT,
                 variables: { id: comment.belongTo, page: comment.page },
             });
             data.belong_to = { connect: { id: res.data.Comment.id } };
         }
 
-        const { id } = await createItem({ keystone, listKey: 'Comment', item: data });
+        const { id } = await createItem({ keystone: this.keystone, listKey: 'Comment', item: data });
 
         if (isSubscribe) {
-            const meta = await metadataService.getMetadata(keystone);
+            const meta = await this.metadataService.getMetadata();
             if (replyEmail) {
-                notificationService.notify(keystone, replyEmail, {
+                this.notifyService.notify(replyEmail, {
                     content: comment.content,
                     url: `${externalUrl}${comment.page}#${comment.replyTo}`
                 });
             } else {
-                notificationService.notifyMe(keystone, {
+                this.notifyService.notifyMe({
                     content: comment.content,
                     url: `${externalUrl}${comment.page}#${id}`
                 })
@@ -69,5 +78,3 @@ export class CommentService {
         return id;
     }
 }
-
-export const commentService = new CommentService();

@@ -1,0 +1,7 @@
+{
+  "watch": [
+    "packages/keystone"
+  ],
+  "ext": "ts",
+  "exec": "ts-node --project tsconfig.json packages/keystone"
+}

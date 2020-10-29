@@ -1,5 +1,6 @@
 const env = process.env ?? {} as any;
 
+export const port = env.PORT ?? 3000;
 export const mongoUri = env.MONGO_URI ?? 'mongodb://localhost:27017/mxb-cc';
 export const externalUrl = env.EXTERNAL_URL ?? 'https://mxb.cc';
 export const mailer = {

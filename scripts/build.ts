@@ -2,10 +2,9 @@ import chalk from 'chalk';
 import * as path from 'path';
 import * as fs from 'fs-extra';
 import { DEFAULT_DIST_DIR } from './constants';
-import * as entryFile from '../packages/keystone';
+import * as entryFile from '../packages/keystone/keystone';
 
 async function bootstrap() {
-    // @ts-ignore
     process.env.NODE_ENV = 'production';
 
     const { keystone, apps } = entryFile;

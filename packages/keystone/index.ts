@@ -1,46 +1,65 @@
-require('tls').DEFAULT_MIN_VERSION = 'TLSv1';
-
-import { Keystone } from '@keystonejs/keystone';
-import { GraphQLApp } from '@keystonejs/app-graphql';
-import { MongooseAdapter } from '@keystonejs/adapter-mongoose';
+import { NestFactory } from '@nestjs/core';
+import { AppModule } from "./app.module";
+import { apps, keystone } from "./keystone";
+import { NestLogger } from "@nestcloud/logger";
 import { resolve } from 'path';
+import { NestExpressApplication } from "@nestjs/platform-express";
+import chalk from "chalk";
+import { initHelper } from "./helpers";
+import { Logger } from "@nestjs/common";
+import { LOGGER } from "@nestcloud/common";
+import { port } from "./config";
 
-import { initModels } from "./models";
-import { AdminApp, CommentApp, EmailApp, StaticApp } from './api';
-import { NextApp } from "@keystonejs/app-next";
-import { mongoUri } from "./config";
+async function bootstrap() {
+    const app = await NestFactory.create<NestExpressApplication>(AppModule, {
+        logger: new NestLogger({
+            level: 'debug',
+            transports: [
+                {
+                    transport: 'console',
+                    colorize: true,
+                    datePattern: 'YYYY-MM-DD HH:mm:ss',
+                    label: 'mxb',
+                    level: 'debug',
+                },
+                {
+                    transport: 'dailyRotateFile',
+                    datePattern: 'YYYY-MM-DD HH:mm:ss',
+                    label: 'mxb',
+                    filename: resolve(__dirname, '../../logs/mxb-%DATE%.log'),
+                    zippedArchive: true,
+                    level: 'debug',
+                    maxSize: '20m',
+                    maxFiles: '14d'
+                } as any,
+            ]
+        }),
+    });
 
-const PROJECT_NAME = "mxb.cc";
+    const logger = app.get<Logger>(LOGGER);
 
-const stone = new Keystone({
-    name: PROJECT_NAME,
-    adapter: new MongooseAdapter({ mongoUri }),
-    secureCookies: false,
-    cookieSecret: 'mxb.cc'
-});
+    logger.log('Initialising Keystone instance');
 
-initModels(stone);
+    const dev = process.env.NODE_ENV !== 'production';
+    const { middlewares } = await keystone.prepare({ apps: apps as any, dev, distDir: __dirname });
 
-const executeGraphQL = stone.executeGraphQL.bind(stone);
-const context = stone.createContext({ skipAccessControl: true })
-// @ts-ignore
-stone.executeGraphQL = async (params: { context?: any; query?: any, variables?: any }) => {
-    const result = await executeGraphQL({ context, ...params });
-    if ((result as any).errors) {
-        throw (result as any).errors[0];
-    }
-    return result;
-};
+    logger.log('Initialised Keystone instance');
 
-export const keystone = stone;
-export const apps = [
-    new GraphQLApp({ apiPath: '/api' }),
-    new AdminApp(stone),
-    new EmailApp(),
-    new CommentApp(),
-    new StaticApp({
-        path: '/public',
-        src: resolve(__dirname, '/public'),
-    }),
-    new NextApp({ dir: 'packages/next' }),
-];
+    app.use(middlewares);
+    app.useStaticAssets(resolve(__dirname, 'public'), { prefix: '/public' })
+    await app.listen(port);
+
+    logger.log('Connecting to database');
+
+    await keystone.connect();
+
+    logger.log('Connected to database');
+    logger.log(chalk.green.bold(`Keystone instance is ready at http://localhost:${port} 🚀`));
+
+    const { adminPath, graphiqlPath, apiPath } = initHelper.extractAppMeta(apps, dev);
+    adminPath && initHelper.ttyLink(logger, 'Keystone Admin UI:', adminPath, port);
+    graphiqlPath && initHelper.ttyLink(logger, 'GraphQL Playground:', graphiqlPath, port);
+    apiPath && initHelper.ttyLink(logger, 'GraphQL API:\t', apiPath, port);
+}
+
+bootstrap();
