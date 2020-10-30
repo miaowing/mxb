@@ -22,7 +22,9 @@ export default ({ meta }: BaseProps) => {
                 map.get(tag.key).links.push(link);
             })
         });
-        return [...map.values()];
+        const categories = [...map.values()];
+        categories.sort((a, b) => a.sort > b.sort ? 1 : a.sort < b.sort ? -1 : 0);
+        return categories;
     }
 
     return <>

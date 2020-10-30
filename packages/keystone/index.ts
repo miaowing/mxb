@@ -50,7 +50,7 @@ async function bootstrap() {
     logger.log('Initialised Keystone instance');
 
     app.use(middlewares);
-    app.useStaticAssets(resolve(__dirname, 'public'), { prefix: '/public' })
+    app.useStaticAssets(resolve(__dirname, 'public'));
     await app.listen(port);
 
     logger.log('Connecting to database');

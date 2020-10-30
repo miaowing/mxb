@@ -9,6 +9,7 @@ query {
     avatar {
       publicUrl
     }
+    description,
     admin_name,
     admin_email
   }

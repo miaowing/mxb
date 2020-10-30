@@ -6,6 +6,7 @@ import md5 from 'js-md5';
 import styles from './comment-item.component.module.less';
 import { BaseProps } from "../interfaces/props.interface";
 import * as React from "react";
+import Image from 'next/image';
 
 interface CommentItemProps extends BaseProps {
     id: string;
@@ -35,12 +36,12 @@ export const CommentItem = ({
                             }: CommentItemProps) => {
     const onClick = () => {
         onReply(id, name);
-        window.location.href = '#comment-editor'
+        location.href = '#comment-editor'
     }
     return <li className={styles.comment_item} id={id}>
         <div className={styles.comment_wrap} onClick={() => onClick()}>
             <div className={styles.avatar}>
-                <img src={`https://cdn.v2ex.com/gravatar/${md5(email)}?d=mp`} alt={name}/>
+                <Image src={`https://cdn.v2ex.com/gravatar/${md5(email)}?d=mp`} alt={name} unsized={true}/>
                 {isAdmin ? <div className={styles.admin_badge}>{Icons().admin}</div> : ''}
             </div>
             <div className={styles.title}>

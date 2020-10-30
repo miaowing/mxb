@@ -17,7 +17,11 @@ export class NextApp {
         const nextApp = next({ dir: this._dir, dev });
         await nextApp.prepare();
         return (req, res, next) => {
-            if (req.url.startsWith('/nest-api') || req.url.startsWith('/public/favicon')) {
+            if (
+                req.url.startsWith('/nest-api') ||
+                req.url.startsWith('/public/favicon') ||
+                req.url.startsWith('/rss.xml')
+            ) {
                 return next();
             }
             return nextApp.getRequestHandler()(req, res, next);

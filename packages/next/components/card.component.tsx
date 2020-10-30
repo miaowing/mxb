@@ -1,5 +1,6 @@
 import * as React from 'react';
 import styles from './card.component.module.less';
+import Image from 'next/image';
 
 export const Cards = ({ children, title }) => (
     <div className={styles.cards}>
@@ -22,7 +23,7 @@ export const Card = ({ url, thumb, title, description }: PostCardProps) => {
     return <article className={styles.card}>
         <a href={url} target={isExternalUrl ? '_blank' : ''}>
             {!!thumb && (
-                <img src={thumb} alt={title}/>
+                <Image src={thumb} alt={title} unsized={true}/>
             )}
         </a>
         <header>

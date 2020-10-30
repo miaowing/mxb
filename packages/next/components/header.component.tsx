@@ -3,6 +3,7 @@ import { Title } from "./title.component";
 import posed from 'react-pose';
 import styles from './header.component.module.less';
 import { Nav } from "./nav.component";
+import Image from 'next/image';
 
 const AnimatedContainer = posed.div({
     enter: {
@@ -28,7 +29,7 @@ export const Header = ({ title, avatar }) => (
     <AnimatedContainer>
         <header className={styles.header}>
             <a href="/" className={styles.logo}>
-                {avatar ? <img src={avatar} alt={title}/> : ''}
+                {avatar ? <Image src={avatar} alt={title} unsized={true}/> : ''}
                 <Title as="h1" className={styles.title}>{title}</Title>
             </a>
             <Nav/>

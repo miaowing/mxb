@@ -1,5 +1,5 @@
 import { Keystone } from "@keystonejs/keystone";
-import { Text } from "@keystonejs/fields";
+import { Text, Integer } from "@keystonejs/fields";
 import { Role } from "../constants/role.enum";
 import { accessHelper } from "../helpers";
 
@@ -9,6 +9,7 @@ export function initTagModel(keystone: Keystone): void {
             key: { type: Text },
             name: { type: Text },
             description: { type: Text, isMultiline: true } as any,
+            sort: { type: Integer },
         },
         access: {
             read: accessHelper.access(Role.ADMIN, Role.ANONYMOUS),

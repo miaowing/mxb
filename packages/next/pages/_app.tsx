@@ -34,7 +34,7 @@ export default class MyApp extends App<MyAppProps> {
                 <ApolloProvider client={apolloClient}>
                     <Query type="object" query={GET_SITE_METADATA} render={meta => <>
                         <Head>
-                            <link rel="shortcut icon" href={"/public/favicon.ico"} type="image/x-icon"/>
+                            <link rel="shortcut icon" href={"favicon.ico"} type="image/x-icon"/>
                             <meta
                                 name="viewport"
                                 content="width=device-width, initial-scale=1.0,maximum-scale=1.0, user-scalable=no"/>

@@ -10,7 +10,8 @@ query {
     tags {
         key,
         name,
-        description
+        description,
+        sort,
     }
   }
 }

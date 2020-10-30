@@ -42,4 +42,8 @@ module.exports = withCSS(withLess({
         // Will be available on both server and client
         serverUrl: config.externalUrl,
     },
+    images: {
+        domains: ['mxbcc.oss-cn-beijing.aliyuncs.com'],
+    },
+    pageExtensions: ['tsx', 'page.tsx'],
 }));
