@@ -2,7 +2,7 @@ import { Keystone } from "@keystonejs/keystone";
 import { File, Text, Checkbox, Integer, Url } from "@keystonejs/fields";
 import { Role } from "../constants/role.enum";
 import { accessHelper } from "../helpers";
-import { ossAdapter } from "../clients";
+import { ossAdapter } from "../clients/oss-adapter.client";
 
 export function initGalleryModel(keystone: Keystone): void {
     keystone.createList('Gallery', {

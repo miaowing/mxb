@@ -1,5 +1,5 @@
 import { BadRequestException, Body, Controller, Post } from "@nestjs/common";
-import { ContactMessage } from "../../interfaces/contact-message.interface";
+import { ContactMessage } from "../interfaces/contact-message.interface";
 import { NotifyService } from "../services";
 
 @Controller('/nest-api/contacts')

@@ -1,8 +1,8 @@
 import { Keystone } from "@keystonejs/keystone";
 import { GET_METADATA } from "../graphql/site-meta.gql";
-import { Metadata } from "../../interfaces/metadata.interface";
+import { Metadata } from "../interfaces/metadata.interface";
 import { BadRequestException, Injectable } from "@nestjs/common";
-import { InjectKeystone } from "../../decorators/inject-keystone.decorator";
+import { InjectKeystone } from "../decorators/inject-keystone.decorator";
 
 @Injectable()
 export class MetadataService {

@@ -11,7 +11,7 @@ import { Card, Cards } from "../components/card.component";
 import { Tag } from "../interfaces/tag.interface";
 import { CommentContainer } from "../containers/comment.container";
 
-export default ({ meta }: BaseProps) => {
+export default function LinksPage({ meta }: BaseProps) {
     const handleLinks = (links: Link[]) => {
         const map = new Map<string, Tag & { links: Link[] }>();
         links.forEach(link => {

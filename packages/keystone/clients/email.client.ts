@@ -1,7 +1,9 @@
 import { mailer } from '../config';
 import { emailSender } from '@keystonejs/email';
 import { EmailAttachment } from "../interfaces/email-attachment.interface";
+import { Injectable } from "@nestjs/common";
 
+@Injectable()
 export class EmailClient {
     public async send<T extends any>(tpl: string, to: string | string[], title: string, data: T, attachments?: EmailAttachment[]) {
         const jsxEmailSender = emailSender.jsx({

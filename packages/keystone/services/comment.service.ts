@@ -1,10 +1,10 @@
 import { Keystone } from "@keystonejs/keystone";
-import { Comment } from "../../interfaces/comment.interface";
+import { Comment } from "../interfaces/comment.interface";
 import { createItem } from '@keystonejs/server-side-graphql-client';
 import { GET_COMMENT } from "../graphql/comment.gql";
-import { externalUrl } from '../../config';
+import { externalUrl } from '../config';
 import { BadRequestException, Injectable, Logger } from "@nestjs/common";
-import { InjectKeystone } from "../../decorators/inject-keystone.decorator";
+import { InjectKeystone } from "../decorators/inject-keystone.decorator";
 import { MetadataService } from "./metadata.service";
 import { NotifyService } from "./notify.service";
 import { InjectLogger } from "@nestcloud/logger";

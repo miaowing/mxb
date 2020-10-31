@@ -2,10 +2,10 @@ import { Keystone } from "@keystonejs/keystone";
 import { Checkbox, File, Relationship, Text, Url } from "@keystonejs/fields";
 import { Wysiwyg } from "@keystonejs/fields-wysiwyg-tinymce";
 import { Markdown } from '@keystonejs/fields-markdown';
-import { ossAdapter } from "../clients";
 import { accessHelper } from "../helpers";
 import { atTracking } from "@keystonejs/list-plugins";
 import { Role } from "../constants/role.enum";
+import { ossAdapter } from "../clients/oss-adapter.client";
 
 export function initPostModel(keystone: Keystone): void {
     keystone.createList('Post', {

@@ -10,7 +10,7 @@ import dayjs from "dayjs";
 import { useState } from "react";
 import { useQuery } from "@apollo/client";
 
-export default ({ meta }) => {
+export default function PostsPage({ meta }) {
     const [page, updatePage] = useState(1);
     const [size] = useState(6);
     const first = page * size;

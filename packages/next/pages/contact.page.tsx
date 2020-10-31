@@ -9,7 +9,7 @@ import { useToasts } from 'react-toast-notifications';
 import { useState } from "react";
 import { BaseProps } from "../interfaces/props.interface";
 
-export default ({ meta }: BaseProps) => {
+export default function ContactPage({ meta }: BaseProps) {
     const [sending, updateSending] = useState(false);
     const { addToast } = useToasts();
     const submit = async (values) => {
