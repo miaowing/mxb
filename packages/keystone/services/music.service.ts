@@ -7,6 +7,7 @@ import { InjectLogger } from "@nestcloud/logger";
 @Injectable()
 export class MusicService implements OnModuleInit {
     private cookie: string;
+    private readonly cache = new Map<string, any>();
 
     constructor(
         private readonly netease: NeteaseClient,
@@ -15,7 +16,18 @@ export class MusicService implements OnModuleInit {
     }
 
     async getLikeList() {
-        return (await this.netease.getPlaylistDetail(this.cookie, playlistId)).playlist;
+        if (this.cache.has('playlist')) {
+            return this.cache.get('playlist');
+        }
+        const playlist = (await this.netease.getPlaylistDetail(this.cookie, playlistId)).playlist;
+        this.cache.set('playlist', playlist);
+        return playlist;
+    }
+
+    @Interval(5 * 60 * 1000)
+    async refreshPlaylist() {
+        const playlist = (await this.netease.getPlaylistDetail(this.cookie, playlistId)).playlist;
+        this.cache.set('playlist', playlist);
     }
 
     @Interval(5 * 60 * 1000)

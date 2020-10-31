@@ -17,5 +17,10 @@ export const Banner = ({ children }) => {
             id="homepage-banner-button" onClick={() => router.push("/contact")}>
             Contact me
         </Button>
+        <Button
+            style={{ marginLeft: '2rem', ...getBannerInitStyle() }}
+            id="homepage-banner-button-music" onClick={() => router.push("/music")}>
+            My favorite music
+        </Button>
     </div>;
 };

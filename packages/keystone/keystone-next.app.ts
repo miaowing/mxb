@@ -19,7 +19,7 @@ export class NextApp {
         return (req, res, next) => {
             if (
                 req.url.startsWith('/nest-api') ||
-                req.url.startsWith('/public/favicon') ||
+                req.url.startsWith('/favicon') ||
                 req.url.startsWith('/rss.xml')
             ) {
                 return next();

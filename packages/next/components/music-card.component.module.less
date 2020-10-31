@@ -3,16 +3,48 @@
     display: flex;
     justify-content: space-between;
     align-items: flex-end;
-    margin-bottom: 20px;
     font-size: 28px;
     font-weight: 700;
+    max-width: 1200px;
+    margin: 0 auto;
+
+    > div {
+      margin: 0 24px 24px 24px;
+    }
   }
 
   .children {
     display: flex;
+    justify-content: center;
     flex-wrap: wrap;
-    margin-right: -12px;
-    margin-left: -12px;
+    max-height: 560px;
+    overflow: hidden;
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+}
+
+.button {
+  cursor: pointer;
+  outline: none;
+  justify-content: center;
+  align-items: center;
+  opacity: 1;
+  transform: unset;
+  height: 48px;
+  width: 48px;
+  border: none;
+  backdrop-filter: blur(12px) brightness(96%);
+  background: transparent;
+  color: #fff;
+  border-radius: 50%;
+  transition: .2s;
+  display: none;
+
+  svg {
+    height: 50%;
+    margin-left: 3px;
+    fill: currentColor;
   }
 }
 
@@ -65,6 +97,10 @@
 
       img {
         display: inherit;
+      }
+
+      button {
+        display: flex;
       }
     }
 

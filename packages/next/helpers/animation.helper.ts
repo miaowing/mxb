@@ -19,6 +19,7 @@ export const initHomepageBannerAnimation = () => {
     const items = [
         document.getElementById('homepage-banner-title'),
         document.getElementById('homepage-banner-button'),
+        document.getElementById('homepage-banner-button-music'),
     ].filter(Boolean);
     items.forEach((item, index) => {
         const tween = getTween(getBannerInitStyle());

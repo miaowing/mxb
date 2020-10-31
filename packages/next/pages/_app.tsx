@@ -30,17 +30,19 @@ export default class MyApp extends App<MyAppProps> {
         const { Component, pageProps, apolloClient, user } = this.props;
         return (
             <ApolloProvider client={apolloClient}>
-                <Query type="object" query={GET_SITE_METADATA} render={meta => <>
-                    <Head>
-                        <link rel="shortcut icon" href={"favicon.ico"} type="image/x-icon"/>
-                        <meta
-                            name="viewport"
-                            content="width=device-width, initial-scale=1.0,maximum-scale=1.0, user-scalable=no"/>
-                        <meta name="keywords" content={meta.keywords}/>
-                        <meta name="description" content={meta.description}/>
-                    </Head>
-                    <Component {...pageProps} user={user} meta={meta}/>
-                </>}/>
+                <ToastProvider autoDismissTimeout={2000} autoDismiss={true}>
+                    <Query type="object" query={GET_SITE_METADATA} render={meta => <>
+                        <Head>
+                            <link rel="shortcut icon" href={"favicon.ico"} type="image/x-icon"/>
+                            <meta
+                                name="viewport"
+                                content="width=device-width, initial-scale=1.0,maximum-scale=1.0, user-scalable=no"/>
+                            <meta name="keywords" content={meta.keywords}/>
+                            <meta name="description" content={meta.description}/>
+                        </Head>
+                        <Component {...pageProps} user={user} meta={meta}/>
+                    </>}/>
+                </ToastProvider>
             </ApolloProvider>
         );
     }
