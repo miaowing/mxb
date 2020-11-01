@@ -1,26 +1,40 @@
+@import (reference) "../styles/mixins";
+
 .cards {
-  .title {
-    display: flex;
-    justify-content: space-between;
-    align-items: flex-end;
-    font-size: 28px;
-    font-weight: 700;
-    max-width: 1200px;
-    margin: 0 auto;
-
-    > div {
-      margin: 0 24px 24px 24px;
-    }
-  }
-
   .children {
     display: flex;
     justify-content: center;
-    flex-wrap: wrap;
-    max-height: 560px;
     overflow: hidden;
     max-width: 1200px;
     margin: 0 auto;
+
+    .wrap {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: left;
+
+      @media screen and (min-width: 288px) {
+        width: 288px;
+      }
+
+      @media screen and (min-width: 376px) {
+        width: 256px;
+      }
+
+      @media screen and (min-width: 488px) {
+        width: 488px;
+      }
+
+      @media screen and (min-width: 720px) {
+        width: 720px;
+      }
+
+      @media screen and (min-width: 952px) {
+        width: 952px;
+      }
+
+      //.media(@phone, width, auto);
+    }
   }
 }
 
@@ -54,6 +68,8 @@
   .text {
     width: 208px;
     margin-top: 8px;
+
+    .media(@phone, width, 108px);
 
     .name {
       display: -webkit-box;
@@ -116,6 +132,9 @@
       z-index: -1;
       transform: scale(.98);
       transition: all .3s;
+
+      .media(@phone, height, 108px);
+      .media(@phone, width, 99px);
     }
   }
 
@@ -125,5 +144,8 @@
     width: 208px;
     border-radius: 12px;
     cursor: pointer;
+
+    .media(@phone, height, 108px);
+    .media(@phone, width, 108px);
   }
 }

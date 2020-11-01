@@ -5,11 +5,10 @@ import { Icons } from "../constants/icons.constants";
 export const MusicCards = ({ children }) => {
 
     return <div className={styles.cards}>
-        {/*<div className={styles.title}>*/}
-        {/*    <div>My favorite music</div>*/}
-        {/*</div>*/}
         <div className={styles.children}>
-            {children}
+            <div className={styles.wrap}>
+                {children}
+            </div>
         </div>
     </div>
 }

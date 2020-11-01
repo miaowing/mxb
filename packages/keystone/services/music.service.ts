@@ -15,13 +15,21 @@ export class MusicService implements OnModuleInit {
     ) {
     }
 
-    async getLikeList() {
+    async getLikeList(limit: number = 10) {
+        let playlist: { tracks: any[] };
         if (this.cache.has('playlist')) {
-            return this.cache.get('playlist');
+            playlist = this.cache.get('playlist') ?? { tracks: [] };
+        } else {
+            playlist = (await this.netease.getPlaylistDetail(this.cookie, playlistId)).playlist;
+            this.cache.set('playlist', playlist);
         }
-        const playlist = (await this.netease.getPlaylistDetail(this.cookie, playlistId)).playlist;
-        this.cache.set('playlist', playlist);
-        return playlist;
+
+        const total = playlist.tracks.length;
+        const start = Math.random() * (total - limit);
+        return {
+            total,
+            tracks: playlist.tracks.slice(start, start + limit)
+        };
     }
 
     @Interval(5 * 60 * 1000)

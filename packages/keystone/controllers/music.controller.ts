@@ -1,4 +1,4 @@
-import { Controller, Get } from "@nestjs/common";
+import { Controller, Get, Query } from "@nestjs/common";
 import { MusicService } from "../services";
 
 @Controller('/nest-api/music')
@@ -9,7 +9,7 @@ export class MusicController {
     }
 
     @Get()
-    async get() {
-        return this.musicService.getLikeList();
+    async get(@Query('limit') limit: number) {
+        return this.musicService.getLikeList(limit);
     }
 }

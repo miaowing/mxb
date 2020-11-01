@@ -14,16 +14,15 @@ const { publicRuntimeConfig: { serverUrl } } = getConfig();
 export async function getServerSideProps() {
     const res = await fetch(`${serverUrl}/nest-api/music`);
     const playlist = await res.json();
-    const size = playlist.tracks.length;
 
-    return { props: { size, tracks: playlist.tracks, index: Math.random() * (size - 10) } };
+    return { props: { tracks: playlist.tracks } };
 }
 
-export default function MusicPage({ tracks, meta, index, size }) {
-    const [start, updateStart] = useState(index);
+export default function MusicPage({ tracks, meta }) {
     const [playingIndex, setPlayingIndex] = useState<number>(-1);
     const [current, setCurrent] = useState<any>({ id: '', dt: 0 });
-    const list = tracks.slice(start, start + 10);
+    const [localTracks, setTracks] = useState<any>([]);
+    const list = localTracks.length > 0 ? localTracks : tracks;
 
     const play = (track, index) => {
         setCurrent(track);
@@ -34,6 +33,12 @@ export default function MusicPage({ tracks, meta, index, size }) {
         const index = (playingIndex + 1) % 10;
         setPlayingIndex(index);
         setCurrent(list[index]);
+    }
+
+    const updateTracks = async () => {
+        const res = await fetch(`${serverUrl}/nest-api/music`);
+        const playlist = await res.json();
+        setTracks(playlist.tracks);
     }
 
     const previous = () => {
@@ -61,7 +66,7 @@ export default function MusicPage({ tracks, meta, index, size }) {
                 image={track?.al?.picUrl}/>)}
         </MusicCards>
         <div style={{ textAlign: 'center' }}>
-            <Button onClick={() => updateStart(Math.random() * (size - 10))}>换一批</Button>
+            <Button onClick={() => updateTracks()}>换一批</Button>
         </div>
         {current.id ? <Player
             onNext={() => next()}
