@@ -6,6 +6,7 @@ import md5 from 'js-md5';
 import styles from './comment-item.component.module.less';
 import { BaseProps } from "../interfaces/props.interface";
 import * as React from "react";
+import { Base64 } from 'js-base64';
 
 interface CommentItemProps extends BaseProps {
     id: string;
@@ -20,19 +21,21 @@ interface CommentItemProps extends BaseProps {
     onReply?: (id, name) => void;
 }
 
-export const CommentItem = ({
-                                id,
-                                name,
-                                email,
-                                isAdmin,
-                                url,
-                                date,
-                                content,
-                                replyTo,
-                                replyToUrl,
-                                onReply,
-                                children
-                            }: CommentItemProps) => {
+export const CommentItem = (
+    {
+        id,
+        name,
+        email,
+        isAdmin,
+        url,
+        date,
+        content,
+        replyTo,
+        replyToUrl,
+        onReply,
+        children
+    }: CommentItemProps
+) => {
     const onClick = () => {
         onReply(id, name);
         location.href = '#comment-editor'
@@ -45,11 +48,24 @@ export const CommentItem = ({
             </div>
             <div className={styles.title}>
                 <h5>
-                    <a href={url} target="_blank">{name}</a>
-                    {replyTo ? <span className={styles.reply_to}>
-                        <span>reply to</span>
-                        <a href={replyToUrl} target="_blank">{replyTo}</a>
-                    </span> : ''}
+                    {
+                        url ?
+                            <a href={`/nest-api/links/${Base64.encode(url)}`} target="_blank">{name}</a> :
+                            <span>{name}</span>
+                    }
+                    {
+                        replyTo ?
+                            <span className={styles.reply_to}>
+                                <span>reply to</span>
+                                {
+                                    replyToUrl ?
+                                        <a href={`/nest-api/links/${Base64.encode(replyToUrl)}`} target="_blank">
+                                            {replyTo}
+                                        </a> :
+                                        <span>{replyTo}</span>
+                                }
+                            </span> : ''
+                    }
                     <span> · </span>
                     <b>{prettyDate(date)}</b>
                     <em className={styles.reply_icon}>{Icons().reply}</em>

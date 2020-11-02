@@ -2,14 +2,14 @@
 
 .galleries {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: repeat(4, 1fr);
   grid-gap: 4rem;
   padding: 0 4rem;
   margin: 2rem 0;
 
   .media(@tablet, padding-left, 2rem);
   .media(@tablet, padding-right, 2rem);
-  .media(@tablet, display, block);
+  .media(@tablet, grid-template-columns, repeat(2, 1fr));
 }
 
 .gallery {

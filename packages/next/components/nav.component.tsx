@@ -5,6 +5,7 @@ export const Nav = () => (
     <nav className={styles.nav}>
         <ul>
             <li><a href="/posts">Blog</a></li>
+            <li className={styles.github}><a href="/music">Music</a></li>
             <li><a href="/contact">Contact</a></li>
             <li><a href="/about">About</a></li>
             <li><a href="/links">Links</a></li>

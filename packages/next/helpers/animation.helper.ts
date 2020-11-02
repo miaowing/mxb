@@ -38,7 +38,8 @@ export const initGalleryAnimation = () => {
     const items = [
         document.getElementById('gallery-item-0'),
         document.getElementById('gallery-item-1'),
-        document.getElementById('gallery-item-2')
+        document.getElementById('gallery-item-2'),
+        document.getElementById('gallery-item-3'),
     ].filter(Boolean);
     items.forEach((item, index) => {
         const tween = getTween(getGalleryInitStyle());
