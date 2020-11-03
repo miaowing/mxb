@@ -10,7 +10,7 @@ export function initLinkModel(keystone: Keystone): void {
             url: { type: Url },
             description: { type: Text, isMultiline: true } as any,
             tags: { type: Relationship, ref: 'Tag', many: true },
-            position: { type: Select, options: 'page, footer' },
+            type: { type: Select, options: 'global, inner' },
             enable: { type: Checkbox },
         },
         access: {

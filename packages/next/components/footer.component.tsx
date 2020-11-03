@@ -2,19 +2,18 @@ import * as React from 'react';
 import styles from './footer.component.module.less';
 import { BaseProps } from "../interfaces/props.interface";
 import { Metadata } from "../interfaces/meta.interface";
-import { externalUrl } from "../../keystone/config";
 import { useState } from "react";
 import axios from 'axios';
 import { useToasts } from 'react-toast-notifications';
 import { useQuery } from "@apollo/client";
-import { GET_FOOTER_LINKS } from "../graphql/links.gql";
+import { GET_GLOBAL_LINKS } from "../graphql/links.gql";
 
 interface FooterProps extends BaseProps {
     meta: Metadata;
 }
 
 export const Footer = ({ meta, style }: FooterProps) => {
-    const { error, data } = useQuery(GET_FOOTER_LINKS);
+    const { error, data } = useQuery(GET_GLOBAL_LINKS);
     if (error) {
         return <div>{error}</div>;
     }

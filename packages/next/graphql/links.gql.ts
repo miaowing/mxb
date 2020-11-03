@@ -1,13 +1,13 @@
 import gql from "graphql-tag";
 
-export const GET_PAGE_LINKS = gql`
+export const GET_INNER_LINKS = gql`
 query {
-  allLinks(where: {enable: true, position: page}) {
+  allLinks(where: {enable: true, type: inner}) {
     name,
     url,
     description,
     enable,
-    position,
+    type,
     tags {
         key,
         name,
@@ -18,14 +18,14 @@ query {
 }
 `;
 
-export const GET_FOOTER_LINKS = gql`
+export const GET_GLOBAL_LINKS = gql`
 query {
-  allLinks(where: {enable: true, position: footer}) {
+  allLinks(where: {enable: true, type: global}) {
     name,
     url,
     description,
     enable,
-    position,
+    type,
     tags {
         key,
         name,

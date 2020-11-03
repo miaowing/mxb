@@ -5,5 +5,6 @@ export interface Link {
     url: string;
     description: string;
     tags: Tag[];
+    type: 'global' | 'inner';
     enable: boolean;
 }
