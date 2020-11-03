@@ -77,6 +77,6 @@ export default function MusicPage({ tracks, meta }) {
             dt={current.dt}
             id={current.id}
         /> : ''}
-        <Footer title={meta.title} icp={{ icp: meta.icp, url: meta.icp_url }}/>
+        <Footer style={{ marginBottom: current.id ? 60 : 0 }} meta={meta}/>
     </Layout>
 }

@@ -5,7 +5,7 @@ import { Header } from "../components/header.component";
 import { Footer } from "../components/footer.component";
 import { BaseProps } from "../interfaces/props.interface";
 import { Query } from "../components/query.component";
-import { GET_LINKS } from "../graphql/links.gql";
+import { GET_PAGE_LINKS } from "../graphql/links.gql";
 import { Link } from "../interfaces/link.interface";
 import { Card, Cards } from "../components/card.component";
 import { Tag } from "../interfaces/tag.interface";
@@ -33,7 +33,7 @@ export default function Links({ meta }: BaseProps) {
                 <title>Links - {meta.title} - {meta.description}</title>
             </Head>
             <Header title={meta.title} avatar={meta?.avatar?.publicUrl}/>
-            <Query query={GET_LINKS} render={links => {
+            <Query query={GET_PAGE_LINKS} render={links => {
                 return handleLinks(links).map(category => <Cards key={category.key} title={category.name}>
                     {category.links.map(link => <Card
                         key={link.name}
@@ -46,7 +46,7 @@ export default function Links({ meta }: BaseProps) {
             <div className="links-comment-wrap">
                 <CommentContainer page="/links" meta={meta}/>
             </div>
-            <Footer title={meta.title} icp={{ icp: meta.icp, url: meta.icp_url }}/>
+            <Footer meta={meta}/>
         </Layout>
     </>;
 }

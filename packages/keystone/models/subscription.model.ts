@@ -3,14 +3,11 @@ import { Text } from "@keystonejs/fields";
 import { accessHelper } from "../helpers";
 import { Role } from "../constants/role.enum";
 
-export function initMessageModel(keystone: Keystone): void {
-    keystone.createList('Message', {
+export function initSubscriptionModel(keystone: Keystone): void {
+    keystone.createList('Subscription', {
         fields: {
-            name: { type: Text },
             email: { type: Text },
-            message: { type: Text, isMultiline: true }
         },
-        labelField: 'email',
         access: {
             read: accessHelper.access(Role.ADMIN),
             update: accessHelper.access(Role.ADMIN),

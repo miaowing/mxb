@@ -46,7 +46,7 @@ export default function PostsPage({ meta }) {
                     Load More ↓
                 </Button>}
             </div>
-            <Footer title={meta.title} icp={{ icp: meta.icp, url: meta.icp_url }}/>
+            <Footer meta={meta}/>
         </Layout>
     </>;
 }

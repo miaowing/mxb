@@ -29,7 +29,7 @@ export default function ContactPage({ meta }: BaseProps) {
             </Head>
             <Header title={meta.title} avatar={meta?.avatar?.publicUrl}/>
             <Contact loading={sending} onSubmit={values => submit(values)}/>
-            <Footer title={meta.title} icp={{ icp: meta.icp, url: meta.icp_url }}/>
+            <Footer meta={meta}/>
         </Layout>
     </>;
 }

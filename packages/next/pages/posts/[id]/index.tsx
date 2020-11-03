@@ -34,7 +34,7 @@ export default class PostPage extends React.Component<BaseProps, any> {
                         </div>
                     </div>
                 </>}/>
-                <Footer title={meta.title} icp={{ icp: meta.icp, url: meta.icp_url }}/>
+                <Footer meta={meta}/>
             </Layout>
         </>;
     }

@@ -9,6 +9,9 @@ query {
     avatar {
       publicUrl
     },
+    qrcode {
+      publicUrl
+    },
     admin_name,
     admin_email
   }

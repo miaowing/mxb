@@ -20,7 +20,8 @@ export class NextApp {
             if (
                 req.url.startsWith('/nest-api') ||
                 req.url.startsWith('/favicon') ||
-                req.url.startsWith('/rss.xml')
+                req.url.startsWith('/rss.xml') ||
+                req.url.startsWith('/qrcode.jpg')
             ) {
                 return next();
             }

@@ -7,6 +7,9 @@ export interface Metadata {
     avatar: {
         publicUrl: string;
     };
+    qrcode: {
+        publicUrl: string;
+    };
     admin_name: string;
     admin_email: string;
 }

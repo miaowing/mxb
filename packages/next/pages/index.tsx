@@ -52,7 +52,7 @@ export default class Homepage extends React.Component<BaseProps, any> {
                         title={post.title}
                     />)}
                 </Cards>}/>
-                <Footer title={meta.title} icp={{ icp: meta.icp, url: meta.icp_url }}/>
+                <Footer meta={meta}/>
             </Layout>
         </>;
     }

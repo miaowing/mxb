@@ -26,7 +26,7 @@ export default class AboutPage extends React.Component<BaseProps, any> {
                         <CommentContainer page="/about" meta={meta}/>
                     </div>
                 </div>
-                <Footer title={meta.title} icp={{ icp: meta.icp, url: meta.icp_url }}/>
+                <Footer meta={meta}/>
             </Layout>
         </>;
     }

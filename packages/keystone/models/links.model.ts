@@ -1,5 +1,5 @@
 import { Keystone } from "@keystonejs/keystone";
-import { Checkbox, Relationship, Text, Url } from "@keystonejs/fields";
+import { Checkbox, Relationship, Text, Url, Select } from "@keystonejs/fields";
 import { Role } from "../constants/role.enum";
 import { accessHelper } from "../helpers";
 
@@ -10,6 +10,7 @@ export function initLinkModel(keystone: Keystone): void {
             url: { type: Url },
             description: { type: Text, isMultiline: true } as any,
             tags: { type: Relationship, ref: 'Tag', many: true },
+            position: { type: Select, options: 'page, footer' },
             enable: { type: Checkbox },
         },
         access: {
