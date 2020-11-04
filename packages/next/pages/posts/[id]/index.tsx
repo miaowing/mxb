@@ -24,6 +24,8 @@ export default class PostPage extends React.Component<BaseProps, any> {
                         <title>{post.title} - {meta.title}</title>
                         <meta name="keywords" content={post.keywords ?? meta.keywords}/>
                         <meta name="description" content={post.description ?? meta.description}/>
+                        <link href={"https://mxbcc.oss-cn-beijing.aliyuncs.com/js/prism.css"} rel="stylesheet"/>
+                        <script src={"https://mxbcc.oss-cn-beijing.aliyuncs.com/js/prism.js"}/>
                     </Head>
                     <Layout>
                         <Post post={post}/>
