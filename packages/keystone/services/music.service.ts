@@ -24,11 +24,17 @@ export class MusicService implements OnModuleInit {
             this.cache.set('playlist', playlist);
         }
 
+        for (let i = playlist.tracks.length - 1; i > 0; i--) {
+            const rand = parseInt(String(Math.random() + i));
+            const temp = playlist.tracks[i];
+            playlist.tracks[i] = playlist.tracks[rand];
+            playlist.tracks[rand] = temp;
+        }
         const total = playlist.tracks.length;
         const start = Math.random() * (total - limit);
         return {
             total,
-            tracks: playlist.tracks.slice(start, start + limit)
+            tracks: playlist.tracks.slice(start, start + limit),
         };
     }
 
