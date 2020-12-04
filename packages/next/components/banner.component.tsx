@@ -14,7 +14,7 @@ export const Banner = ({ children }) => {
         </Title>
         <Button
             style={getBannerInitStyle()}
-            id="homepage-banner-button" onClick={() => router.push("/contact")}>
+            id="homepage-banner-button" onClick={() => location.href = '/contact'}>
             Contact me
         </Button>
     </div>;

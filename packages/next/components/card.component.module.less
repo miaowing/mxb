@@ -16,11 +16,12 @@
 
 .grids {
   display: grid;
-  grid-template-columns: 1fr 1fr 1fr;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
   grid-gap: 32px;
   margin-top: 32px;
   padding: 0 4rem;
 
+  .media(@desktop, grid-template-columns, 1fr 1fr 1fr);
   .media(@tablet, grid-template-columns, 1fr 1fr);
   .media(@phone, grid-template-columns, 1fr);
   .media(@tablet, padding-left, 2rem);
