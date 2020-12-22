@@ -15,6 +15,7 @@ import { initGalleryAnimation, initHomepageBannerAnimation } from "../helpers/an
 import { BaseProps } from "../interfaces/props.interface";
 import { Post } from "../interfaces/post.interface";
 import dayjs from "dayjs";
+import { BannerImagesContainer } from "../containers/banner-images.container";
 
 
 export default class Homepage extends React.Component<BaseProps, any> {
@@ -29,7 +30,9 @@ export default class Homepage extends React.Component<BaseProps, any> {
                 <Query
                     type="object" query={GET_BANNER} variables={{ key: 'homepage' }}
                     onCompleted={() => initHomepageBannerAnimation()}
-                    render={data => <Banner>{data.content}</Banner>}/>
+                    render={data => <Banner title={data.content}>
+                        <BannerImagesContainer/>
+                    </Banner>}/>
                 <Query
                     query={GET_GALLERIES}
                     onCompleted={() => initGalleryAnimation()}

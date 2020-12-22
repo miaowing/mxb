@@ -9,6 +9,7 @@ import { initTagModel } from "./tag.model";
 import { initLinkModel } from "./links.model";
 import { initCommentModel } from "./comment.model";
 import { initSubscriptionModel } from "./subscription.model";
+import { initBannerImageModel } from "./banner-image.model";
 
 export function initModels(keystone: Keystone) {
     initUserModel(keystone);
@@ -21,4 +22,5 @@ export function initModels(keystone: Keystone) {
     initLinkModel(keystone);
     initCommentModel(keystone);
     initSubscriptionModel(keystone);
+    initBannerImageModel(keystone);
 }
