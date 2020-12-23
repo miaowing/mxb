@@ -1,20 +1,21 @@
-@borderColor: #e8e8e8;
+@import (reference) "../styles/variables";
+
 
 .editor {
-  border: 1px solid @borderColor;
+  border: 1px solid @border-color;
   border-radius: 4px;
   margin-bottom: 15px;
 
   .editor_top {
     display: flex;
-    border-radius: 4px 4px 0px 0px;
+    border-radius: 4px 4px 0 0;
 
     input {
       flex: 1;
       width: 100%;
       border-color: unset;
       border-style: unset;
-      border-radius: 0px;
+      border-radius: 0;
       font-family: sans-serif;
       padding: 8px 12px;
 
@@ -23,16 +24,16 @@
       }
 
       &:nth-child(1) {
-        border-right: 1px solid @borderColor;
-        border-radius: 4px 0px 0px 0px;
+        border-right: 1px solid @border-color;
+        border-radius: 4px 0 0 0;
       }
 
-      border-right: 1px solid @borderColor;
-      border-bottom: 1px solid @borderColor;
+      border-right: 1px solid @border-color;
+      border-bottom: 1px solid @border-color;
 
       &:last-child {
         border-right: none;
-        border-radius: 0px 4px 0px 0px;
+        border-radius: 0 4px 0 0;
       }
     }
   }
@@ -41,7 +42,7 @@
     display: flex;
 
     .previewing {
-      border-right: 1px solid @borderColor;
+      border-right: 1px solid @border-color;
     }
 
     textarea {
@@ -49,8 +50,8 @@
       padding: 10px 12px;
       border-color: unset;
       border-style: unset;
-      border-radius: 0px;
-      border-bottom: 1px solid @borderColor;
+      border-radius: 0;
+      border-bottom: 1px solid @border-color;
       width: calc(100% - 23px);
       font-family: sans-serif;
       resize: none;
@@ -66,7 +67,7 @@
       padding: 11px 12px 10px 12px;
       font-size: 10px;
       margin-top: -2px;
-      border-bottom: 1px solid @borderColor;
+      border-bottom: 1px solid @border-color;
       width: calc(100% - 23px);
       font-family: sans-serif;
       min-height: 130px;
@@ -141,11 +142,11 @@
         width: 100%;
         height: 100%;
         border: none;
-        border-radius: 0px 0px 3px 0px;
+        border-radius: 0 0 3px 0;
         color: #fff;
-        background: #0080ff;
+        background: @primary-color;
         font-size: 15px;
-        padding: 0px;
+        padding: 0;
         padding-top: 1px;
 
         &:focus {
@@ -153,7 +154,7 @@
         }
 
         &:hover {
-          background: #359aff;
+          background: @primary-color;
         }
       }
     }

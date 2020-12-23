@@ -5,13 +5,13 @@ import { Header } from "../components/header.component";
 import { Footer } from "../components/footer.component";
 import { BaseProps } from "../interfaces/props.interface";
 import { Query } from "../components/query.component";
+import { Links, LinkItem } from "../components/link.component";
 import { GET_INNER_LINKS } from "../graphql/links.gql";
 import { Link } from "../interfaces/link.interface";
-import { Card, Cards } from "../components/card.component";
 import { Tag } from "../interfaces/tag.interface";
 import { CommentContainer } from "../containers/comment.container";
 
-export default function Links({ meta }: BaseProps) {
+export default function LinksPage({ meta }: BaseProps) {
     const handleLinks = (links: Link[]) => {
         const map = new Map<string, Tag & { links: Link[] }>();
         links.forEach(link => {
@@ -34,14 +34,15 @@ export default function Links({ meta }: BaseProps) {
             </Head>
             <Header title={meta.title} avatar={meta?.avatar?.publicUrl}/>
             <Query query={GET_INNER_LINKS} render={links => {
-                return handleLinks(links).map(category => <Cards key={category.key} title={category.name}>
-                    {category.links.map(link => <Card
+                return handleLinks(links).map(category => <Links key={category.key} title={category.name}>
+                    {category.links.map(link => <LinkItem
                         key={link.name}
                         title={link.name}
                         url={link.url}
+                        thumb={link?.avatar?.publicUrl}
                         description={link.description}
                     />)}
-                </Cards>)
+                </Links>)
             }}/>
             <div className="links-comment-wrap">
                 <CommentContainer page="/links" meta={meta}/>

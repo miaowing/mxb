@@ -13,6 +13,9 @@ query {
         name,
         description,
         sort,
+    },
+    avatar {
+        publicUrl
     }
   }
 }

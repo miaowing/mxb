@@ -7,4 +7,7 @@ export interface Link {
     tags: Tag[];
     type: 'global' | 'inner';
     enable: boolean;
+    avatar: {
+        publicUrl: string;
+    }
 }

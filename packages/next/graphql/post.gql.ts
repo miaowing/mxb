@@ -36,6 +36,15 @@ export const GET_ABOUT = gql`
   ${POST_DATA}
 `;
 
+export const GET_GUEST_BOOK = gql`
+  query {
+    allPosts(where: {key: "guest-book"}) {
+      ...PostData
+    }       
+  }
+  ${POST_DATA}
+`;
+
 export const GET_LATEST_POSTS = gql`
   query {
     allPosts(where: {publish: true}, orderBy: "createdAt_DESC", skip: 0, first: 6) {
