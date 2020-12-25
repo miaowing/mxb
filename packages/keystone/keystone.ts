@@ -7,12 +7,8 @@ import { mongoUri } from "./config";
 import { AdminUIApp } from "@keystonejs/app-admin-ui";
 import { NextApp } from "./keystone-next.app";
 
-const PROJECT_NAME = "mxb.cc";
-
 const stone = new Keystone({
-    name: PROJECT_NAME,
     adapter: new MongooseAdapter({ mongoUri }),
-    secureCookies: false,
     cookieSecret: 'mxb.cc',
     cookie: {
         secure: false,

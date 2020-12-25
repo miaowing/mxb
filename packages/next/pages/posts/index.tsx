@@ -12,7 +12,7 @@ import { useQuery } from "@apollo/client";
 
 export default function PostsPage({ meta }) {
     const [page, updatePage] = useState(1);
-    const [size] = useState(6);
+    const [size] = useState(8);
     const first = page * size;
 
     const { error, data, refetch } = useQuery(GET_POSTS, { variables: { skip: 0, first } });

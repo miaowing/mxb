@@ -47,7 +47,7 @@ export const GET_GUEST_BOOK = gql`
 
 export const GET_LATEST_POSTS = gql`
   query {
-    allPosts(where: {publish: true}, orderBy: "createdAt_DESC", skip: 0, first: 6) {
+    allPosts(where: {publish: true}, orderBy: "createdAt_DESC", skip: 0, first: 8) {
       ...PostData
     }       
   }

@@ -4,7 +4,7 @@ import { accessHelper } from "../helpers";
 import { Role } from "../constants/role.enum";
 
 export function initSubscriptionModel(keystone: Keystone): void {
-    keystone.createList('Subscription', {
+    keystone.createList('EmailSubscription', {
         fields: {
             email: { type: Text },
         },
