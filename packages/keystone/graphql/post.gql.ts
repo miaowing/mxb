@@ -46,7 +46,7 @@ export const GET_LATEST_POSTS = gql`
 `;
 
 export const GET_ALL_POSTS = gql`
-  query getPosts() {
+  query getPosts {
     allPosts(where: {publish: true}, sortBy: [top_DESC, createdAt_DESC]) {
       ...PostData
     }
