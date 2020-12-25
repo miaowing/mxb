@@ -92,7 +92,6 @@
     "reflect-metadata": "^0.1.13",
     "rss": "^1.2.2",
     "rxjs": "^6.6.3",
-    "sitemap": "^6.3.5",
     "ts-node": "^8.6.2",
     "winston": "^2.4.2"
   },
