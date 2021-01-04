@@ -27,34 +27,36 @@ export default class Homepage extends React.Component<BaseProps, any> {
                     <title>{meta.title} - {meta.description}</title>
                 </Head>
                 <Header title={meta.title} avatar={meta?.avatar?.publicUrl}/>
-                <Query
-                    type="object" query={GET_BANNER} variables={{ key: 'homepage' }}
-                    onCompleted={() => initHomepageBannerAnimation()}
-                    render={data => <Banner title={data.content}>
-                        <BannerImagesContainer/>
-                    </Banner>}/>
-                <Query
-                    query={GET_GALLERIES}
-                    onCompleted={() => initGalleryAnimation()}
-                    render={(galleries: Gallery[]) => <Galleries>
-                        {galleries.map((item, index) => <GalleryItem
-                            index={index}
-                            key={item.title}
-                            title={item.title}
-                            url={item.url}
-                            description={item.description}
-                            image={item?.thumb?.publicUrl}
+                <div style={{ maxWidth: 1400, margin: '0 auto' }}>
+                    <Query
+                        type="object" query={GET_BANNER} variables={{ key: 'homepage' }}
+                        onCompleted={() => initHomepageBannerAnimation()}
+                        render={data => <Banner title={data.content}>
+                            <BannerImagesContainer/>
+                        </Banner>}/>
+                    <Query
+                        query={GET_GALLERIES}
+                        onCompleted={() => initGalleryAnimation()}
+                        render={(galleries: Gallery[]) => <Galleries>
+                            {galleries.map((item, index) => <GalleryItem
+                                index={index}
+                                key={item.title}
+                                title={item.title}
+                                url={item.url}
+                                description={item.description}
+                                image={item?.thumb?.publicUrl}
+                            />)}
+                        </Galleries>}/>
+                    <Query query={GET_LATEST_POSTS} render={(posts: Post[]) => <Cards title="Blog Posts↓">
+                        {posts.map(post => <Card
+                            key={post.id}
+                            description={dayjs(post.createdAt).format('YYYY-MM-DD hh:mm')}
+                            thumb={post?.thumb?.publicUrl}
+                            url={`/posts/${post.key}`}
+                            title={post.title}
                         />)}
-                    </Galleries>}/>
-                <Query query={GET_LATEST_POSTS} render={(posts: Post[]) => <Cards title="Blog Posts↓">
-                    {posts.map(post => <Card
-                        key={post.id}
-                        description={dayjs(post.createdAt).format('YYYY-MM-DD hh:mm')}
-                        thumb={post?.thumb?.publicUrl}
-                        url={`/posts/${post.key}`}
-                        title={post.title}
-                    />)}
-                </Cards>}/>
+                    </Cards>}/>
+                </div>
                 <Footer meta={meta}/>
             </Layout>
         </>;

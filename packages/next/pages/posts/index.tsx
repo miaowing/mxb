@@ -33,18 +33,20 @@ export default function PostsPage({ meta }) {
                 <title>Blog - {meta.title} - {meta.description}</title>
             </Head>
             <Header title={meta.title} avatar={meta?.avatar?.publicUrl}/>
-            <Cards title="">
-                {posts.map(post => <Card
-                    key={post.id}
-                    description={dayjs(post.createdAt).format('YYYY-MM-DD hh:mm')}
-                    thumb={post?.thumb?.publicUrl}
-                    url={`/posts/${post.key}`}
-                    title={post.title}/>)}
-            </Cards>
-            <div style={{ textAlign: 'center' }}>
-                {count > page * size && <Button onClick={() => loadMore()}>
-                    Load More ↓
-                </Button>}
+            <div style={{ maxWidth: 1400, margin: '0 auto' }}>
+                <Cards title="">
+                    {posts.map(post => <Card
+                        key={post.id}
+                        description={dayjs(post.createdAt).format('YYYY-MM-DD hh:mm')}
+                        thumb={post?.thumb?.publicUrl}
+                        url={`/posts/${post.key}`}
+                        title={post.title}/>)}
+                </Cards>
+                <div style={{ textAlign: 'center' }}>
+                    {count > page * size && <Button onClick={() => loadMore()}>
+                        Load More ↓
+                    </Button>}
+                </div>
             </div>
             <Footer meta={meta}/>
         </Layout>

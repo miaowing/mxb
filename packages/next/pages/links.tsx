@@ -33,19 +33,21 @@ export default function LinksPage({ meta }: BaseProps) {
                 <title>Links - {meta.title} - {meta.description}</title>
             </Head>
             <Header title={meta.title} avatar={meta?.avatar?.publicUrl}/>
-            <Query query={GET_INNER_LINKS} render={links => {
-                return handleLinks(links).map(category => <Links key={category.key} title={category.name}>
-                    {category.links.map(link => <LinkItem
-                        key={link.name}
-                        title={link.name}
-                        url={link.url}
-                        thumb={link?.avatar?.publicUrl}
-                        description={link.description}
-                    />)}
-                </Links>)
-            }}/>
-            <div className="links-comment-wrap">
-                <CommentContainer page="/links" meta={meta}/>
+            <div style={{ maxWidth: 1400, margin: '0 auto' }}>
+                <Query query={GET_INNER_LINKS} render={links => {
+                    return handleLinks(links).map(category => <Links key={category.key} title={category.name}>
+                        {category.links.map(link => <LinkItem
+                            key={link.name}
+                            title={link.name}
+                            url={link.url}
+                            thumb={link?.avatar?.publicUrl}
+                            description={link.description}
+                        />)}
+                    </Links>)
+                }}/>
+                <div className="links-comment-wrap">
+                    <CommentContainer page="/links" meta={meta}/>
+                </div>
             </div>
             <Footer meta={meta}/>
         </Layout>
