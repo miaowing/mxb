@@ -23,7 +23,9 @@ export default function LinksPage({ meta }: BaseProps) {
             })
         });
         const categories = [...map.values()];
-        categories.sort((a, b) => a.sort > b.sort ? 1 : a.sort < b.sort ? -1 : 0);
+        categories.sort((a, b) =>
+            a.sort > b.sort ? 1 : a.sort < b.sort ? -1 : 0,
+        );
         return categories;
     }
 
