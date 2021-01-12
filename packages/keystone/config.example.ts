@@ -8,6 +8,7 @@ export const neteaseCountryCode = env.NETEASE_COUNTRY_CODE ?? '86';
 export const port = env.PORT ?? 3000;
 export const mongoUri = env.MONGO_URI ?? 'mongodb://localhost:27017/mxb-cc';
 export const externalUrl = env.EXTERNAL_URL ?? 'https://mxb.cc';
+export const sessionStore: any = 'memory';
 export const mailer = {
     host: env.MAILER_HOST ?? 'smtp.mxhichina.com',
     port: env.MAILER_PORT ?? 465,

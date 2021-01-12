@@ -3,7 +3,7 @@ import { Keystone } from '@keystonejs/keystone';
 import { GraphQLApp } from '@keystonejs/app-graphql';
 import { MongooseAdapter } from '@keystonejs/adapter-mongoose';
 import { initModels } from "./models";
-import { mongoUri } from "./config";
+import { mongoUri, sessionStore } from "./config";
 import { AdminUIApp } from "@keystonejs/app-admin-ui";
 import { NextApp } from "./keystone-next.app";
 import * as expressSession from 'express-session';
@@ -19,7 +19,7 @@ const stone = new Keystone({
         maxAge: 1000 * 60 * 60 * 24 * 30,
         sameSite: false,
     },
-    sessionStore: new MongoStore({ url: mongoUri }),
+    sessionStore: sessionStore === 'mongo' ? new MongoStore({ url: mongoUri }) : undefined,
 });
 
 initModels(stone);
