@@ -27,7 +27,7 @@ export class OSSAdapterClient {
         };
 
         const result = await this.client.putStream(path.join(this.folder, fileData.filename), stream);
-        stream?.close();
+        stream.close ? stream.close() : undefined;
         return { ...fileData, _meta: result };
     }
 
