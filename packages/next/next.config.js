@@ -9,11 +9,6 @@ const withCSS = require('@zeit/next-css');
 const path = require('path');
 
 module.exports = withCSS(withLess({
-    cssModules: false,
-    cssLoaderOptions: {
-        importLoaders: 1,
-        localIdentName: "[local]___[hash:base64:5]",
-    },
     webpack: (config) => {
         config.module.rules.push({
             test: /\.(svg|png|jpg)/,
