@@ -31,25 +31,33 @@ export const Post = ({ post, children, meta }) => {
                         text-center min-h-banner bg-no-repeat bg-cover bg-footer bg-center rounded-3xl
                         mb-14 text-white grid content-center relative p-8 overflow-hidden
                     ">
-                    <h1 className="text-center mx-auto mb-2 text-5xl max-w-title">{post.title}</h1>
-                    <div className="mx-auto text-center max-w-title text-100xl">{prettyDate(post.createdAt)}</div>
+                    <h1 className="text-center mx-auto mb-2 text-5xl max-w-title">
+                        {post.title}
+                    </h1>
+                    <div className="mx-auto text-center max-w-title text-100xl">
+                        {prettyDate(post.createdAt)}
+                    </div>
                 </div>
                 <StickyContainer className="justify-center flex gap-10">
                     <div className="max-w-post w-0 flex-1">
-                        <div className="border border-solid border-gray-100 p-12 bg-white rounded">
-                            {content}
-                        </div>
-                        <div className="w-full mt-8">
-                            <div className="flex gap-2 text-2xl">
-                                {post.tags?.map(tag => (
-                                    <span key={tag.key}
-                                          className="block px-4 bg-primary text-white rounded px-4 py-2">
+                        {post?.content ? (
+                            <div className="border border-solid border-gray-100 p-12 bg-white rounded">
+                                {content}
+                            </div>
+                        ) : ''}
+                        {post?.tags?.length > 0 ? (
+                            <div className="w-full mt-8">
+                                <div className="flex gap-2 text-2xl">
+                                    {post.tags?.map(tag => (
+                                        <span key={tag.key}
+                                              className="block px-4 bg-primary text-white rounded px-4 py-2">
                                         {tag.name}
                                     </span>
-                                ))}
+                                    ))}
+                                </div>
                             </div>
-                        </div>
-                        <div className="mt-12">
+                        ) : ''}
+                        <div className={post?.content ? 'mt-12' : ''}>
                             {children}
                         </div>
                     </div>

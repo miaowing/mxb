@@ -19,7 +19,7 @@ export default class GuestBookPage extends React.Component<BaseProps, any> {
                 </Head>
                 <Header title={meta.title} avatar={meta?.avatar?.publicUrl}/>
                 <Query type="object" query={GET_GUEST_BOOK} render={post => <Layout>
-                    <Post post={post} title={meta.title} avatar={meta?.avatar?.publicUrl}>
+                    <Post post={post} meta={meta}>
                         <CommentContainer page="/guest-book" meta={meta}/>
                     </Post>
                 </Layout>}/>
