@@ -8,4 +8,6 @@ export interface Comment {
     belongTo?: string;
     subscribe?: boolean;
     passed?: boolean;
+    ticket: string;
+    randStr: string;
 }

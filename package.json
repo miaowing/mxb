@@ -95,6 +95,7 @@
     "reflect-metadata": "^0.1.13",
     "rss": "^1.2.2",
     "rxjs": "^6.6.3",
+    "tencentcloud-sdk-nodejs": "^4.0.63",
     "ts-node": "^8.6.2",
     "winston": "^2.4.2"
   },

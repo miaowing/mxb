@@ -26,3 +26,8 @@ export const oss = {
     bucket: env.ALI_BUCKET ?? 'zf-ink',
     folder: env.UPLOAD_FOLDERS ?? 'uploads',
 }
+
+export const tencentSecretId = env.TENCENT_SECRET_ID ?? '';
+export const tencentSecretKey = env.TENCENT_SECRET_KEY ?? '';
+export const captchaAppId = env.CAPTCHA_APP_ID ?? '';
+export const captchaSecretKey = env.CAPTCHA_SECRET_KEY ?? '';

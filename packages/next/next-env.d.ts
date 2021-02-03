@@ -1,5 +1,12 @@
 /// <reference types="next" />
 /// <reference types="next/types/global" />
+declare class TencentCaptcha {
+    constructor(...params: any[]) {
+    }
+
+    show();
+}
+
 declare module '*.less' {
     const classes: { [key: string]: string };
     export default classes;

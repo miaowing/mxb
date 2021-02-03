@@ -41,6 +41,7 @@ module.exports = withCSS(withLess({
     publicRuntimeConfig: {
         // Will be available on both server and client
         serverUrl: config.externalUrl,
+        captchaAppId: config.captchaAppId,
     },
     images: {
         domains: ['mxbcc.oss-cn-beijing.aliyuncs.com'],
