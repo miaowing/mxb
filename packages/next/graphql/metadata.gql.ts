@@ -9,6 +9,9 @@ query {
     avatar {
       publicUrl
     }
+    avatarBackground {
+      publicUrl
+    }
     qrcode {
       publicUrl
     },

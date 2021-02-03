@@ -28,7 +28,7 @@ export default class PostPage extends React.Component<BaseProps, any> {
                         <link href={"https://mxbcc.oss-cn-beijing.aliyuncs.com/js/prism.css"} rel="stylesheet"/>
                         <script src={"https://mxbcc.oss-cn-beijing.aliyuncs.com/js/prism.js"}/>
                     </Head>
-                    <Post post={post} avatar={meta?.avatar?.publicUrl} title={meta.title}>
+                    <Post post={post} meta={meta}>
                         <CommentContainer page={`/posts/${post.key}`} meta={meta}/>
                     </Post>
                 </>}/>

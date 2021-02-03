@@ -17,6 +17,11 @@ export function initSiteMetadataModel(keystone: Keystone): void {
                 adapter: ossAdapter,
                 label: 'avatar',
             },
+            avatarBackground: {
+                type: File,
+                adapter: ossAdapter,
+                label: 'avatar background',
+            },
             qrcode: {
                 type: File,
                 adapter: ossAdapter,

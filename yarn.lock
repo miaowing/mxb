@@ -12100,10 +12100,10 @@ mute-stream@0.0.8:
   resolved "https://registry.npmjs.org/mute-stream/-/mute-stream-0.0.8.tgz#1630c42b2251ff81e2a283de96a5497ea92e5e0d"
   integrity sha512-nnbWWOkoWyUsTjKrhgD0dcz22mdkSnpYqbEjIm2nhwhuxlSkpywJmBo8h0ZqJdkp73mb90SssHkN4rsRaBAfAA==
 
-mxb-comment@^1.1.4:
-  version "1.1.4"
-  resolved "https://registry.npmjs.org/mxb-comment/-/mxb-comment-1.1.4.tgz#2b1a17e29d8d96e6c06701e850d5ce8488e82017"
-  integrity sha512-fDX5Ef31cZkr6fjZ6dkT9oEOsqSOw3VbgYIhuKqmbrjyrGGQtnSYCa6v2fAos7WIg57wplcmHA+7FyUvEM7L9w==
+mxb-comment@^1.1.7:
+  version "1.1.7"
+  resolved "https://registry.npmjs.org/mxb-comment/-/mxb-comment-1.1.7.tgz#653fedd021a19bfe3dc5a48ec2148ee4efbebf47"
+  integrity sha512-wcHfO1uL/+ia5rAG64qdq+CgAsOmVBiKIxbHaShVOWVUofl1NEb/IZ/UiUEHKMMNYAu6IFp1dPIMCYAXKgqcYQ==
   dependencies:
     dayjs "^1.10.4"
     insert-text-at-cursor "^0.3.0"

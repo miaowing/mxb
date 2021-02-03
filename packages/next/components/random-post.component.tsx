@@ -10,9 +10,9 @@ export const RandomPost = ({ posts }) => {
                     <figure
                         className="bg-cover bg-center h-44 mb-6 text-white relative"
                         style={{ backgroundImage: `url(${post?.thumb?.publicUrl})` }}>
-                        <div className="absolute left-0 right-0 bottom-0 px-6 pb-6"
+                        <div className="absolute left-0 right-0 bottom-0 px-6 pb-4"
                              style={{ backgroundColor: 'rgba(26,21,58, 0.3)' }}>
-                        <span className="text-base block">
+                        <span className="text-base block my-2">
                             {prettyDate(post?.createdAt, 'YYYY-MM-DD')}
                         </span>
                             <h1 className="text-2xl whitespace-nowrap overflow-ellipsis overflow-hidden block">

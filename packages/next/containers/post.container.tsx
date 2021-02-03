@@ -10,7 +10,7 @@ import { GET_ALL_POSTS } from "../graphql/post.gql";
 import { Post as IPost } from '../interfaces/post.interface';
 import { getRandomArrayElements } from "../helpers/data.helper";
 
-export const Post = ({ post, children, avatar, title }) => {
+export const Post = ({ post, children, meta }) => {
     let content = <div className="post" dangerouslySetInnerHTML={{ __html: post.html_content }}/>;
     if (post.content) {
         content = <div className="post"><ReactMarkdown source={post.content}/></div>;
@@ -22,7 +22,6 @@ export const Post = ({ post, children, avatar, title }) => {
     const tagCount = data?._allTagsMeta?.count;
 
     const randomPosts = getRandomArrayElements(posts, 3);
-
     return (
         <>
             <article className="px-8 md:px-16 text-gray-500 leading-loose">
@@ -60,8 +59,9 @@ export const Post = ({ post, children, avatar, title }) => {
                             {({ style }) => (
                                 <div style={style}>
                                     <AvatarCard
-                                        avatar={avatar}
-                                        title={title}
+                                        avatar={meta?.avatar?.publicUrl}
+                                        background={meta?.avatarBackground?.publicUrl}
+                                        title={meta.title}
                                         postCount={postCount}
                                         commentCount={commentCount}
                                         tagCount={tagCount}
