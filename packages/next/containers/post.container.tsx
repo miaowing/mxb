@@ -63,7 +63,7 @@ export const Post = ({ post, children, meta }) => {
                     </div>
                     <div className="hidden lg:block">
                         <div className="w-104"/>
-                        <Sticky disableCompensation={true}>
+                        <Sticky>
                             {({ style }) => (
                                 <div style={style}>
                                     <AvatarCard
