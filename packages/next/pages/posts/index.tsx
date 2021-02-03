@@ -1,10 +1,10 @@
 import * as React from 'react';
 import Head from "next/head";
-import { Layout } from "../../components/layout.component";
-import { Header } from "../../components/header.component";
+import { Layout } from "../../containers/layout.container";
+import { Header } from "../../containers/header.container";
 import { GET_POSTS } from "../../graphql/post.gql";
 import { Button } from "../../components/button.component";
-import { Footer } from "../../components/footer.component";
+import { Footer } from "../../containers/footer.container";
 import { Cards, Card } from "../../components/card.component";
 import dayjs from "dayjs";
 import { useState } from "react";

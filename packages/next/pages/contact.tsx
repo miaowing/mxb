@@ -1,9 +1,9 @@
 import * as React from 'react';
 import Head from "next/head";
-import { Layout } from "../components/layout.component";
-import { Header } from "../components/header.component";
+import { Layout } from "../containers/layout.container";
+import { Header } from "../containers/header.container";
 import { Contact } from "../components/contact.component";
-import { Footer } from "../components/footer.component";
+import { Footer } from "../containers/footer.container";
 import axios from 'axios';
 import { useToasts } from 'react-toast-notifications';
 import { useState } from "react";

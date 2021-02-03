@@ -1,15 +1,14 @@
 import * as React from 'react';
-import styles from './nav.component.module.less';
 
 export const Nav = () => (
-    <nav className={styles.nav}>
-        <ul>
-            <li><a href="/posts">Blog</a></li>
-            <li className={styles.github}><a href="/music">Music</a></li>
-            <li><a href="/contact">Contact</a></li>
-            <li><a href="/about">About</a></li>
-            <li className={styles.github}><a href="/guest-book">GuestBook</a></li>
-            <li><a href="/links">Links</a></li>
+    <nav>
+        <ul className="flex list-none p-0">
+            <li className="uppercase text-2xl text-gray-500 ml-8"><a href={'/posts'}>Blog</a></li>
+            <li className="uppercase text-2xl text-gray-500 ml-8"><a href={'/music'}>Music</a></li>
+            <li className="uppercase text-2xl text-gray-500 ml-8"><a href={'/contact'}>Contact</a></li>
+            <li className="uppercase text-2xl text-gray-500 ml-8"><a href={'/about'}>About</a></li>
+            <li className="uppercase text-2xl text-gray-500 ml-8"><a href={'/guest-book'}>GuestBook</a></li>
+            <li className="uppercase text-2xl text-gray-500 ml-8"><a href={'/links'}>Links</a></li>
         </ul>
     </nav>
 );

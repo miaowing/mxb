@@ -1,6 +1,5 @@
 import * as React from 'react';
 import ReactSlider from 'react-slider'
-import styles from './player.component.module.less';
 import { Howl, Howler } from 'howler';
 import { Icons } from "../constants/icons.constants";
 import * as Lyrics from 'lyrics.js';
@@ -111,7 +110,7 @@ export class Player extends React.Component<PlayerProps, any> {
 
     render() {
         const { image, name, artist, onPrevious, onNext } = this.props;
-        return <div className={styles.player}>
+        return <div className="player">
             <ReactSlider
                 step={0.01}
                 onBeforeChange={() => {
@@ -126,27 +125,27 @@ export class Player extends React.Component<PlayerProps, any> {
                 }}
                 value={this.state.progress}
                 max={this.state.max}/>
-            <div className={styles.footer}>
-                <div className={styles.playing}>
+            <div className="footer">
+                <div className="playing">
                     <img src={image} alt={name}/>
-                    <div className={styles.info}>
-                        <div className={styles.name}>{name}</div>
-                        <div className={styles.artist}>{artist}</div>
+                    <div className="info">
+                        <div className="name">{name}</div>
+                        <div className="artist">{artist}</div>
                     </div>
                 </div>
-                <div className={styles.controls}>
-                    <button className={styles.button} onClick={() => onPrevious()}>
+                <div className="controls">
+                    <button className="button" onClick={() => onPrevious()}>
                         {Icons().previous}
                     </button>
-                    <button className={`${styles.button} ${styles.play}`} onClick={() => this.pauseOrPlay()}>
+                    <button className="button play" onClick={() => this.pauseOrPlay()}>
                         {this.state.playing ? Icons().pause : Icons().playing}
                     </button>
-                    <button className={styles.button} onClick={() => onNext()}>
+                    <button className="button" onClick={() => onNext()}>
                         {Icons().next}
                     </button>
                 </div>
-                <div className={styles.controls}>
-                    <div className={styles.lrc}>
+                <div className="controls">
+                    <div className="lrc">
                         {this.state.lrc}
                     </div>
                 </div>

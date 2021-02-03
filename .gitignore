@@ -15,3 +15,5 @@ yarn-error.log
 !types/keystone.d.ts
 !packages/keystone/templates/contact-me.template.js
 !packages/keystone/templates/notification.template.js
+!tailwind.config.js
+!postcss.config.js

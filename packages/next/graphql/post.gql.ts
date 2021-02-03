@@ -75,3 +75,17 @@ export const GET_POST = gql`
   ${POST_DATA}
 `;
 
+export const GET_ALL_POSTS = gql`
+  query {
+    posts: allPosts(where: {publish: true}) {
+      id,
+      key,
+      title,
+      createdAt,
+      thumb {
+        publicUrl
+      }
+    }
+  }
+`;
+

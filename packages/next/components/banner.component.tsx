@@ -1,19 +1,16 @@
 import * as React from 'react';
-import { Title } from "./title.component";
-import styles from './banner.component.module.less';
 import { Button } from "./button.component";
 import { getBannerInitStyle } from "../helpers/animation.helper";
 
 export const Banner = ({ title, children }) => {
-    return <div className={styles.banner}>
-
-        <div className={styles.welcome}>
-            <div className={styles.text}>
-                <Title
-                    style={getBannerInitStyle()}
-                    id="homepage-banner-title" size="large" as="h2">
+    return <div className="p-8 sm:px-16">
+        <div className="block md:flex justify-between items-center mb-32">
+            <div className="max-w-6xl">
+                <h2 style={getBannerInitStyle()}
+                    className="block font-normal text-5xl leading-normal relative"
+                    id="homepage-banner-title">
                     {title}
-                </Title>
+                </h2>
                 <Button
                     style={getBannerInitStyle()}
                     id="homepage-banner-button" onClick={() => location.href = '/contact'}>

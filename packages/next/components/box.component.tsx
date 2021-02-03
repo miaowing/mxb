@@ -1,5 +1,4 @@
 import React from 'react';
-import styles from './box.component.module.less';
 
-export const Box = ({ children }) => <div className={styles.box}>{children}</div>;
+export const Box = ({ children }) => <div className="px-16 py-8 max-w-6xl">{children}</div>;
 

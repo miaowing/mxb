@@ -33,7 +33,7 @@ export const COMMENT_DATA = gql`
 
 export const GET_COMMENTS = gql`
 query getComments($page: String!) {
-  allComments(where: {page: $page} sortBy: [createdAt_ASC]) {
+  allComments(where: {page: $page, passed: true} sortBy: [createdAt_ASC]) {
     ...CommentData
   }
 }

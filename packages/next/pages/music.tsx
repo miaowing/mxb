@@ -2,10 +2,10 @@ import * as React from 'react';
 import getConfig from "next/config";
 import { MusicCard, MusicCards } from "../components/music-card.component";
 import Head from "next/head";
-import { Header } from "../components/header.component";
+import { Header } from "../containers/header.container";
 import { Button } from "../components/button.component";
-import { Footer } from "../components/footer.component";
-import { Layout } from "../components/layout.component";
+import { Footer } from "../containers/footer.container";
+import { Layout } from "../containers/layout.container";
 import { useState } from "react";
 import { Player } from "../components/player.component";
 

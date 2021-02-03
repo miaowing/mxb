@@ -1,7 +1,7 @@
 import * as React from 'react';
 import Head from "next/head";
-import { Layout } from "../components/layout.component";
-import { Header } from "../components/header.component";
+import { Layout } from "../containers/layout.container";
+import { Header } from "../containers/header.container";
 import { Query } from "../components/query.component";
 import { GET_GALLERIES } from "../graphql/gallery.gql";
 import { Galleries, GalleryItem } from "../components/gallery.component";
@@ -9,7 +9,7 @@ import { Gallery } from "../interfaces/gallery.interface";
 import { GET_BANNER } from "../graphql/banner.gql";
 import { Banner } from "../components/banner.component";
 import { GET_LATEST_POSTS } from "../graphql/post.gql";
-import { Footer } from "../components/footer.component";
+import { Footer } from "../containers/footer.container";
 import { Cards, Card } from "../components/card.component";
 import { initGalleryAnimation, initHomepageBannerAnimation } from "../helpers/animation.helper";
 import { BaseProps } from "../interfaces/props.interface";

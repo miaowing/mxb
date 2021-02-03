@@ -62,13 +62,17 @@ export class MusicService implements OnModuleInit {
     }
 
     async onModuleInit(): Promise<void> {
-        const result = await this.netease.login(neteasePhone, neteasePassword, neteaseCountryCode);
-        if (result.code === 200) {
-            this.cookie = result.cookie;
+        try {
+            const result = await this.netease.login(neteasePhone, neteasePassword, neteaseCountryCode);
+            if (result.code === 200) {
+                this.cookie = result.cookie;
 
-            this.logger.log(`init netease api success`);
-            return;
+                this.logger.log(`init netease api success`);
+                return;
+            }
+            this.logger.error(`init netease api error: ${JSON.stringify(result)}`);
+        } catch (e) {
+            this.logger.error(`init netease api error`, e);
         }
-        this.logger.error(`init netease api error: ${JSON.stringify(result)}`);
     }
 }

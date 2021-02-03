@@ -1,8 +1,8 @@
 import * as React from 'react';
 import Head from "next/head";
-import { Layout } from "../components/layout.component";
-import { Header } from "../components/header.component";
-import { Footer } from "../components/footer.component";
+import { Layout } from "../containers/layout.container";
+import { Header } from "../containers/header.container";
+import { Footer } from "../containers/footer.container";
 import { BaseProps } from "../interfaces/props.interface";
 import { Query } from "../components/query.component";
 import { Links, LinkItem } from "../components/link.component";
@@ -37,17 +37,18 @@ export default function LinksPage({ meta }: BaseProps) {
             <Header title={meta.title} avatar={meta?.avatar?.publicUrl}/>
             <div style={{ maxWidth: 1400, margin: '0 auto' }}>
                 <Query query={GET_INNER_LINKS} render={links => {
-                    return handleLinks(links).map(category => <Links key={category.key} title={category.name}>
+                    return handleLinks(links).map(category => <Links key={category.key}>
                         {category.links.map(link => <LinkItem
                             key={link.name}
                             title={link.name}
                             url={link.url}
                             thumb={link?.avatar?.publicUrl}
                             description={link.description}
+                            category={category.name}
                         />)}
                     </Links>)
                 }}/>
-                <div className="links-comment-wrap">
+                <div className="mx-8 md:mx-16 mt-16">
                     <CommentContainer page="/links" meta={meta}/>
                 </div>
             </div>
