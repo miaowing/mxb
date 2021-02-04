@@ -32,8 +32,6 @@ module.exports = {
                 'avatar-card': '10rem',
             },
             maxWidth: {
-                'title': '67rem',
-                'contact': '60rem',
                 'post': '86rem',
             },
             minHeight: {
@@ -54,6 +52,7 @@ module.exports = {
                 layer: '#1A153A',
                 footer: '#18142e',
                 primary: '#18142e',
+                contact: '#d0414e',
                 'footer-text': 'hsla(0, 0%, 100%, 0.6)',
             }
         },

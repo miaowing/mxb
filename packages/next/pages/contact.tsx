@@ -2,7 +2,7 @@ import * as React from 'react';
 import Head from "next/head";
 import { Layout } from "../containers/layout.container";
 import { Header } from "../containers/header.container";
-import { Contact } from "../components/contact.component";
+import { Contact } from "../containers/contact.container";
 import { Footer } from "../containers/footer.container";
 import axios from 'axios';
 import { useToasts } from 'react-toast-notifications';
@@ -28,7 +28,7 @@ export default function ContactPage({ meta }: BaseProps) {
                 <title>About - {meta.title} - {meta.description}</title>
             </Head>
             <Header title={meta.title} avatar={meta?.avatar?.publicUrl}/>
-            <Contact loading={sending} onSubmit={values => submit(values)}/>
+            <Contact loading={sending} onSubmit={values => submit(values)} meta={meta}/>
             <Footer meta={meta}/>
         </Layout>
     </>;

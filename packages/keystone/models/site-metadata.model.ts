@@ -29,6 +29,7 @@ export function initSiteMetadataModel(keystone: Keystone): void {
             },
             admin_name: { type: Text },
             admin_email: { type: Text },
+            address: { type: Text },
         },
         access: {
             read: accessHelper.access(Role.ADMIN, Role.ANONYMOUS),

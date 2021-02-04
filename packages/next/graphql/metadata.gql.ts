@@ -17,7 +17,8 @@ query {
     },
     description,
     admin_name,
-    admin_email
+    admin_email,
+    address
   }
 }
 `;

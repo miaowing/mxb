@@ -11,7 +11,10 @@ export const GalleryItem = ({ index, title, description, image, url }) => (
     <figure id={`gallery-item-${index}`} className="" style={getGalleryInitStyle()}>
         <div className="relative">
             <div className="w-full" style={{ paddingBottom: '66.6667%' }}/>
-            <img className="h-auto w-full h-full absolute top-0 object-cover object-center" src={image} alt={title}/>
+            <img className="h-auto w-full h-full absolute top-0 object-cover object-center rounded-lg"
+                 src={image}
+                 alt={title}
+            />
         </div>
         <figcaption>
             <a href={url} className="block text-3xl mx-4 mt-8 mb-4">{title}</a>

@@ -22,7 +22,8 @@ export const BannerImagesContainer = props => {
             key={index}
             className="overflow-hidden w-percent-49 absolute rounded-lg"
             style={styles[index]}>
-            <div className="relative p-0 m-0 w-full h-full overflow-hidden">
+            <div className="relative p-0 m-0 w-full h-full overflow-hidden rounded-lg"
+                 style={{ transform: 'rotate(0deg)' }}>
                 <div
                     className="
                         absolute top-0 left-0 right-0 bottom-0 z-0 m-auto transition-all duration-300

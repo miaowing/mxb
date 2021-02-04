@@ -20,8 +20,8 @@ export const Card = ({ url, thumb, title, description }: PostCardProps) => {
     const isExternalUrl = url?.indexOf('http') === 0;
     return <article
         className="
-            grid bg-white rounded-2xl border border-solid border-gray-100
-            overflow-hidden leading-normal mt-12 hover:shadow-post
+            grid bg-white rounded-lg border border-solid border-gray-100
+            overflow-hidden leading-normal mt-12 hover:shadow-post transition-all duration-300
         ">
         <a href={url} target={isExternalUrl ? '_blank' : ''}>
             {!!thumb && (<img src={thumb} alt={title}/>)}
