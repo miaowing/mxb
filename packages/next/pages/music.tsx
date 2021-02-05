@@ -7,7 +7,7 @@ import { Button } from "../components/button.component";
 import { Footer } from "../containers/footer.container";
 import { Layout } from "../containers/layout.container";
 import { useState } from "react";
-import { Player } from "../components/player.component";
+import { Player } from "../containers/player.container";
 import { getMusicSource } from "../helpers/data.helper";
 
 const { publicRuntimeConfig: { serverUrl } } = getConfig();
