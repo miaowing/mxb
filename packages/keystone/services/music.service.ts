@@ -4,6 +4,7 @@ import * as shuffle from 'shuffle-array';
 import { Injectable } from "@nestjs/common";
 import * as request from "request";
 import * as Stream from "stream";
+import { randomHelper } from "../helpers";
 
 @Injectable()
 export class MusicService {
@@ -18,11 +19,9 @@ export class MusicService {
             .concat(await this.neteaseService.getSongs())
             .concat(await this.singService.getSongs());
         shuffle(songs);
-        const total = songs.length;
-        const start = Math.random() * (total - limit);
         return {
-            total,
-            tracks: songs.slice(start, start + limit),
+            total: songs.length,
+            tracks: randomHelper.getRandomArrayElements(songs, limit),
         };
     }
 
@@ -35,7 +34,6 @@ export class MusicService {
             default:
                 url = await this.singService.getSongUrl(songId, kind);
         }
-        console.log(url);
         const stream = request.get(decodeURIComponent(url.url), {
             headers: {
                 'User-Agent': '5sing%E5%8E%9F%E5%88%9B%E9%9F%B3%E4%B9%90/6081002 CFNetwork/978.0.7 Darwin/18.5.0',
