@@ -1,7 +1,7 @@
 import { NeteaseService } from "./netease.service";
 import { SingService } from "./sing.service";
 import * as shuffle from 'shuffle-array';
-import { Injectable } from "@nestjs/common";
+import { Injectable, NotFoundException } from "@nestjs/common";
 import * as request from "request";
 import * as Stream from "stream";
 
@@ -34,6 +34,9 @@ export class MusicService {
                 break;
             default:
                 url = await this.singService.getSongUrl(songId, kind);
+        }
+        if (!url) {
+            throw new NotFoundException();
         }
         return request.get(decodeURIComponent(url), {
             headers: {
