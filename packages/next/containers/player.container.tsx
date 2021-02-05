@@ -104,12 +104,8 @@ export class Player extends React.Component<PlayerProps, any> {
             if (!body.nolyric) {
                 const lyric = body?.lyric;
                 console.log(lyric);
-                if (lyric) {
-                    this.lyrics = new Lyrics(lyric);
-                } else {
-                    this.setState({ lrc: '' });
-                    this.lyrics = null;
-                }
+                this.setState({ lrc: '' });
+                this.lyrics = lyric ? new Lyrics(lyric) : null;
             }
         });
     }
