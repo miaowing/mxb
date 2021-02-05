@@ -1,11 +1,11 @@
-import { Injectable, Logger, OnModuleInit } from "@nestjs/common";
+import { Injectable, Logger, NotFoundException, OnModuleInit } from "@nestjs/common";
 import { NeteaseClient } from "../clients";
 import { neteaseCountryCode, neteasePassword, neteasePhone, playlistId } from "../config";
 import { Interval } from "@nestcloud/schedule";
 import { InjectLogger } from "@nestcloud/logger";
 import { InjectRedis } from "@nestcloud/redis";
 import { Redis } from "ioredis";
-import { NETEASE_COOKIE, NETEASE_SONGS } from "../constants/redis.constants";
+import { NETEASE_COOKIE, NETEASE_SONG_URL, NETEASE_SONGS } from "../constants/redis.constants";
 import * as shuffle from 'shuffle-array';
 
 @Injectable()
@@ -24,6 +24,29 @@ export class NeteaseService implements OnModuleInit {
     async getLyric(songId: string) {
         const { lrc } = await this.netease.getLyric(songId);
         return { lyric: lrc?.lyric };
+    }
+
+    async getSongUrl(songId: string): Promise<{ url: string, size: number }> {
+        let cache = await this.redis.get(`${NETEASE_SONG_URL}:${songId}`);
+        if (cache) {
+            return JSON.parse(cache);
+        }
+
+        const cookie = await this.redis.get(NETEASE_COOKIE);
+        const { data } = await this.netease.getSongUrl(cookie, songId);
+        const { url, size } = data[0] ?? {};
+        if (!url) {
+            throw new NotFoundException();
+        }
+        await this.redis.set(
+            `${NETEASE_SONG_URL}:${songId}`,
+            JSON.stringify({ url, size }),
+            'EX',
+            60 * 60 * 24,
+        );
+
+        // const url = `https://music.163.com/song/media/outer/url?id=${songId}.mp3`;
+        return { url, size };
     }
 
     async getSongs() {

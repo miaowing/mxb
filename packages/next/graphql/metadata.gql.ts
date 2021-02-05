@@ -9,7 +9,7 @@ query {
     avatar {
       publicUrl
     }
-    avatarBackground {
+    avatar_background {
       publicUrl
     }
     qrcode {
@@ -18,7 +18,8 @@ query {
     description,
     admin_name,
     admin_email,
-    address
+    address,
+    header_script
   }
 }
 `;

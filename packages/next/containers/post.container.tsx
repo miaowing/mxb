@@ -68,7 +68,7 @@ export const Post = ({ post, children, meta }) => {
                                 <div style={style}>
                                     <AvatarCard
                                         avatar={meta?.avatar?.publicUrl}
-                                        background={meta?.avatarBackground?.publicUrl}
+                                        background={meta?.avatar_background?.publicUrl}
                                         title={meta.title}
                                         postCount={postCount}
                                         commentCount={commentCount}

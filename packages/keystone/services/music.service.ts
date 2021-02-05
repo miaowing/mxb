@@ -1,7 +1,7 @@
 import { NeteaseService } from "./netease.service";
 import { SingService } from "./sing.service";
 import * as shuffle from 'shuffle-array';
-import { Injectable, NotFoundException } from "@nestjs/common";
+import { Injectable } from "@nestjs/common";
 import * as request from "request";
 import * as Stream from "stream";
 
@@ -26,24 +26,23 @@ export class MusicService {
         };
     }
 
-    async getSongUrl(songId: string, kind: string): Promise<Stream> {
-        let url;
+    async getSongUrl(songId: string, kind: string): Promise<{ stream: Stream, size: number }> {
+        let url: { url: string, size: number };
         switch (kind) {
             case 'netease':
-                url = `https://music.163.com/song/media/outer/url?id=${songId}.mp3`;
+                url = await this.neteaseService.getSongUrl(songId);
                 break;
             default:
                 url = await this.singService.getSongUrl(songId, kind);
         }
-        if (!url) {
-            throw new NotFoundException();
-        }
-        return request.get(decodeURIComponent(url), {
+        console.log(url);
+        const stream = request.get(decodeURIComponent(url.url), {
             headers: {
                 'User-Agent': '5sing%E5%8E%9F%E5%88%9B%E9%9F%B3%E4%B9%90/6081002 CFNetwork/978.0.7 Darwin/18.5.0',
                 'Accept-Encoding': 'gzip,deflate'
             }
         });
+        return { stream, size: url.size };
     }
 
     async getLyric(songId: string, kind: string) {

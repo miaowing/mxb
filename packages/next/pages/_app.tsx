@@ -34,11 +34,13 @@ export default class MyApp extends App<MyAppProps> {
                     <Query type="object" query={GET_SITE_METADATA} render={meta => <>
                         <Head>
                             <link rel="shortcut icon" href={"favicon.ico"} type="image/x-icon"/>
+
                             <meta
                                 name="viewport"
                                 content="width=device-width, initial-scale=1.0,maximum-scale=1.0, user-scalable=no"/>
                             <meta name="keywords" content={meta.keywords}/>
                             <meta name="description" content={meta.description}/>
+                            <script dangerouslySetInnerHTML={{ __html: meta.header_script }}/>
                         </Head>
                         <Component {...pageProps} user={user} meta={meta}/>
                     </>}/>

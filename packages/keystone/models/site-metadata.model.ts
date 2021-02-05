@@ -17,7 +17,7 @@ export function initSiteMetadataModel(keystone: Keystone): void {
                 adapter: ossAdapter,
                 label: 'avatar',
             },
-            avatarBackground: {
+            avatar_background: {
                 type: File,
                 adapter: ossAdapter,
                 label: 'avatar background',
@@ -30,6 +30,7 @@ export function initSiteMetadataModel(keystone: Keystone): void {
             admin_name: { type: Text },
             admin_email: { type: Text },
             address: { type: Text },
+            header_script: { type: Text, isMultiline: true }
         },
         access: {
             read: accessHelper.access(Role.ADMIN, Role.ANONYMOUS),
@@ -38,5 +39,5 @@ export function initSiteMetadataModel(keystone: Keystone): void {
             delete: accessHelper.access(Role.ADMIN),
             auth: false,
         },
-    });
+    } as any);
 }

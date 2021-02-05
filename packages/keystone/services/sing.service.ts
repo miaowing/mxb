@@ -26,17 +26,27 @@ export class SingService implements OnModuleInit {
         return { lyric: dynamicWords };
     }
 
-    async getSongUrl(songId: string, kind: string): Promise<string> {
-        let url = await this.redis.get(`${SING_SONG_URL}:${kind}:${songId}`);
-        if (!url) {
-            const { data, success } = await this.singClient.getSongUrl(songId, kind);
-            if (!success) {
-                throw new NotFoundException();
-            }
-            url = data?.squrl ?? data?.hqurl ?? data?.lqurl;
+    async getSongUrl(songId: string, kind: string): Promise<{ url: string, size: number }> {
+        let cache = await this.redis.get(`${SING_SONG_URL}:${kind}:${songId}`);
+        if (cache) {
+            return JSON.parse(cache);
         }
-
-        return url;
+        const { data, success } = await this.singClient.getSongUrl(songId, kind);
+        if (!success) {
+            throw new NotFoundException();
+        }
+        const url = data?.squrl ?? data?.hqurl ?? data?.lqurl;
+        const size = data?.sqsize ?? data?.hqsize ?? data?.lqsize;
+        if (!url) {
+            throw new NotFoundException();
+        }
+        await this.redis.set(
+            `${SING_SONG_URL}:${kind}:${songId}`,
+            JSON.stringify({ url, size }),
+            'EX',
+            60 * 60 * 24,
+        );
+        return { url, size };
     }
 
     async getSongs() {

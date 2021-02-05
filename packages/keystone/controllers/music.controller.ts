@@ -1,6 +1,6 @@
-import { Controller, Get, InternalServerErrorException, Param, Query, Res } from "@nestjs/common";
+import { Controller, Get, Headers, InternalServerErrorException, Param, Query, Req, Res } from "@nestjs/common";
 import { MusicService, SingService } from "../services";
-import * as request from 'request';
+import { Response, Request } from 'express';
 
 @Controller('/nest-api/music')
 export class MusicController {
@@ -19,9 +19,22 @@ export class MusicController {
     async getSingSongUrl(
         @Param('kind') kind: string,
         @Param('songId') songId: string,
-        @Res() res,
+        @Headers('range') range: string,
+        @Req() req: Request,
+        @Res() res: Response,
     ) {
-        const stream = await this.musicService.getSongUrl(songId, kind);
+        const { stream, size } = await this.musicService.getSongUrl(songId, kind);
+
+        res.setHeader('Content-Type', 'audio/mpeg');
+        res.setHeader('Content-Length', size);
+        if (range === 'bytes=0-1') {
+            res.setHeader('Content-Range', `bytes 0-1/${size}`);
+            res.send('1');
+            return;
+        }
+
+        res.setHeader('Accept-Ranges', 'bytes');
+
         try {
             stream.pipe(res);
         } catch (e) {

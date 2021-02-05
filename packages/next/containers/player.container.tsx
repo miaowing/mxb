@@ -48,6 +48,7 @@ export class Player extends React.Component<PlayerProps, any> {
             if (!this.howler.playing()) {
                 return;
             }
+            console.log(this.howler.duration());
             const progress = this.howler?.seek();
             if (progress) {
                 this.setState({ progress });
@@ -78,20 +79,29 @@ export class Player extends React.Component<PlayerProps, any> {
 
     play(id: string, kind: string) {
         const { addToast } = this.props;
+
         this.howler = new Howl({
             src: [`/nest-api/music/kinds/${kind ?? 'netease'}/songs/${id}`],
             html5: true,
             autoplay: true,
             format: ["mp3"],
             onloaderror: () => {
+                Howler.unload();
                 addToast('该资源暂时不可用', { appearance: 'error', autoDismiss: true });
                 this.props.onNext();
             },
+            onunlock: () => Howler.unload(),
+            onstop: () => Howler.unload(),
+            onplayerror: () => Howler.unload(),
             onload: () => {
                 const max = this.howler.duration();
                 this.setState({ max: max > 1 ? max - 1 : max });
+                console.log(this.howler.duration());
             },
-            onend: () => this.props.onNext(),
+            onend: () => {
+                this.howler.stop();
+                this.props.onNext();
+            },
             onplay: () => this.setState({ playing: true }),
             onpause: () => this.setState({ playing: false }),
         });

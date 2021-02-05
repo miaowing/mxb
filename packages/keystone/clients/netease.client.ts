@@ -15,8 +15,8 @@ export class NeteaseClient {
     refresh(@Header('Cookie') cookie: string): any {
     }
 
-    @Get('https://mxb.cc/apis/music/likelist')
-    getLikeList(@Header('Cookie') cookie: string, @Query('uid') uid: string) {
+    @Get('https://mxb.cc/apis/music/song/url')
+    getSongUrl(@Header('Cookie') cookie: string, @Query('id') id: string): any {
     }
 
     @Get('https://mxb.cc/apis/music/song/detail')
