@@ -8,6 +8,7 @@ import { Footer } from "../containers/footer.container";
 import { Layout } from "../containers/layout.container";
 import { useState } from "react";
 import { Player } from "../components/player.component";
+import { getMusicSource } from "../helpers/data.helper";
 
 const { publicRuntimeConfig: { serverUrl } } = getConfig();
 
@@ -62,7 +63,7 @@ export default function MusicPage({ tracks, meta }) {
                 key={track.id}
                 onClick={() => play(track, index)}
                 name={track?.name}
-                singer={track?.ar[0]?.name}
+                singer={`${track?.ar[0]?.name} - ${getMusicSource(track?.kind)}`}
                 image={track?.al?.picUrl}/>)}
         </MusicCards>
         <div style={{ textAlign: 'center' }}>
@@ -74,8 +75,8 @@ export default function MusicPage({ tracks, meta }) {
             image={current?.al?.picUrl}
             name={current.name}
             artist={current?.ar ? current?.ar[0]?.name : ''}
-            dt={current.dt}
             id={current.id}
+            kind={current.kind}
         /> : ''}
         <Footer style={{ marginBottom: current.id ? 60 : 0 }} meta={meta}/>
     </Layout>

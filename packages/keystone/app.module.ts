@@ -7,6 +7,8 @@ import { components } from "@nestcloud/common";
 import { LoggerModule } from "@nestcloud/logger";
 import { HttpModule } from "@nestcloud/http";
 import { ScheduleModule } from "@nestcloud/schedule";
+import { redisDatabase, redisHost, redisPassword, redisPort } from "./config";
+import { RedisModule } from "@nestcloud/redis";
 
 @Module({
     imports: [
@@ -14,6 +16,17 @@ import { ScheduleModule } from "@nestcloud/schedule";
         LoggerModule.forRoot(),
         HttpModule.forRoot(),
         ScheduleModule.forRoot(),
+        RedisModule.forRootAsync({
+            inject: [],
+            useFactory: () => {
+                return {
+                    host: redisHost,
+                    port: redisPort,
+                    password: redisPassword,
+                    db: redisDatabase,
+                }
+            },
+        }),
     ],
     controllers: components(controllers),
     providers: components(services, clients),

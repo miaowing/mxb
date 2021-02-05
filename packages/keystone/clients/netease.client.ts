@@ -26,4 +26,8 @@ export class NeteaseClient {
     @Get('https://mxb.cc/apis/music/playlist/detail')
     getPlaylistDetail(@Header('Cookie') cookie: string, @Query('id') id: string): any {
     }
+
+    @Get('https://mxb.cc/apis/music/lyric')
+    getLyric(@Query('id') id: string): any {
+    }
 }

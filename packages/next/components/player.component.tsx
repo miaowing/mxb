@@ -4,16 +4,17 @@ import { Howl, Howler } from 'howler';
 import { Icons } from "../constants/icons.constants";
 import * as Lyrics from 'lyrics.js';
 import { WithToast } from "../decorators/with-toast.decorator";
+import { getMusicSource } from "../helpers/data.helper";
 
 interface PlayerProps {
     id: string;
-    dt: number;
     image: string;
     name: string;
     artist: string;
     onPrevious: () => void;
     onNext: () => void;
     addToast?: any;
+    kind?: string;
 }
 
 @WithToast()
@@ -30,7 +31,7 @@ export class Player extends React.Component<PlayerProps, any> {
     }
 
     componentWillReceiveProps(props: Readonly<PlayerProps>) {
-        if (this.props.dt !== props.dt && props.dt) {
+        if (this.props.id !== props.id && props.id) {
             try {
                 this.setState({ playing: false });
                 Howler.unload();
@@ -38,7 +39,7 @@ export class Player extends React.Component<PlayerProps, any> {
 
             }
 
-            this.play(props.id, props.dt);
+            this.play(props.id, props.kind);
         }
     }
 
@@ -52,16 +53,20 @@ export class Player extends React.Component<PlayerProps, any> {
                 this.setState({ progress });
 
                 if (this.lyrics) {
-                    const index = this.lyrics.select(progress);
-                    const text = this.lyrics.getLyric(index);
-                    if (text !== this.state.lrc && text) {
-                        this.setState({ lrc: text.text });
+                    try {
+                        const index = this.lyrics.select(progress);
+                        const text = this.lyrics.getLyric(index);
+                        if (text !== this.state.lrc && text) {
+                            this.setState({ lrc: text.text });
+                        }
+                    } catch (e) {
+                        this.lyrics = null;
                     }
                 }
             }
         }, 100);
-        if (this.props.id && this.props.dt) {
-            this.play(this.props.id, this.props.dt);
+        if (this.props.id) {
+            this.play(this.props.id, this.props.kind);
         }
     }
 
@@ -70,10 +75,10 @@ export class Player extends React.Component<PlayerProps, any> {
         this.timer = null;
     }
 
-    play(id: string, dt: number) {
+    play(id: string, kind: string) {
         const { addToast } = this.props;
         this.howler = new Howl({
-            src: [`https://music.163.com/song/media/outer/url?id=${id}.mp3`],
+            src: [`/nest-api/music/kinds/${kind ?? 'netease'}/songs/${id}`],
             html5: true,
             autoplay: true,
             format: ["mp3"],
@@ -81,19 +86,21 @@ export class Player extends React.Component<PlayerProps, any> {
                 addToast('该资源暂时不可用', { appearance: 'error', autoDismiss: true });
                 this.props.onNext();
             },
+            onload: () => {
+                const max = this.howler.duration();
+                this.setState({ max: max > 1 ? max - 1 : max });
+            },
             onend: () => this.props.onNext(),
             onplay: () => this.setState({ playing: true }),
             onpause: () => this.setState({ playing: false }),
         });
 
-        const max = (dt / 1000);
-        this.setState({ max: max > 1 ? max - 1 : max });
-        fetch('https://mxb.cc/apis/music/lyric?id=' + id).then(async res => {
+        fetch(`/nest-api/music/kinds/${kind ?? 'netease'}/songs/${id}/lyric`).then(async res => {
             const body = await res.json();
             if (!body.nolyric) {
-                const lyric = body?.lrc?.lyric;
+                const lyric = body?.lyric;
                 console.log(lyric);
-                this.lyrics = new Lyrics(lyric);
+                this.lyrics = lyric ? new Lyrics(lyric) : null;
             }
         });
     }
@@ -109,7 +116,7 @@ export class Player extends React.Component<PlayerProps, any> {
     }
 
     render() {
-        const { image, name, artist, onPrevious, onNext } = this.props;
+        const { image, name, artist, onPrevious, onNext, kind } = this.props;
         return <div className="player">
             <ReactSlider
                 step={0.01}
@@ -130,7 +137,7 @@ export class Player extends React.Component<PlayerProps, any> {
                     <img src={image} alt={name}/>
                     <div className="info">
                         <div className="name">{name}</div>
-                        <div className="artist">{artist}</div>
+                        <div className="artist">{artist} - {getMusicSource(kind)}</div>
                     </div>
                 </div>
                 <div className="controls">
