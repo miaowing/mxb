@@ -16,14 +16,24 @@ export class MusicController {
     }
 
     @Get('/kinds/:kind/songs/:songId')
-    async getSingSongUrl(
+    async getSongUrl(
+        @Param('kind') kind: string,
+        @Param('songId') songId: string,
+        @Res() res: Response,
+    ) {
+        const { url } = await this.musicService.getSongUrl(songId, kind);
+        res.redirect(url);
+    }
+
+    @Get('/kinds/:kind/songs/:songId/stream')
+    async getSingSongStream(
         @Param('kind') kind: string,
         @Param('songId') songId: string,
         @Headers('range') range: string,
         @Req() req: Request,
         @Res() res: Response,
     ) {
-        const { stream, size } = await this.musicService.getSongUrl(songId, kind);
+        const { stream, size } = await this.musicService.getSongStream(songId, kind);
 
         res.setHeader('Content-Type', 'audio/mpeg');
         res.setHeader('Content-Length', size);

@@ -79,6 +79,8 @@ export class Player extends React.Component<PlayerProps, any> {
     play(id: string, kind: string) {
         const { addToast } = this.props;
 
+        this.setState({ progress: 0 });
+
         this.howler = new Howl({
             src: [`/nest-api/music/kinds/${kind ?? 'netease'}/songs/${id}`],
             html5: true,

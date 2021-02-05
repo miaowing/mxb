@@ -25,7 +25,7 @@ export class MusicService {
         };
     }
 
-    async getSongUrl(songId: string, kind: string): Promise<{ stream: Stream, size: number }> {
+    async getSongUrl(songId: string, kind: string): Promise<{ url: string, size: number }> {
         let url: { url: string, size: number };
         switch (kind) {
             case 'netease':
@@ -34,6 +34,11 @@ export class MusicService {
             default:
                 url = await this.singService.getSongUrl(songId, kind);
         }
+        return url;
+    }
+
+    async getSongStream(songId: string, kind: string): Promise<{ stream: Stream, size: number }> {
+        const url = await this.getSongUrl(songId, kind);
         const stream = request.get(decodeURIComponent(url.url), {
             headers: {
                 'User-Agent': '5sing%E5%8E%9F%E5%88%9B%E9%9F%B3%E4%B9%90/6081002 CFNetwork/978.0.7 Darwin/18.5.0',
