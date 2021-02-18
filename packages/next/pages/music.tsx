@@ -67,7 +67,7 @@ export default function MusicPage({ tracks, meta }) {
                 image={track?.al?.picUrl}/>)}
         </MusicCards>
         <div style={{ textAlign: 'center' }}>
-            <Button onClick={() => updateTracks()}>换一批</Button>
+            <Button className="mt-8" onClick={() => updateTracks()}>换一批</Button>
         </div>
         {current.id ? <Player
             onNext={() => next()}

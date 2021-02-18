@@ -62,10 +62,10 @@ export const Footer = ({ meta, style }: FooterProps) => {
                     </form>
                 </div>
                 <div className="mt-12 text-white">
-                    <a className="mr-8" href="http://weibo.com/zfeng217" target="_blank">
+                    <a className="mr-8 hover:text-white" href="http://weibo.com/zfeng217" target="_blank">
                         <span className="text-100xl">Weibo</span>
                     </a>
-                    <a className="mr-8" href="http://github.com/miaowing/mxb" target="_blank">
+                    <a className="mr-8 hover:text-white" href="http://github.com/miaowing/mxb" target="_blank">
                         <span className="text-100xl">GitHub</span>
                     </a>
                 </div>
@@ -81,13 +81,15 @@ export const Footer = ({ meta, style }: FooterProps) => {
             <div className="inline-block text-100xl mt-8 w-full">
                 <span>Built by</span>
                 <span> </span>
-                <a className="text-white" href="http://github.com/miaowing">Miaowing</a>
+                <a className="text-white hover:text-white" href="http://github.com/miaowing">Miaowing</a>
                 <span> </span>
                 <span>with ♥</span>
                 <div className="float-none text-white">
-                    {links.map(link => <a className="mr-12" key={link.name} href={link.url} target="_blank">
-                        {link.name}
-                    </a>)}
+                    {links.map(link =>
+                        <a className="mr-12 hover:text-white" key={link.name} href={link.url} target="_blank">
+                            {link.name}
+                        </a>
+                    )}
                 </div>
             </div>
         </div>

@@ -1,6 +1,6 @@
 import * as React from "react";
 import posed from 'react-pose';
-import { Nav } from "../components/nav.component";
+import { Nav } from "./nav.container";
 
 const AnimatedContainer = posed.div({
     enter: {
