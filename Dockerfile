@@ -11,7 +11,7 @@ WORKDIR /usr/src/app
 ADD package.json ./package.json
 ADD node_modules ./node_modules
 ADD packages/keystone/.keystone ./packages/keystone/.keystone
-ADD packages/keystone/.keystone/config.example.js ./packages/keystone/.keystone/config.js
+ADD packages/keystone/.env ./packages/keystone/.keystone/.env
 ADD packages/next/.next ./packages/next/.next
 ADD packages/next/next.config.js ./packages/next/next.config.js
 
