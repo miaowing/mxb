@@ -24,7 +24,7 @@ export const Card = ({ url, thumb, title, description }: PostCardProps) => {
             overflow-hidden leading-normal mt-12 hover:shadow-post transition-all duration-300
         ">
         <a href={url} target={isExternalUrl ? '_blank' : ''}>
-            {!!thumb && (<img src={thumb} alt={title}/>)}
+            {!!thumb && (<img src={thumb + '?x-oss-process=style/post-thumb'} alt={title}/>)}
         </a>
         <header className="p-10">
             <h2 className="text-black text-3xl mb-1">
