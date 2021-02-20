@@ -1,4 +1,4 @@
-import {CAPTCHA_APP_ID, EXTERNAL_URL} from "../keystone/constants/env.constants";
+const {CAPTCHA_APP_ID, EXTERNAL_URL} = require("../keystone/constants/env.constants");
 const withLess = require('@zeit/next-less');
 const withCSS = require('@zeit/next-css');
 const path = require('path');
