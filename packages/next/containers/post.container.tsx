@@ -50,10 +50,10 @@ export const Post = ({ post, children, meta }) => {
                         ) : ''}
                         {post?.tags?.length > 0 ? (
                             <div className="w-full mt-8 -mx-2">
-                                <div className="flex gap-2 mx-2 text-2xl">
+                                <div className="flex gap-2 text-2xl">
                                     {post.tags?.map(tag => (
                                         <span key={tag.key}
-                                              className="block px-4 bg-primary text-white rounded px-4 py-2">
+                                              className="block mx-2 px-4 bg-primary text-white rounded py-2">
                                         {tag.name}
                                     </span>
                                     ))}

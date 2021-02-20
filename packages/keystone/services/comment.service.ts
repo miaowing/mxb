@@ -41,6 +41,7 @@ export class CommentService {
         }
 
         let replyEmail;
+        let replyName;
         let isSubscribe;
         if (comment.replyTo) {
             const res = await this.keystone.executeGraphQL({
@@ -50,6 +51,7 @@ export class CommentService {
             const reply = res.data.Comment;
             data.reply_to = { connect: { id: reply.id } };
             replyEmail = reply.email;
+            replyName = reply.name;
             isSubscribe = reply.subscribe;
         }
         if (comment.belongTo) {
@@ -64,6 +66,7 @@ export class CommentService {
 
         if (isSubscribe && replyEmail) {
             this.notifyService.notify(replyEmail, {
+                name: replyName,
                 content: comment.content,
                 url: `${externalUrl}${comment.page}#${comment.replyTo}`
             }).catch(e => {
@@ -72,6 +75,7 @@ export class CommentService {
         } else if (!isSubscribe && !replyEmail) {
             this.notifyService.notifyMe({
                 content: comment.content,
+                name: comment.name,
                 url: `${externalUrl}${comment.page}#${id}`
             }).catch(e => {
                 this.logger.error(`Notify to me ${externalUrl}${comment.page}#${comment.replyTo}error.`, e);

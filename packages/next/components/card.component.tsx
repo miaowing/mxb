@@ -28,7 +28,7 @@ export const Card = ({ url, thumb, title, description }: PostCardProps) => {
         </a>
         <header className="p-10">
             <h2 className="text-black text-3xl mb-1">
-                <a href={url} target={isExternalUrl ? '_blank' : ''} className="hover:text-purple-600">
+                <a href={url} target={isExternalUrl ? '_blank' : ''} className="hover:text-primary">
                     {title}
                 </a>
             </h2>
