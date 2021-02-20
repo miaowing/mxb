@@ -1,4 +1,3 @@
-const {CAPTCHA_APP_ID, EXTERNAL_URL} = require("../keystone/constants/env.constants");
 const withLess = require('@zeit/next-less');
 const withCSS = require('@zeit/next-css');
 const path = require('path');
@@ -30,8 +29,8 @@ module.exports = withCSS(withLess({
     },
     publicRuntimeConfig: {
         // Will be available on both server and client
-        serverUrl: process.env[EXTERNAL_URL],
-        captchaAppId: process.env[CAPTCHA_APP_ID],
+        serverUrl: process.env.EXTERNAL_URL,
+        captchaAppId: process.env.CAPTCHA_APP_ID,
     },
     images: {
         domains: ['mxbcc.oss-cn-beijing.aliyuncs.com'],
