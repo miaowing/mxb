@@ -1,48 +1,30 @@
 import { NestFactory } from '@nestjs/core';
 import { AppModule } from "./app.module";
-import { apps, keystone } from "./keystone";
-import { NestLogger } from "@nestcloud/logger";
 import { resolve } from 'path';
 import { NestExpressApplication } from "@nestjs/platform-express";
 import chalk from "chalk";
 import { initHelper } from "./helpers";
 import { Logger } from "@nestjs/common";
 import { LOGGER } from "@nestcloud/common";
-import { port } from "./config";
+import { loggerConfig } from "./logger";
+import { ConfigService } from "@nestjs/config";
+import { PORT } from "./constants/env.constants";
 
 async function bootstrap() {
     const app = await NestFactory.create<NestExpressApplication>(AppModule, {
-        logger: new NestLogger({
-            level: 'debug',
-            transports: [
-                {
-                    transport: 'console',
-                    colorize: true,
-                    datePattern: 'YYYY-MM-DD HH:mm:ss',
-                    label: 'mxb',
-                    level: 'debug',
-                },
-                {
-                    transport: 'dailyRotateFile',
-                    datePattern: 'YYYY-MM-DD HH:mm:ss',
-                    label: 'mxb',
-                    filename: resolve(__dirname, '../../logs/mxb-%DATE%.log'),
-                    zippedArchive: true,
-                    level: 'debug',
-                    maxSize: '20m',
-                    maxFiles: '14d'
-                } as any,
-            ]
-        }),
+        logger: loggerConfig,
     });
 
     const logger = app.get<Logger>(LOGGER);
+    const config = app.get<ConfigService>(ConfigService);
+    const { keystone, apps } = app.get('KEYSTONE_JS_WRAPPER');
 
     logger.log('Initialising Keystone instance');
 
     const dev = process.env.NODE_ENV !== 'production';
+    const port = config.get(PORT, 3000);
     const { middlewares } = await keystone.prepare({
-        apps: apps as any,
+        apps,
         dev,
         distDir: !dev ? `${__dirname}/admin` : 'dist',
     });

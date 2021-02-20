@@ -5,9 +5,9 @@ import { Markdown } from '@keystonejs/fields-markdown';
 import { accessHelper } from "../helpers";
 import { atTracking } from "@keystonejs/list-plugins";
 import { Role } from "../constants/role.enum";
-import { ossAdapter } from "../clients/oss-adapter.client";
+import { OSSAdapterClient } from "../clients/oss-adapter.client";
 
-export function initPostModel(keystone: Keystone): void {
+export function initPostModel(keystone: Keystone, ossAdapter: OSSAdapterClient): void {
     keystone.createList('Post', {
         fields: {
             key: { type: Text },

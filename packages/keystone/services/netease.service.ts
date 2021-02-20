@@ -1,12 +1,13 @@
 import { Injectable, Logger, NotFoundException, OnModuleInit } from "@nestjs/common";
 import { NeteaseClient } from "../clients";
-import { neteaseCountryCode, neteasePassword, neteasePhone, playlistId } from "../config";
 import { Interval } from "@nestcloud/schedule";
 import { InjectLogger } from "@nestcloud/logger";
 import { InjectRedis } from "@nestcloud/redis";
 import { Redis } from "ioredis";
 import { NETEASE_COOKIE, NETEASE_SONG_URL, NETEASE_SONGS } from "../constants/redis.constants";
 import * as shuffle from 'shuffle-array';
+import { ConfigService } from "@nestjs/config";
+import { NETEASE_COUNTRY_CODE, NETEASE_PASSWORD, NETEASE_PHONE, PLAYLIST_ID } from "../constants/env.constants";
 
 @Injectable()
 export class NeteaseService implements OnModuleInit {
@@ -18,6 +19,7 @@ export class NeteaseService implements OnModuleInit {
         private readonly logger: Logger,
         @InjectRedis()
         private readonly redis: Redis,
+        private readonly config: ConfigService,
     ) {
     }
 
@@ -65,6 +67,7 @@ export class NeteaseService implements OnModuleInit {
     @Interval(5 * 60 * 1000)
     async refreshSongs() {
         const cookie = await this.redis.get(NETEASE_COOKIE);
+        const playlistId = this.config.get(PLAYLIST_ID);
         const { playlist: { tracks } } = await this.netease.getPlaylistDetail(cookie, playlistId);
         await this.redis.set(NETEASE_SONGS, JSON.stringify(tracks), 'EX', 60 * 60);
         return tracks;
@@ -91,7 +94,11 @@ export class NeteaseService implements OnModuleInit {
         const cookie = await this.redis.get(NETEASE_COOKIE);
         if (!cookie) {
             try {
-                const result = await this.netease.login(neteasePhone, neteasePassword, neteaseCountryCode);
+                const result = await this.netease.login(
+                    this.config.get(NETEASE_PHONE),
+                    this.config.get(NETEASE_PASSWORD),
+                    this.config.get(NETEASE_COUNTRY_CODE),
+                );
                 if (result.code === 200) {
                     this.cookie = result.cookie;
 

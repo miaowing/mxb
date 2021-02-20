@@ -1,5 +1,3 @@
-import { oss } from "../config";
-
 const path = require('path');
 const urlJoin = require('url-join');
 import * as OSS from 'ali-oss';
@@ -56,11 +54,3 @@ export class OSSAdapterClient {
         return urlJoin(`https://${this.bucket}.${this.region}.aliyuncs.com`, this.folder, filename);
     }
 }
-
-export const ossAdapter = new OSSAdapterClient(
-    oss.accessKey,
-    oss.secretKey,
-    oss.region,
-    oss.bucket,
-    oss.folder,
-);

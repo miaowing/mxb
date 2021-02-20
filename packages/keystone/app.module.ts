@@ -7,23 +7,33 @@ import { components } from "@nestcloud/common";
 import { LoggerModule } from "@nestcloud/logger";
 import { HttpModule } from "@nestcloud/http";
 import { ScheduleModule } from "@nestcloud/schedule";
-import { redisDatabase, redisHost, redisPassword, redisPort } from "./config";
 import { RedisModule } from "@nestcloud/redis";
+import { ConfigModule, ConfigService } from "@nestjs/config";
+import { REDIS_DB, REDIS_HOST, REDIS_PASSWORD, REDIS_PORT } from "./constants/env.constants";
+import { resolve } from 'path';
 
 @Module({
     imports: [
         KeystoneModule.forRoot(),
+        ConfigModule.forRoot({
+            isGlobal: true,
+            envFilePath: [
+                resolve(__dirname, '.env.production'),
+                resolve(__dirname, '.env.development'),
+                resolve(__dirname, '.env'),
+            ]
+        }),
         LoggerModule.forRoot(),
         HttpModule.forRoot(),
         ScheduleModule.forRoot(),
         RedisModule.forRootAsync({
-            inject: [],
-            useFactory: () => {
+            inject: [ConfigService],
+            useFactory: (config: ConfigService) => {
                 return {
-                    host: redisHost,
-                    port: redisPort,
-                    password: redisPassword,
-                    db: redisDatabase,
+                    host: config.get(REDIS_HOST, 'localhost'),
+                    port: config.get(REDIS_PORT, 6379),
+                    password: config.get(REDIS_PASSWORD),
+                    db: config.get(REDIS_DB, 0),
                 }
             },
         }),

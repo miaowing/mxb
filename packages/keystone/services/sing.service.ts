@@ -1,5 +1,4 @@
 import { Injectable, Logger, NotFoundException, OnModuleInit } from "@nestjs/common";
-import { singUsername, singPassword } from "../config";
 import { InjectLogger } from "@nestcloud/logger";
 import { SingClient } from "../clients";
 import { createHash } from 'crypto';
@@ -7,6 +6,8 @@ import { InjectRedis } from "@nestcloud/redis";
 import { Redis } from 'ioredis';
 import { SING_LOVE_SONGS, SING_SONG_URL, SING_TOKEN, SING_USER_ID } from "../constants/redis.constants";
 import * as shuffle from 'shuffle-array';
+import { ConfigService } from "@nestjs/config";
+import { SING_PASSWORD, SING_USERNAME } from "../constants/env.constants";
 
 @Injectable()
 export class SingService implements OnModuleInit {
@@ -18,6 +19,7 @@ export class SingService implements OnModuleInit {
         private readonly logger: Logger,
         @InjectRedis()
         private readonly redis: Redis,
+        private readonly config: ConfigService,
     ) {
     }
 
@@ -85,12 +87,14 @@ export class SingService implements OnModuleInit {
 
     async onModuleInit(): Promise<void> {
         const md5 = createHash('md5');
-        const sign = md5.update(`${singUsername}${this.SIGN_KEY}${singPassword}`).digest('hex');
+        const username = this.config.get(SING_USERNAME);
+        const password = this.config.get(SING_PASSWORD);
+        const sign = md5.update(`${username}${this.SIGN_KEY}${password}`).digest('hex');
 
         const token = await this.redis.get(SING_TOKEN);
         if (!token) {
             try {
-                const { data, code, msg } = await this.singClient.login(singUsername, singPassword, sign);
+                const { data, code, msg } = await this.singClient.login(username, password, sign);
                 if (code !== 0) {
                     this.logger.error(`init 5sing api error: ${JSON.stringify(msg)}`);
                     return;

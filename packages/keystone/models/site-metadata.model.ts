@@ -2,9 +2,9 @@ import { Keystone } from "@keystonejs/keystone";
 import { File, Text, Url } from "@keystonejs/fields";
 import { Role } from "../constants/role.enum";
 import { accessHelper } from "../helpers";
-import { ossAdapter } from "../clients/oss-adapter.client";
+import { OSSAdapterClient } from "../clients/oss-adapter.client";
 
-export function initSiteMetadataModel(keystone: Keystone): void {
+export function initSiteMetadataModel(keystone: Keystone, ossAdapter: OSSAdapterClient): void {
     keystone.createList('SiteMeta', {
         fields: {
             title: { type: Text },

@@ -2,9 +2,9 @@ import { Keystone } from "@keystonejs/keystone";
 import { Checkbox, Relationship, Text, Url, Select, File } from "@keystonejs/fields";
 import { Role } from "../constants/role.enum";
 import { accessHelper } from "../helpers";
-import { ossAdapter } from "../clients/oss-adapter.client";
+import { OSSAdapterClient } from "../clients/oss-adapter.client";
 
-export function initLinkModel(keystone: Keystone): void {
+export function initLinkModel(keystone: Keystone, ossAdapter: OSSAdapterClient): void {
     keystone.createList('Link', {
         fields: {
             name: { type: Text },
