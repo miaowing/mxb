@@ -2,12 +2,13 @@ import chalk from 'chalk';
 import * as path from 'path';
 import * as fs from 'fs-extra';
 import { DEFAULT_DIST_DIR } from './constants';
-import * as entryFile from '../packages/keystone/keystone';
+import { initKeystone } from "../packages/keystone/keystone";
+import { ConfigService } from "@nestjs/config";
 
 async function bootstrap() {
     process.env.NODE_ENV = 'production';
 
-    const { keystone, apps } = entryFile;
+    const { keystone, apps } = initKeystone({ get: (...params) => 'mock' } as ConfigService);
     console.log('Initialised Keystone instance');
 
     const resolvedDistDir = path.resolve(__dirname, '../', DEFAULT_DIST_DIR);
