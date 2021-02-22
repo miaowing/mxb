@@ -19,7 +19,7 @@ export const UseEmailRule = (message: string, required: boolean = true) => {
         required,
         validator: (rule, value, callback) => {
             if (value === undefined || value === '') {
-                return callback();
+                return callback(message);
             }
             if (!/^([A-Za-z0-9_\-\.])+\@([A-Za-z0-9_\-\.])+\.([A-Za-z]{2,4})$/.test(value)) {
                 return callback(message);
