@@ -19,7 +19,6 @@ export class Contact extends React.Component<any, any> {
 
     render() {
         const { form, loading, meta } = this.props;
-        console.log(Icons().contactEmail);
         return <div className="px-8 md:px-16 text-gray-500 leading-loose">
             <Query type="object" query={GET_BANNER} variables={{ key: 'contact-me' }} render={banner => (
                 <div className="
@@ -53,13 +52,13 @@ export class Contact extends React.Component<any, any> {
                 <div className="flex-1 bg-contact p-24">
                     <h5 className="text-4xl font-medium text-white mb-16">Contact Details</h5>
                     <div className="mb-12">
-                        <span className="inline-block align-top">{Icons().position}</span>
+                        <span className="inline-block align-top w-10">{Icons().position}</span>
                         <p className="inline-block text-100xl text-white font-extralight pl-7 leading-8">
                             {meta?.address}
                         </p>
                     </div>
                     <div className="mb-12">
-                        <span className="inline-block align-top">{Icons().contactEmail}</span>
+                        <span className="inline-block align-top w-10">{Icons().contactEmail}</span>
                         <p className="inline-block text-100xl text-white font-extralight pl-7 leading-8">
                             <a href={`mailto:${meta?.admin_email}`}>{meta?.admin_email}</a>
                         </p>

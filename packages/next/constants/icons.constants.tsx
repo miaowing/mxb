@@ -6,6 +6,7 @@ export const Icons = () => {
             <svg xmlns="http://www.w3.org/1999/xlink"
                  height="22px"
                  version="1.1"
+                 style={{ margin: '0 auto' }}
                  viewBox="0 0 26 22"
                  width="26px">
                 <g fill="none" fill-rule="evenodd" id="Page-1" opacity="0.900000036" stroke="none" stroke-width="1">
@@ -46,6 +47,7 @@ export const Icons = () => {
         position: (
             <svg xmlns="http://www.w3.org/1999/xlink"
                  height="26px"
+                 style={{ margin: '0 auto' }}
                  version="1.1"
                  viewBox="0 0 18 26"
                  width="18px">
