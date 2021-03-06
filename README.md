@@ -14,7 +14,7 @@ My personal blog develop with keystonejs and next.js.
 docker pull zfeng/blog
 ```
 
-## Development.
+## Development
 
 ```shell
 yarn
