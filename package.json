@@ -79,6 +79,7 @@
     "next": "9.3.0",
     "node-fetch": "^2.6.0",
     "nodemailer": "^6.4.6",
+    "react-flexbox-grid": "^2.1.2",
     "reflect-metadata": "^0.1.13",
     "request": "^2.88.2",
     "rss": "^1.2.2",

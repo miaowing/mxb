@@ -15,7 +15,7 @@ import { initGalleryAnimation, initHomepageBannerAnimation } from "../helpers/an
 import { BaseProps } from "../interfaces/props.interface";
 import { Post } from "../interfaces/post.interface";
 import dayjs from "dayjs";
-import { BannerImagesContainer } from "../containers/banner-images.container";
+import { ImagesContainer } from "../containers/images.container";
 
 
 export default class Homepage extends React.Component<BaseProps, any> {
@@ -32,30 +32,26 @@ export default class Homepage extends React.Component<BaseProps, any> {
                         type="object" query={GET_BANNER} variables={{ key: 'homepage' }}
                         onCompleted={() => initHomepageBannerAnimation()}
                         render={data => <Banner title={data.content}>
-                            <BannerImagesContainer/>
-                        </Banner>}/>
+                            {/*<BannerImagesContainer/>*/}
+                        </Banner>}
+                    />
                     <Query
                         query={GET_GALLERIES}
                         onCompleted={() => initGalleryAnimation()}
-                        render={(galleries: Gallery[]) => <Galleries>
-                            {galleries.map((item, index) => <GalleryItem
-                                index={index}
-                                key={item.title}
-                                title={item.title}
-                                url={item.url}
-                                description={item.description}
-                                image={item?.thumb?.publicUrl}
+                        render={(galleries: Gallery[]) => <ImagesContainer galleries={galleries}/>}
+                    />
+                    <Query
+                        query={GET_LATEST_POSTS}
+                        render={(posts: Post[]) => <Cards title="Blog Posts↓">
+                            {posts.map(post => <Card
+                                key={post.id}
+                                description={dayjs(post.createdAt).format('YYYY-MM-DD hh:mm')}
+                                thumb={post?.thumb?.publicUrl}
+                                url={`/posts/${post.key}`}
+                                title={post.title}
                             />)}
-                        </Galleries>}/>
-                    <Query query={GET_LATEST_POSTS} render={(posts: Post[]) => <Cards title="Blog Posts↓">
-                        {posts.map(post => <Card
-                            key={post.id}
-                            description={dayjs(post.createdAt).format('YYYY-MM-DD hh:mm')}
-                            thumb={post?.thumb?.publicUrl}
-                            url={`/posts/${post.key}`}
-                            title={post.title}
-                        />)}
-                    </Cards>}/>
+                        </Cards>}
+                    />
                 </div>
                 <Footer meta={meta}/>
             </Layout>

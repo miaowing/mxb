@@ -5,4 +5,7 @@ export interface Gallery {
     thumb: {
         publicUrl: string;
     };
+    cover: {
+        publicUrl: string;
+    }
 }

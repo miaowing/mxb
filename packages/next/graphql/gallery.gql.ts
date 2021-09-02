@@ -6,6 +6,9 @@ query {
     title,
     description,
     url,
+    cover {
+      publicUrl
+    }
     thumb {
       publicUrl
     }

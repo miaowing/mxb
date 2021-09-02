@@ -12,7 +12,12 @@ export function initGalleryModel(keystone: Keystone, ossAdapter: OSSAdapterClien
             thumb: {
                 type: File,
                 adapter: ossAdapter,
-                label: '图片',
+                label: '背景',
+            },
+            cover: {
+                type: File,
+                adapter: ossAdapter,
+                label: 'Icon',
             },
             sort: { type: Integer },
             url: { type: Url },

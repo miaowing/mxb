@@ -46,7 +46,22 @@ module.exports = {
             lineHeight: {
                 footer: '180%',
                 full: '100%',
-                13: '4rem',
+                11: '2.75rem',
+                12: '3rem',
+                13: '3.25rem',
+                14: '3.5rem',
+                15: '3.75rem',
+                16: '4rem',
+                17: '4.25rem',
+                18: '4.5rem',
+                19: '4.75rem',
+                20: '5rem',
+                21: '5.25rem',
+                22: '5.5rem',
+                23: '5.75rem',
+                24: '6rem',
+                25: '6.25rem',
+                26: '6.5rem'
             },
             colors: {
                 layer: '#1A153A',
@@ -54,6 +69,9 @@ module.exports = {
                 primary: '#18142e',
                 contact: '#d0414e',
                 'footer-text': 'hsla(0, 0%, 100%, 0.6)',
+                'gallery-button': 'rgba(255, 255, 255, 0.3)',
+                'gallery-button-hover': 'rgba(255, 255, 255, 0.6)',
+                'gallery-button-hover-bg': 'rgba(255, 255, 255, 0.1)',
             }
         },
     },
