@@ -3,7 +3,7 @@ import { Injectable } from "@nestjs/common";
 
 @Injectable()
 export class NeteaseClient {
-    @Post('https://mxb.cc/apis/music/login/cellphone?flag=mxbcc')
+    @Post(`https://music.mxb.cc/login/cellphone?flag=mxbcc`)
     login(
         @Body('phone') phone: string,
         @Body('password') password: string,
@@ -11,23 +11,23 @@ export class NeteaseClient {
     ): any {
     }
 
-    @Get('https://mxb.cc/apis/music/login/refresh')
+    @Get(`https://music.mxb.cc/login/refresh`)
     refresh(@Header('Cookie') cookie: string): any {
     }
 
-    @Get('https://mxb.cc/apis/music/song/url')
+    @Get(`https://music.mxb.cc/song/url`)
     getSongUrl(@Header('Cookie') cookie: string, @Query('id') id: string): any {
     }
 
-    @Get('https://mxb.cc/apis/music/song/detail')
+    @Get(`https://music.mxb.cc/song/detail`)
     getSongsDetail(@Header('Cookie') cookie: string, @Query('ids') ids: string) {
     }
 
-    @Get('https://mxb.cc/apis/music/playlist/detail')
+    @Get(`https://music.mxb.cc/playlist/detail`)
     getPlaylistDetail(@Header('Cookie') cookie: string, @Query('id') id: string): any {
     }
 
-    @Get('https://mxb.cc/apis/music/lyric')
+    @Get(`https://music.mxb.cc/lyric`)
     getLyric(@Query('id') id: string): any {
     }
 }
