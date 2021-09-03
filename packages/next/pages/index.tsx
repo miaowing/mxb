@@ -15,7 +15,7 @@ import { initGalleryAnimation, initHomepageBannerAnimation } from "../helpers/an
 import { BaseProps } from "../interfaces/props.interface";
 import { Post } from "../interfaces/post.interface";
 import dayjs from "dayjs";
-import { ImagesContainer } from "../containers/images.container";
+import { GalleriesContainer } from "../containers/galleries.container";
 
 
 export default class Homepage extends React.Component<BaseProps, any> {
@@ -38,7 +38,7 @@ export default class Homepage extends React.Component<BaseProps, any> {
                     <Query
                         query={GET_GALLERIES}
                         onCompleted={() => initGalleryAnimation()}
-                        render={(galleries: Gallery[]) => <ImagesContainer galleries={galleries}/>}
+                        render={(galleries: Gallery[]) => <GalleriesContainer galleries={galleries}/>}
                     />
                     <Query
                         query={GET_LATEST_POSTS}

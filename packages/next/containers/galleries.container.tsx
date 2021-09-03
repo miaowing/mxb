@@ -2,14 +2,14 @@ import * as React from 'react';
 import { Grid, Row, Col } from 'react-flexbox-grid/dist/react-flexbox-grid';
 import { Gallery } from "../interfaces/gallery.interface";
 
-export const ImagesContainer = ({ galleries }: { galleries: Gallery[] }) => {
+export const GalleriesContainer = ({ galleries }: { galleries: Gallery[] }) => {
     const main = galleries[0];
     const second = galleries[1];
     const third = galleries[2];
     return <section>
         <Grid fluid className="px-8 sm:px-16 pb-40">
             <Row>
-                <Col md={12} lg={8} className="flex">
+                <Col md={12} lg={8} className="flex mt-6">
                     <a className="p-16 bg-black block rounded-3xl bg-cover bg-no-repeat bg-center w-full"
                        target="__blank"
                        style={{ backgroundImage: `url(${main?.thumb?.publicUrl})` }}
@@ -20,10 +20,14 @@ export const ImagesContainer = ({ galleries }: { galleries: Gallery[] }) => {
                                 <h3 className="text-white text-7xl sm:text-8xl font-black mt-10 leading-19 sm:leading-26">
                                     {main?.title}
                                 </h3>
-                                <p className="text-white text-4xl sm:text-5xl font-light mt-10 flex-grow flex-1 leading-13 sm:leading-16">
+                                <p className="
+                                    text-white text-4xl sm:text-5xl font-light mt-10
+                                    flex-grow flex-1 leading-13 sm:leading-16
+                                ">
                                     {main?.description}
                                 </p>
                                 <button
+                                    style={{ outline: 'none' }}
                                     className="
                                         px-6 py-2 border border-white bg-gray-50 text-gray-500 mt-5 rounded-md w-56
                                         hover:bg-gray-200 hover:border-gray-200
@@ -36,7 +40,7 @@ export const ImagesContainer = ({ galleries }: { galleries: Gallery[] }) => {
                 </Col>
                 <Col md={12} lg={4}>
                     <Row className="h-full">
-                        <Col sm={12} md={6} lg={12} className="mt-6 sm:mt-6 md:mt-6 lg:mt-0 xl:mt-0 2xl:mt-0">
+                        <Col sm={12} md={6} lg={12} className="mt-6">
                             <a className="
                                 px-12 py-10 bg-black bg-cover block rounded-3xl flex flex-col h-full
                                 bg-cover bg-no-repeat bg-center w-full
@@ -52,6 +56,7 @@ export const ImagesContainer = ({ galleries }: { galleries: Gallery[] }) => {
                                     {second?.description}
                                 </div>
                                 <button
+                                    style={{ outline: 'none' }}
                                     className="
                                         px-6 py-2 border border-gallery-button text-white mt-5 rounded-md w-44
                                         hover:border-gallery-button-hover hover:bg-gallery-button-hover-bg
@@ -76,6 +81,7 @@ export const ImagesContainer = ({ galleries }: { galleries: Gallery[] }) => {
                                     {third?.description}
                                 </div>
                                 <button
+                                    style={{ outline: 'none' }}
                                     className="
                                         px-6 py-2 border border-gallery-button text-white mt-5 rounded-md w-44
                                         hover:border-gallery-button-hover hover:bg-gallery-button-hover-bg

@@ -29,7 +29,7 @@ export const initHomepageBannerAnimation = () => {
                 item.style.setProperty('left', `${left}px`);
                 item.style.setProperty('opacity', `${opacity}`);
             })
-            .delay(index * 100)
+            .delay(index * 150)
             .start();
     });
 }
