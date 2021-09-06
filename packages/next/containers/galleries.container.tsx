@@ -1,6 +1,7 @@
 import * as React from 'react';
 import { Grid, Row, Col } from 'react-flexbox-grid/dist/react-flexbox-grid';
 import { Gallery } from "../interfaces/gallery.interface";
+import { getGalleryInitStyle } from "../helpers/animation.helper";
 
 export const GalleriesContainer = ({ galleries }: { galleries: Gallery[] }) => {
     const main = galleries[0];
@@ -10,9 +11,10 @@ export const GalleriesContainer = ({ galleries }: { galleries: Gallery[] }) => {
         <Grid fluid className="px-8 sm:px-16 pb-40">
             <Row>
                 <Col md={12} lg={8} className="flex mt-6">
-                    <a className="p-16 bg-black block rounded-3xl bg-cover bg-no-repeat bg-center w-full"
+                    <a className="p-16 bg-black block rounded-3xl bg-cover bg-no-repeat bg-center w-full relative"
+                       id="gallery-item-0"
                        target="__blank"
-                       style={{ backgroundImage: `url(${main?.thumb?.publicUrl})` }}
+                       style={{ backgroundImage: `url(${main?.thumb?.publicUrl})`, ...getGalleryInitStyle() }}
                        href={main?.url}>
                         <Row className="h-full">
                             <Col md={8} lg={9} sm={12} className="flex flex-col">
@@ -41,12 +43,12 @@ export const GalleriesContainer = ({ galleries }: { galleries: Gallery[] }) => {
                 <Col md={12} lg={4}>
                     <Row className="h-full">
                         <Col sm={12} md={6} lg={12} className="mt-6">
-                            <a className="
+                            <a id="gallery-item-1" className="
                                 px-12 py-10 bg-black bg-cover block rounded-3xl flex flex-col h-full
-                                bg-cover bg-no-repeat bg-center w-full
+                                bg-cover bg-no-repeat bg-center w-full relative
                             "
                                target="__blank"
-                               style={{ backgroundImage: `url(${second?.thumb?.publicUrl})` }}
+                               style={{ backgroundImage: `url(${second?.thumb?.publicUrl})`, ...getGalleryInitStyle() }}
                                href={second?.url}>
                                 <img src={second?.cover?.publicUrl} className="h-20 w-20"/>
                                 <div className="text-white font-bold mt-5 text-4xl leading-11">
@@ -66,12 +68,12 @@ export const GalleriesContainer = ({ galleries }: { galleries: Gallery[] }) => {
                             </a>
                         </Col>
                         <Col sm={12} md={6} lg={12} className="mt-6">
-                            <a className="
-                                px-12 py-10 bg-black block rounded-3xl flex flex-col h-full
-                                bg-cover bg-no-repeat bg-center
-                            "
+                            <a id="gallery-item-2" className="
+                                   px-12 py-10 bg-black block rounded-3xl flex flex-col h-full
+                                   bg-cover bg-no-repeat bg-center relative
+                               "
                                target="__blank"
-                               style={{ backgroundImage: `url(${third?.thumb?.publicUrl})` }}
+                               style={{ backgroundImage: `url(${third?.thumb?.publicUrl})`, ...getGalleryInitStyle() }}
                                href={third?.url}>
                                 <img src={third?.cover?.publicUrl} className="h-20 w-20"/>
                                 <div className="text-white font-bold mt-5 text-4xl leading-11">

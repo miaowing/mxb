@@ -49,7 +49,7 @@ export const initGalleryAnimation = () => {
                 item.style.setProperty('bottom', `${bottom}px`);
                 item.style.setProperty('opacity', `${opacity}`);
             })
-            .delay(index * 100 + 100)
+            .delay(300)
             .start();
     });
 }
