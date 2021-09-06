@@ -87,7 +87,7 @@ export const Footer = ({ meta, style }: FooterProps) => {
                 <div className="float-none text-white">
                     {links.map(link =>
                         <a className="mr-12 hover:text-white" key={link.name} href={link.url} target="_blank">
-                            {link.name}
+                            <span dangerouslySetInnerHTML={{ __html: link.name }}/>
                         </a>
                     )}
                 </div>
