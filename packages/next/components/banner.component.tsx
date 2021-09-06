@@ -8,8 +8,8 @@ export const Banner = ({ title, children }) => {
     return <div className="p-8 sm:px-16">
         <div className="block md:flex justify-between items-center mb-24">
             <div className="max-w-5xl">
-                <h2 style={getBannerInitStyle()}
-                    className="block font-normal text-5xl leading-normal relative"
+                <h2 className="block font-normal text-5xl leading-normal relative"
+                    // style={getBannerInitStyle()}
                     id="homepage-banner-title">
                     <span>I’m an JavaScript & TypeScript developer, who loves </span>
                     <span>

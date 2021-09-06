@@ -1,7 +1,6 @@
 import * as React from 'react';
 import { Grid, Row, Col } from 'react-flexbox-grid/dist/react-flexbox-grid';
 import { Gallery } from "../interfaces/gallery.interface";
-import { getGalleryInitStyle } from "../helpers/animation.helper";
 
 export const GalleriesContainer = ({ galleries }: { galleries: Gallery[] }) => {
     const main = galleries[0];
@@ -14,7 +13,7 @@ export const GalleriesContainer = ({ galleries }: { galleries: Gallery[] }) => {
                     <a className="p-16 bg-black block rounded-3xl bg-cover bg-no-repeat bg-center w-full relative"
                        id="gallery-item-0"
                        target="__blank"
-                       style={{ backgroundImage: `url(${main?.thumb?.publicUrl})`, ...getGalleryInitStyle() }}
+                       style={{ backgroundImage: `url(${main?.thumb?.publicUrl})` }}
                        href={main?.url}>
                         <Row className="h-full">
                             <Col md={8} lg={9} sm={12} className="flex flex-col">
@@ -48,7 +47,7 @@ export const GalleriesContainer = ({ galleries }: { galleries: Gallery[] }) => {
                                 bg-cover bg-no-repeat bg-center w-full relative
                             "
                                target="__blank"
-                               style={{ backgroundImage: `url(${second?.thumb?.publicUrl})`, ...getGalleryInitStyle() }}
+                               style={{ backgroundImage: `url(${second?.thumb?.publicUrl})` }}
                                href={second?.url}>
                                 <img src={second?.cover?.publicUrl} className="h-20 w-20"/>
                                 <div className="text-white font-bold mt-5 text-4xl leading-11">
@@ -73,7 +72,7 @@ export const GalleriesContainer = ({ galleries }: { galleries: Gallery[] }) => {
                                    bg-cover bg-no-repeat bg-center relative
                                "
                                target="__blank"
-                               style={{ backgroundImage: `url(${third?.thumb?.publicUrl})`, ...getGalleryInitStyle() }}
+                               style={{ backgroundImage: `url(${third?.thumb?.publicUrl})` }}
                                href={third?.url}>
                                 <img src={third?.cover?.publicUrl} className="h-20 w-20"/>
                                 <div className="text-white font-bold mt-5 text-4xl leading-11">
