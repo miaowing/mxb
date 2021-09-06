@@ -1,6 +1,5 @@
 import * as React from 'react';
 import { Button } from "./button.component";
-import { getBannerInitStyle } from "../helpers/animation.helper";
 import { RestartingTypist } from "./restarting-typist.component";
 import Typist from 'react-typist';
 
@@ -9,7 +8,6 @@ export const Banner = ({ title, children }) => {
         <div className="block md:flex justify-between items-center mb-24">
             <div className="max-w-5xl">
                 <h2 className="block font-normal text-5xl leading-normal relative"
-                    // style={getBannerInitStyle()}
                     id="homepage-banner-title">
                     <span>I’m an JavaScript & TypeScript developer, who loves </span>
                     <span>
@@ -26,7 +24,6 @@ export const Banner = ({ title, children }) => {
                     </span>
                 </h2>
                 <Button
-                    style={getBannerInitStyle()}
                     id="homepage-banner-button" onClick={() => location.href = '/contact'}>
                     Contact me
                 </Button>
