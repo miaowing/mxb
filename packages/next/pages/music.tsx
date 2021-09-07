@@ -66,18 +66,18 @@ export default function MusicPage({ tracks, meta }) {
                 singer={`${track?.ar[0]?.name} - ${getMusicSource(track?.kind)}`}
                 image={track?.al?.picUrl}/>)}
         </MusicCards>
-        <div style={{ textAlign: 'center' }}>
-            <Button className="mt-8" onClick={() => updateTracks()}>换一批</Button>
+        <div style={{ textAlign: 'center' }} className={`random-btn ${current.id ? 'playing' : ''}`}>
+            <Button style={{ marginTop: '0.5rem' }} onClick={() => updateTracks()}>换一批</Button>
         </div>
-        {current.id ? <Player
+        <Player
             onNext={() => next()}
             onPrevious={() => previous()}
             image={current?.al?.picUrl}
-            name={current.name}
+            name={current?.name}
             artist={current?.ar ? current?.ar[0]?.name : ''}
-            id={current.id}
-            kind={current.kind}
-        /> : ''}
-        <Footer style={{ marginBottom: current.id ? 60 : 0 }} meta={meta}/>
+            id={current?.id}
+            kind={current?.kind}
+        />
+        {/*<Footer style={{ marginBottom: current.id ? 60 : 0 }} meta={meta}/>*/}
     </Layout>
 }

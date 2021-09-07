@@ -11,9 +11,16 @@ export const MusicCards = ({ children }) => {
     </div>
 }
 
-export const MusicCard = ({ image, name, singer, onClick }) => {
-    return <div className="card">
-        <div className="cover" onClick={onClick}>
+interface MusicCardProps {
+    image?: string;
+    name?: string;
+    singer?: string;
+    onClick?: () => void;
+}
+
+export const MusicCard = ({ image, name, singer, onClick }: MusicCardProps) => {
+    return <div className="card" onClick={onClick}>
+        <div className="cover">
             <div className="cover hover" style={{ backgroundImage: `url(${image})` }}>
                 <button className="button">{Icons().play}</button>
             </div>

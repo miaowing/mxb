@@ -45,7 +45,7 @@ export class Player extends React.Component<PlayerProps, any> {
 
     componentDidMount() {
         this.timer = setInterval(() => {
-            if (!this.howler.playing()) {
+            if (!this?.howler?.playing()) {
                 return;
             }
             const progress = this.howler?.seek();
@@ -144,7 +144,7 @@ export class Player extends React.Component<PlayerProps, any> {
                     <img src={image} alt={name}/>
                     <div className="info">
                         <div className="name">{name}</div>
-                        <div className="artist">{artist} - {getMusicSource(kind)}</div>
+                        <div className="artist">{name ? `${artist} - ${getMusicSource(kind)}` : ''}</div>
                     </div>
                 </div>
                 <div className="controls">
@@ -158,7 +158,7 @@ export class Player extends React.Component<PlayerProps, any> {
                         {Icons().next}
                     </button>
                 </div>
-                <div className="controls">
+                <div className="controls lyrics-controls">
                     <div className="lrc">
                         {this.state.lrc}
                     </div>
