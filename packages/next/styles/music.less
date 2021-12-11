@@ -4,7 +4,9 @@
 .random-btn {
   margin-bottom: 60px;
 
-  .media(@phone, margin-bottom, 180px);
+  &.loaded {
+    .media(@phone, margin-bottom, 180px);
+  }
 }
 
 .music-component {
@@ -191,7 +193,9 @@
   height: 60px;
   background-color: white;
 
-  .media(@phone, height, 180px);
+  &.loaded {
+    .media(@phone, height, 180px);
+  }
 
   :global {
     .slider {

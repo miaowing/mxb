@@ -66,7 +66,8 @@ export default function MusicPage({ tracks, meta }) {
                 singer={`${track?.ar[0]?.name} - ${getMusicSource(track?.kind)}`}
                 image={track?.al?.picUrl}/>)}
         </MusicCards>
-        <div style={{ textAlign: 'center' }} className={`random-btn ${current.id ? 'playing' : ''}`}>
+        <div style={{ textAlign: 'center' }}
+             className={`random-btn ${current.id ? 'playing' : ''} ${current?.name ? 'loaded' : ''}`}>
             <Button style={{ marginTop: '0.5rem' }} onClick={() => updateTracks()}>换一批</Button>
         </div>
         <Player

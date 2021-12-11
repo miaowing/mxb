@@ -124,7 +124,7 @@ export class Player extends React.Component<PlayerProps, any> {
 
     render() {
         const { image, name, artist, onPrevious, onNext, kind } = this.props;
-        return <div className="player">
+        return <div className={`player ${name ? 'loaded' : ''}`}>
             <ReactSlider
                 step={0.01}
                 onBeforeChange={() => {
@@ -140,13 +140,13 @@ export class Player extends React.Component<PlayerProps, any> {
                 value={this.state.progress}
                 max={this.state.max}/>
             <div className="footer">
-                <div className="playing">
+                {name ? <div className="playing">
                     <img src={image} alt={name}/>
                     <div className="info">
                         <div className="name">{name}</div>
                         <div className="artist">{name ? `${artist} - ${getMusicSource(kind)}` : ''}</div>
                     </div>
-                </div>
+                </div> : ''}
                 <div className="controls">
                     <button className="button" onClick={() => onPrevious()}>
                         {Icons().previous}
@@ -158,11 +158,11 @@ export class Player extends React.Component<PlayerProps, any> {
                         {Icons().next}
                     </button>
                 </div>
-                <div className="controls lyrics-controls">
+                {name ? <div className="controls lyrics-controls">
                     <div className="lrc">
                         {this.state.lrc}
                     </div>
-                </div>
+                </div> : ''}
             </div>
         </div>
     }
